@@ -8,7 +8,7 @@
 
 | | |
 |---|---|
-| 🖥 Презентация | [`slides/index.html`](slides/index.html) — 20 слайда с бележки за преподавателя (клавиш **N**) |
+| 🖥 Презентация | [Отвори](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/) · [`slides/index.html`](slides/index.html) — 20 слайда с бележки за преподавателя (клавиш **N**) |
 | 🧪 Демо за показване | [`demo.ipynb`](demo.ipynb) · [Отвори в Colab](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/demo.ipynb) |
 | ✍️ Задачи | [`zadachi.ipynb`](zadachi.ipynb) · [Отвори в Colab](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) |
 | ✅ Решения | [`resheniya/resheniya.ipynb`](resheniya/resheniya.ipynb) |

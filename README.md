@@ -2,13 +2,15 @@
 
 Материали за групата на **8. клас** в AI клуба на ТУЕС: презентации, тетрадки за показване по време на урока, задачи и решения.
 
+🌐 Сайт: **https://tues-ai.github.io/ai-club-beginners-course/**
+
 Въвеждащата презентация е в [TUES-AI/ai-club-beginners](https://github.com/TUES-AI/ai-club-beginners).
 
 ## Уроци
 
 | # | Тема | Презентация | Демо | Задачи | Решения |
 |---|---|---|---|---|---|
-| 1 | [Python основи](01-python-osnovi/) — данни, условия, цикли, списъци | [slides](01-python-osnovi/slides/index.html) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/demo.ipynb) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) | [resheniya](01-python-osnovi/resheniya/resheniya.ipynb) |
+| 1 | [Python основи](01-python-osnovi/) — данни, условия, цикли, списъци | [slides](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/demo.ipynb) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) | [resheniya](01-python-osnovi/resheniya/resheniya.ipynb) |
 
 ## Как се работи с тетрадките
 
