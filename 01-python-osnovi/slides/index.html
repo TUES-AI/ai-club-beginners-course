@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 1 · Python основи · AI клуб ТУЕС</title>
+<style>
+:root{--ink:#17191c;--paper:#fff;--blue:#0866f5;--line:#dddeda;--soft:#f4f5f2;--green:#297d55;--orange:#b85b24;--purple:#7256ac;--red:#c2332b}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#eeefeb;color:var(--ink);-webkit-font-smoothing:antialiased}
+button,a,input{font:inherit}button{cursor:pointer;border:0;background:none;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:4px solid var(--blue);outline-offset:5px}
+a{color:var(--blue);text-underline-offset:5px}
+#viewport{position:absolute;inset:0 0 62px;display:flex;justify-content:center;align-items:center}
+#deck{position:relative;width:1600px;height:900px;flex:none;transform-origin:center;background:#fff;overflow:hidden}
+.slide{position:absolute;inset:0;padding:72px 84px 68px;background:var(--paper);overflow:hidden;animation:enter .32s ease both}
+.slide[hidden]{display:none!important}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:650;letter-spacing:-.045em}
+h1{font-size:118px;line-height:1.02}h2{font-size:62px;line-height:1.08;max-width:1400px;margin-bottom:48px}h3{font-size:36px;line-height:1.16;margin-bottom:14px}
+p{font-size:30px;line-height:1.4}strong,b{font-weight:650}
+.blue{color:var(--blue)}.green{color:var(--green)}.orange{color:var(--orange)}.purple{color:var(--purple)}.red{color:var(--red)}
+.kicker{font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.split.wide-left{grid-template-columns:1.25fr 1fr}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.item{border-top:2px solid var(--ink);padding-top:20px}
+.item b{display:block;font-size:34px;margin-bottom:14px;letter-spacing:-.03em}
+.item p{font-size:26px}
+.big{font-size:72px;line-height:1.08;letter-spacing:-.045em;font-weight:600}
+.small{font-size:23px;line-height:1.4}.tiny{font-size:19px}
+.takeaway{position:absolute;left:84px;right:84px;bottom:64px;font-size:32px;border-top:1px solid var(--line);padding-top:22px}
+code,pre,.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+p code,li code,td code,.takeaway code,b code{background:var(--soft);padding:2px 9px;border-radius:7px;font-size:.9em}
+pre{margin:0;background:var(--soft);border-radius:14px;padding:28px 34px;font-size:27px;line-height:1.5;white-space:pre;overflow:hidden}
+pre.out{background:#17191c;color:#e9ebe6;font-size:24px;padding:20px 30px}
+pre.out .err{color:#ff8a80}
+.lbl{font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b6e69;margin:0 0 10px 4px}
+.tk-k{color:var(--purple);font-weight:600}.tk-s{color:var(--green)}.tk-n{color:var(--orange)}.tk-c{color:#8a8d87;font-style:italic}.tk-b{color:var(--blue)}
+table{border-collapse:collapse;font-size:28px;width:100%}
+td,th{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line)}th{font-size:20px;text-transform:uppercase;letter-spacing:.06em;color:#6b6e69;font-weight:600}
+td code{font-size:30px}
+/* cover */
+.cover{display:grid;grid-template-columns:1fr 660px;gap:40px;align-items:center;height:100%}
+.cover h1{margin:12px 0 40px}.cover p{font-size:34px;line-height:1.5}
+.cover-code{font-size:30px;line-height:1.7;padding:40px 44px}
+/* boxes (variables) */
+.boxes{display:flex;gap:36px;flex-wrap:wrap;margin-top:10px}
+.box{width:250px}.box .tag{display:inline-block;background:var(--blue);color:#fff;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px;padding:6px 16px;border-radius:8px 8px 0 0}
+.box .val{border:2px solid var(--ink);border-radius:0 12px 12px 12px;height:130px;display:flex;align-items:center;justify-content:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:34px}
+.box .typ{font-size:20px;color:#6b6e69;margin-top:10px}
+/* type cards */
+.tcard{background:var(--soft);border-radius:16px;padding:30px}
+.tcard .t{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:44px;font-weight:600}
+.tcard .d{font-size:24px;margin:8px 0 22px}.tcard .e{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:26px}
+/* time bars */
+.bars{display:flex;gap:14px;align-items:flex-end;margin:30px 0 16px}
+.bar{height:110px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:600}
+.bar.h{width:360px;background:var(--blue)}.bar.r{width:90px;background:var(--orange)}
+.bar-legend{display:flex;gap:50px;font-size:28px}
+/* list cells */
+.cells{display:flex;gap:12px;margin:12px 0 0}
+.cell{width:230px}.cell .v{border:2px solid var(--ink);border-radius:12px;height:110px;display:flex;align-items:center;justify-content:center;font-size:32px}
+.cell .i{text-align:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px;margin-top:10px;color:var(--blue)}
+.cell .i span{color:var(--orange)}
+.cell.new .v{border-style:dashed;color:var(--green)}
+/* range visualizer */
+.rv-controls{display:flex;gap:22px;align-items:center;font-size:28px;margin:6px 0 30px}
+.rv-controls label{display:flex;align-items:center;gap:10px}
+.rv-controls input{width:110px;font-size:30px;padding:8px 12px;border:2px solid var(--line);border-radius:10px;font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.rv-call{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:44px;margin-bottom:26px}
+.rv-out{display:flex;flex-wrap:wrap;gap:12px;min-height:90px}
+.rv-out span{min-width:76px;height:76px;border-radius:12px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;font-family:"SF Mono",ui-monospace,Menlo,monospace;padding:0 10px;animation:enter .25s ease both}
+.rv-out .stop{background:none;border:2px dashed var(--red);color:var(--red)}
+.rv-note{font-size:24px;margin-top:22px;color:#55585a}
+/* level cards */
+.lvl{border:1px solid var(--line);border-radius:16px;padding:30px}
+.lvl .stars{font-size:38px;margin-bottom:12px}.lvl b{font-size:32px;display:block;margin-bottom:10px}.lvl p{font-size:24px}
+.action{display:inline-flex;align-items:center;gap:14px;border:1px solid #c7c9c5;padding:15px 26px;border-radius:10px;text-decoration:none;font-size:24px;font-weight:550}
+.action.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.warn{background:#fdf1ea;border-left:6px solid var(--orange);padding:20px 26px;border-radius:0 12px 12px 0;font-size:26px}
+.hl{background:#e5efff;border-radius:6px;box-shadow:0 0 0 4px #e5efff}
+.indent-guide{background:linear-gradient(90deg,#ffe9b8 0,#ffe9b8 4ch,transparent 4ch)}
+/* notes + nav */
+aside.notes{display:none}
+#bar{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:18px;background:#eeefeb;color:#55585a}
+#bar button{padding:8px 14px;border-radius:8px}#bar button:hover{background:#e2e3df}
+#count{font-variant-numeric:tabular-nums;min-width:70px;text-align:center}
+#notes{position:absolute;right:20px;bottom:76px;width:520px;max-height:60vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;font-size:18px;line-height:1.5;box-shadow:0 10px 40px rgba(0,0,0,.12);display:none}
+#notes.open{display:block}#notes h4{margin:0 0 10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+#notes ul{margin:0;padding-left:20px}#notes li{margin:6px 0}
+#overview{position:absolute;inset:0 0 62px;background:#eeefeb;overflow:auto;padding:30px;display:none;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;align-content:start}
+#overview.open{display:grid}
+#overview button{background:#fff;border-radius:10px;padding:16px;text-align:left;font-size:16px;min-height:90px;border:2px solid transparent}
+#overview button.cur{border-color:var(--blue)}#overview button span{display:block;color:var(--blue);font-weight:600;margin-bottom:6px}
+@media print{#bar,#notes,#overview{display:none!important}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="deck">
+
+<!-- 1 -->
+<section class="slide">
+  <div class="cover">
+    <div>
+      <div class="kicker">AI клуб · ТУЕС · Начинаещи</div>
+      <div class="big blue" style="font-size:40px;letter-spacing:-.02em">Урок 1</div>
+      <h1>Python основи</h1>
+      <p>Данни · Решения · Повторение<br>и малко списъци</p>
+    </div>
+    <pre class="cover-code py">name = "ТУЕС"
+for i in range(3):
+    print(f"Здравей, {name}!")</pre>
+  </div>
+  <aside class="notes">
+    <ul><li>Представи урока: днес минаваме през основите на Python наведнъж — те вече знаят малко програмиране, така че темпото е по-бързо.</li>
+    <li>Попитай: кой е писал на Python? На друг език? Колко от вас са чували за Colab?</li></ul>
+  </aside>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>Как ще мине днес</h2>
+  <div class="cols3">
+    <div class="item"><b><span class="blue">~35 мин</span><br>Показваме</b><p>Теория и код на живо. Вие гледате, питате и предлагате какво да пробваме.</p></div>
+    <div class="item"><b><span class="green">Останалото</span><br>Вие решавате</b><p>14 задачи от лесни към трудни. Работите в собствена тетрадка.</p></div>
+    <div class="item"><b><span class="orange">Colab</span><br>Без инсталация</b><p>Python в браузъра. Трябва ви само Google акаунт.</p></div>
+  </div>
+  <p class="takeaway">Пускаш клетка с <code>Shift + Enter</code>. Пробвай често — не пиши всичко наведнъж.</p>
+  <aside class="notes">
+    <ul><li>Отвори demo.ipynb в Colab и покажи: клетка с код, клетка с текст, Shift+Enter.</li>
+    <li>Кажи им още сега да отворят zadachi.ipynb, за да няма чакане после (линкът е на последния слайд и в README).</li></ul>
+  </aside>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="kicker">01 · Първа програма</div>
+  <h2>Програмата е списък с инструкции</h2>
+  <div class="split wide-left">
+    <div>
+      <pre class="py">print("Здравей, ТУЕС!")
+print("Python е готин")  # коментар
+print("Имам", 3, "котки")</pre>
+      <div style="height:22px"></div>
+      <pre class="out">Здравей, ТУЕС!
+Python е готин
+Имам 3 котки</pre>
+    </div>
+    <div>
+      <p><b>Отгоре надолу.</b> Компютърът изпълнява редовете един по един.</p>
+      <div style="height:26px"></div>
+      <p><code>print()</code> показва нещо на екрана.</p>
+      <div style="height:26px"></div>
+      <p>След <code>#</code> е <b>коментар</b> — бележка за хората, Python я пропуска.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul><li>Demo, секция 1. Смени текста, пусни отново.</li>
+    <li>Покажи, че запетаята в print слага интервал между нещата.</li></ul>
+  </aside>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="kicker">02 · Променливи</div>
+  <h2>Променливата е етикет върху кутия</h2>
+  <pre class="py" style="margin-bottom:40px">name = "Мария"      age = 14      height = 1.62      likes_python = True</pre>
+  <div class="boxes">
+    <div class="box"><div class="tag">name</div><div class="val">"Мария"</div></div>
+    <div class="box"><div class="tag">age</div><div class="val">14</div></div>
+    <div class="box"><div class="tag">height</div><div class="val">1.62</div></div>
+    <div class="box"><div class="tag">likes_python</div><div class="val">True</div></div>
+  </div>
+  <p class="takeaway"><code>=</code> не означава „равно“, а <b>„запомни“</b>: сложи стойността отдясно в кутията отляво.</p>
+  <aside class="notes">
+    <ul><li>Имената: букви, цифри, _; не започват с цифра; без интервали. age ≠ Age.</li>
+    <li>Добри имена: age, total_points. Лоши: x1, a, asdf.</li></ul>
+  </aside>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="kicker">02 · Типове</div>
+  <h2>Всяка стойност има тип</h2>
+  <div class="cols4">
+    <div class="tcard"><div class="t blue">int</div><div class="d">цяло число</div><div class="e">14 · -3 · 2026</div></div>
+    <div class="tcard"><div class="t orange">float</div><div class="d">дробно число</div><div class="e">1.62 · 3.5 · -0.1</div></div>
+    <div class="tcard"><div class="t green">str</div><div class="d">текст</div><div class="e">"Мария" · "14"</div></div>
+    <div class="tcard"><div class="t purple">bool</div><div class="d">истина / лъжа</div><div class="e">True · False</div></div>
+  </div>
+  <div style="height:44px"></div>
+  <div class="split">
+    <pre class="py">print(type(age))
+print(type("14"))</pre>
+    <pre class="out">&lt;class 'int'&gt;
+&lt;class 'str'&gt;</pre>
+  </div>
+  <aside class="notes">
+    <ul><li>Подчертай: 14 и "14" са различни неща! Кавичките правят текст. Това ще ни трябва след малко при input().</li></ul>
+  </aside>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="kicker">02 · Промяна и f-strings</div>
+  <h2>Презаписване и вмъкване в текст</h2>
+  <div class="split">
+    <div>
+      <div class="lbl">Презаписване</div>
+      <pre class="py">age = 14
+age = age + 1
+age += 1     # същото
+print(age)   # 16</pre>
+    </div>
+    <div>
+      <div class="lbl">f-string</div>
+      <pre class="py">print(f"Аз съм {name}")
+print(f"След 5 г.: {age + 5}")</pre>
+      <div style="height:18px"></div>
+      <pre class="out">Аз съм Мария
+След 5 г.: 21</pre>
+    </div>
+  </div>
+  <p class="takeaway"><code>f</code> пред кавичките + променливи във <code>{}</code>. В скобите може и сметка.</p>
+  <aside class="notes">
+    <ul><li>age = age + 1 изглежда странно математически — точно затова = е „запомни“: първо се смята дясната страна, после се записва.</li></ul>
+  </aside>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="kicker">03 · Аритметика</div>
+  <h2>Компютърът е калкулатор</h2>
+  <table>
+    <tr><th>Оператор</th><th>Значение</th><th>Пример</th><th>Резултат</th></tr>
+    <tr><td><code>+ - *</code></td><td>събиране, изваждане, умножение</td><td><code>7 * 3</code></td><td><code>21</code></td></tr>
+    <tr><td><code>/</code></td><td>деление — винаги дава <b>float</b></td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+    <tr><td><code>//</code></td><td>целочислено деление</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+    <tr><td><code>%</code></td><td>остатък от делението</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+    <tr><td><code>**</code></td><td>степен</td><td><code>2 ** 10</code></td><td><code>1024</code></td></tr>
+  </table>
+  <p class="takeaway">Редът е като в математиката: <code>2 + 3 * 4</code> е <code>14</code>, а <code>(2 + 3) * 4</code> е <code>20</code>.</p>
+  <aside class="notes">
+    <ul><li>Питай ги преди да покажеш резултата: колко е 7 // 2? А 7 % 2?</li>
+    <li>round(10 / 3, 2) → 3.33 — ще им трябва в задача 4.</li></ul>
+  </aside>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="kicker">03 · // и %</div>
+  <h2>За какво ни трябват <code style="font-size:.9em">//</code> и <code style="font-size:.9em">%</code>?</h2>
+  <p>135 минути = колко часа и минути?</p>
+  <div class="bars">
+    <div class="bar h">60 мин</div><div class="bar h">60 мин</div><div class="bar r">15</div>
+  </div>
+  <div class="bar-legend"><span><b class="blue">135 // 60 = 2</b> цели часа</span><span><b class="orange">135 % 60 = 15</b> остават минути</span></div>
+  <div style="height:40px"></div>
+  <div class="split">
+    <pre class="py" style="font-size:23px">print(f"{135 // 60} ч и {135 % 60} мин")</pre>
+    <p class="small">Още едно: <code>n % 2 == 0</code> → числото е <b>четно</b>.</p>
+  </div>
+  <aside class="notes">
+    <ul><li>% е изненадващо полезен: четно/нечетно, дели ли се на 3, последна цифра (n % 10).</li></ul>
+  </aside>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="kicker">04 · Вход</div>
+  <h2><code style="font-size:.9em">input()</code> винаги връща текст</h2>
+  <div class="split">
+    <div>
+      <pre class="py">year = input("Коя година си роден? ")
+print(2026 - year)</pre>
+      <div style="height:18px"></div>
+      <pre class="out"><span class="err">TypeError: unsupported operand type(s)
+for -: 'int' and 'str'</span></pre>
+    </div>
+    <div>
+      <pre class="py">year = <span class="hl">int(</span>input("Коя година? ")<span class="hl">)</span>
+print(2026 - year)</pre>
+      <div style="height:18px"></div>
+      <pre class="out">Коя година? 2011
+15</pre>
+    </div>
+  </div>
+  <p class="takeaway"><code>int()</code> превръща текст в цяло число, <code>float()</code> — в дробно. А <code>"5" + "5"</code> е <code>"55"</code>!</p>
+  <aside class="notes">
+    <ul><li>Демо: пусни грешната версия нарочно. Прочетете заедно последния ред на грешката.</li>
+    <li>Покажи "5" + "5" и "ха" * 3 — винаги предизвиква смях.</li></ul>
+  </aside>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <div class="kicker">Грешки</div>
+  <h2>Червеният текст е подсказка, не наказание</h2>
+  <div class="cols3">
+    <div class="item"><b class="red">TypeError</b><p>Смесваш типове: текст и число.</p><div style="height:14px"></div><p class="small"><code>"5" + 5</code></p></div>
+    <div class="item"><b class="red">IndentationError</b><p>Липсва или е грешен отстъп.</p><div style="height:14px"></div><p class="small">ред след <code>if</code> без отстъп</p></div>
+    <div class="item"><b class="red">NameError</b><p>Такава променлива няма — често е правописна грешка.</p><div style="height:14px"></div><p class="small"><code>print(nmae)</code></p></div>
+  </div>
+  <p class="takeaway">Чети <b>последния ред</b> на грешката — там пише какво не е наред и на кой ред.</p>
+  <aside class="notes">
+    <ul><li>Нормализирай грешките: и професионалистите виждат червен текст по цял ден.</li>
+    <li>SyntaxError също е честа: забравени кавички или скоба.</li></ul>
+  </aside>
+</section>
+
+<!-- 11 -->
+<section class="slide">
+  <div class="kicker">05 · Сравнения</div>
+  <h2>Въпрос с отговор „да“ или „не“</h2>
+  <div class="split">
+    <div>
+      <pre class="py">print(5 > 3)
+print(5 == 3)
+print(5 != 3)
+print("ябълка" == "Ябълка")</pre>
+      <div style="height:18px"></div>
+      <pre class="out">True
+False
+True
+False</pre>
+    </div>
+    <div>
+      <p><code>==</code> равно &nbsp; <code>!=</code> различно</p>
+      <div style="height:16px"></div>
+      <p><code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code></p>
+      <div style="height:40px"></div>
+      <div class="warn"><b><code>=</code></b> записва стойност.<br><b><code>==</code></b> сравнява две стойности.</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul><li>Резултатът от сравнение е bool — същият тип от слайда с типовете.</li>
+    <li>Главните букви имат значение — важно за задачата с камък-ножица-хартия.</li></ul>
+  </aside>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <div class="kicker">06 · Условия</div>
+  <h2>Програмата избира какво да направи</h2>
+  <div class="split wide-left">
+    <pre class="py">temperature = 28
+
+if temperature > 25:
+<span class="indent-guide">    print("Горещо е")</span>
+<span class="indent-guide">    print("Вземи вода")</span>
+elif temperature > 15:
+<span class="indent-guide">    print("Приятно е")</span>
+else:
+<span class="indent-guide">    print("Студено е")</span>
+
+print("Винаги")</pre>
+    <div>
+      <p><b><code>if</code></b> — ако е вярно…</p><div style="height:18px"></div>
+      <p><b><code>elif</code></b> — иначе, ако…</p><div style="height:18px"></div>
+      <p><b><code>else</code></b> — във всички останали случаи</p>
+      <div style="height:40px"></div>
+      <div class="warn"><b>Двоеточие</b> в края на реда и <b>отстъп</b> от 4 интервала за кода „вътре“.</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul><li>Проверява се отгоре надолу и се изпълнява само ПЪРВИЯТ верен клон. Смени temperature на 20, после на 5.</li>
+    <li>Нарочна грешка: махни отстъпа → IndentationError.</li></ul>
+  </aside>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <div class="kicker">06 · and · or · not</div>
+  <h2>Комбиниране на условия</h2>
+  <div class="cols3" style="margin-bottom:40px">
+    <div class="item"><b class="blue">and</b><p>И двете трябва да са верни.</p></div>
+    <div class="item"><b class="green">or</b><p>Поне едното е вярно.</p></div>
+    <div class="item"><b class="orange">not</b><p>Обръща: True ↔ False.</p></div>
+  </div>
+  <pre class="py">if age >= 12 and has_ticket:
+    print("Заповядай в киното")
+
+if day == "събота" or day == "неделя":
+    print("Почивен ден!")</pre>
+  <aside class="notes">
+    <ul><li>Честа грешка: if day == "събота" or "неделя" — винаги е вярно! Всяка страна трябва да е пълно сравнение.</li>
+    <li>Задача 7 (високосна година) е точно за and/or със скоби.</li></ul>
+  </aside>
+</section>
+
+<!-- 14 -->
+<section class="slide" id="range-slide">
+  <div class="kicker">07 · Цикъл for</div>
+  <h2>Повтори за всяко число от <code style="font-size:.9em">range</code></h2>
+  <div class="rv-controls">
+    <label>start <input type="number" id="rv-start" value="0"></label>
+    <label>stop <input type="number" id="rv-stop" value="5"></label>
+    <label>step <input type="number" id="rv-step" value="1"></label>
+  </div>
+  <div class="rv-call" id="rv-call"></div>
+  <div class="rv-out" id="rv-out"></div>
+  <p class="rv-note"><b class="red">stop</b> не се включва. Пробвай <code>1, 11, 1</code> · <code>0, 20, 5</code> · <code>10, 0, -1</code></p>
+  <pre class="py" style="position:absolute;right:84px;top:72px;font-size:24px">for i in range(5):
+    print("Повторение", i)</pre>
+  <aside class="notes">
+    <ul><li>Интерактивно: питай класа какво ще излезе, после промени числата. Стрелките на клавиатурата не сменят слайда, докато си в поле — натисни Esc или кликни извън.</li>
+    <li>for работи и с текст: for letter in "ТУЕС".</li></ul>
+  </aside>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <div class="kicker">08 · Цикъл while</div>
+  <h2>Повтаряй, <span class="blue">докато</span> е вярно</h2>
+  <div class="split">
+    <div>
+      <pre class="py">countdown = 5
+while countdown > 0:
+    print(countdown)
+    countdown -= 1
+print("Старт!")</pre>
+      <div style="height:22px"></div>
+      <pre class="py">while True:
+    word = input("Дума: ")
+    if word == "стоп":
+        <span class="hl">break</span></pre>
+    </div>
+    <div>
+      <p><b><code>for</code></b> — знаем колко пъти.</p><div style="height:14px"></div>
+      <p><b><code>while</code></b> — не знаем; спираме при условие.</p>
+      <div style="height:22px"></div>
+      <p><b><code>break</code></b> излиза веднага от цикъла.</p>
+      <div style="height:40px"></div>
+      <div class="warn">Ако условието никога не стане False → <b>безкраен цикъл</b>. В Colab: бутонът ■.</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul><li>Демо: изтрий countdown -= 1 и покажи безкрайния цикъл, после го спри. Запомнят го завинаги.</li></ul>
+  </aside>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <div class="kicker">09 · Натрупване</div>
+  <h2>Започни от нула и добавяй</h2>
+  <div class="split">
+    <div>
+      <div class="lbl">Сума</div>
+      <pre class="py">total = 0
+for n in range(1, 101):
+    total += n
+print(total)   # 5050</pre>
+    </div>
+    <div>
+      <div class="lbl">Брояч</div>
+      <pre class="py">count = 0
+for n in range(1, 101):
+    if n % 7 == 0:
+        count += 1
+print(count)   # 14</pre>
+    </div>
+  </div>
+  <p class="takeaway">Този шаблон решава половината задачи днес: <b>променлива преди цикъла → промяна вътре → резултат след него</b>.</p>
+  <aside class="notes">
+    <ul><li>История: Гаус като ученик е сметнал 1+…+100 за секунди: 50 двойки по 101 = 5050.</li>
+    <li>Честа грешка: total = 0 вътре в цикъла → нулира се всеки път.</li></ul>
+  </aside>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <div class="kicker">10 · Списъци</div>
+  <h2>Много стойности в една променлива</h2>
+  <pre class="py" style="margin-bottom:30px">fruits = ["ябълка", "круша", "банан"]
+fruits.append("киви")</pre>
+  <div class="cells">
+    <div class="cell"><div class="v">🍎 ябълка</div><div class="i">0 <span>· -4</span></div></div>
+    <div class="cell"><div class="v">🍐 круша</div><div class="i">1 <span>· -3</span></div></div>
+    <div class="cell"><div class="v">🍌 банан</div><div class="i">2 <span>· -2</span></div></div>
+    <div class="cell new"><div class="v">🥝 киви</div><div class="i">3 <span>· -1</span></div></div>
+  </div>
+  <div style="height:36px"></div>
+  <div class="cols4">
+    <p class="small"><code>fruits[0]</code><br>първият</p>
+    <p class="small"><code>fruits[-1]</code><br>последният</p>
+    <p class="small"><code>len(fruits)</code><br>колко са → 4</p>
+    <p class="small"><code>for f in fruits:</code><br>обхожда всички</p>
+  </div>
+  <aside class="notes">
+    <ul><li>Индексите започват от 0! fruits[4] → IndexError — покажи го.</li>
+    <li>Бонус: sum(), max(), min() за списъци с числа. В задача 13 ги забраняваме нарочно.</li></ul>
+  </aside>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <div class="kicker">11 · Всичко заедно</div>
+  <h2>Мини програма: оценките на класа</h2>
+  <div class="split wide-left" style="align-items:start">
+    <pre class="py" style="font-size:22px;padding:24px 30px">grades = []
+while True:
+    grade = int(input("Оценка (0 за край): "))
+    if grade == 0:
+        break
+    if grade &lt; 2 or grade &gt; 6:
+        print("От 2 до 6!")
+        continue
+    grades.append(grade)
+
+average = sum(grades) / len(grades)
+print(f"Средна оценка: {average:.2f}")
+if average &gt;= 5.5:
+    print("Отличен успех!")</pre>
+    <div>
+      <p class="small"><b>Какво има тук?</b></p><div style="height:12px"></div>
+      <p class="small">✓ вход и <code>int()</code><br>✓ <code>while</code> и <code>break</code><br>✓ <code>if</code>, <code>or</code><br>✓ списък и <code>append</code><br>✓ <code>sum</code>, <code>len</code><br>✓ f-string</p>
+      <div style="height:20px"></div>
+      <p class="tiny"><code>continue</code> — пропусни останалото и започни следващото завъртане.<br><code>:.2f</code> — покажи 2 знака след запетаята.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul><li>Последна клетка от demo.ipynb. Пусни я и въведи няколко оценки, включително 7 (невалидна).</li>
+    <li>Питай: какво ще стане, ако веднага въведа 0? (деление на нула — версията в тетрадката го проверява с if len(grades) > 0)</li></ul>
+  </aside>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <div class="kicker">Ваш ред</div>
+  <h2>14 задачи — решавайте подред</h2>
+  <div class="cols3">
+    <div class="lvl"><div class="stars">⭐</div><b>Загрявка</b><p>Визитка, калкулатор, минути в часове, бакшиш, четно/нечетно, таблица за умножение.</p></div>
+    <div class="lvl"><div class="stars">⭐⭐</div><b>Помисли</b><p>Оценка от точки, високосна година, камък-ножица-хартия, FizzBuzz, познай числото.</p></div>
+    <div class="lvl"><div class="stars">⭐⭐⭐</div><b>За бързите</b><p>Статистика на класа без <code>max()</code>, прости числа.</p></div>
+  </div>
+  <div style="height:50px"></div>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a class="action primary" target="_blank" rel="noopener" href="https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb">Отвори задачите в Colab ↗</a>
+    <span class="small">File → Save a copy in Drive, за да пазиш решенията си</span>
+  </div>
+  <aside class="notes">
+    <ul><li>Важно: в Colab трябва да направят „Save a copy in Drive“, иначе промените им не се пазят.</li>
+    <li>Обикаляй класа. Който свърши задачите с ⭐, минава на ⭐⭐ — не чакат другите.</li>
+    <li>Решенията: resheniya/resheniya.ipynb в репото.</li></ul>
+  </aside>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <div class="kicker">Следващия път</div>
+  <h2>Функции — и учим компютъра да различава 🍎 от 🍐</h2>
+  <div class="split">
+    <pre class="py" style="font-size:21px">def guess_fruit(color, shape):
+    if shape == "кръгла" and color == "червен":
+        return "ябълка"
+    ...</pre>
+    <div>
+      <p>Ще пишем правила на ръка…</p><div style="height:18px"></div>
+      <p>…и ще видим защо <b class="blue">машинното обучение</b> е по-добрият начин.</p>
+    </div>
+  </div>
+  <p class="takeaway">Въпроси? Пишете в Discord.</p>
+  <aside class="notes">
+    <ul><li>Свържи с въвеждащата лекция: там говорихме как моделът се учи от примери с ябълки и круши.</li></ul>
+  </aside>
+</section>
+
+</div></div>
+
+<div id="overview" aria-label="Всички слайдове"></div>
+<div id="notes" aria-live="polite"></div>
+<nav id="bar">
+  <button id="prev" aria-label="Предишен">←</button>
+  <span id="count"></span>
+  <button id="next" aria-label="Следващ">→</button>
+  <button id="btn-o" title="O">Слайдове</button>
+  <button id="btn-n" title="N">Бележки</button>
+  <button id="btn-f" title="F">⛶</button>
+</nav>
+
+<script>
+(function(){
+  // --- Python syntax highlighting for <pre class="py"> (keeps existing <span> markup) ---
+  const KW = /\b(if|elif|else|for|while|in|and|or|not|break|continue|def|return|import|from|True|False|None)\b/;
+  const BI = /\b(print|input|int|float|str|len|range|type|sum|max|min|round|list)\b(?=\()/;
+  const RX = new RegExp([/(#[^\n]*)/.source, /(f?"[^"\n]*")/.source, /(\b\d+(?:\.\d+)?\b)/.source, "(" + KW.source + ")", "(" + BI.source + ")"].join("|"), "g");
+  function hlText(t){
+    return t.replace(RX, (m, c, s, n, k, k2, b) => {
+      if (c) return `<span class="tk-c">${c}</span>`;
+      if (s) return `<span class="tk-s">${s}</span>`;
+      if (n) return `<span class="tk-n">${n}</span>`;
+      if (k) return `<span class="tk-k">${k}</span>`;
+      return `<span class="tk-b">${m}</span>`;
+    });
+  }
+  function hlNode(node){
+    [...node.childNodes].forEach(ch => {
+      if (ch.nodeType === 3) {
+        const span = document.createElement("span");
+        span.innerHTML = hlText(ch.textContent.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"));
+        ch.replaceWith(...span.childNodes);
+      } else if (ch.nodeType === 1) hlNode(ch);
+    });
+  }
+  document.querySelectorAll("pre.py").forEach(hlNode);
+
+  // --- deck navigation ---
+  const slides = [...document.querySelectorAll(".slide")];
+  const deck = document.getElementById("deck"), notes = document.getElementById("notes"),
+        overview = document.getElementById("overview"), count = document.getElementById("count");
+  let cur = 0;
+  const fromHash = parseInt(location.hash.slice(1), 10);
+  if (fromHash >= 1 && fromHash <= slides.length) cur = fromHash - 1;
+
+  function fit(){
+    const vp = document.getElementById("viewport");
+    const s = Math.min(vp.clientWidth / 1600, vp.clientHeight / 900);
+    deck.style.transform = `scale(${s})`;
+  }
+  function show(i){
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, j) => s.hidden = j !== cur);
+    count.textContent = `${cur + 1} / ${slides.length}`;
+    history.replaceState(null, "", "#" + (cur + 1));
+    const n = slides[cur].querySelector("aside.notes");
+    notes.innerHTML = `<h4>Бележки · слайд ${cur + 1}</h4>` + (n ? n.innerHTML : "<p>—</p>");
+    [...overview.children].forEach((b, j) => b.classList.toggle("cur", j === cur));
+  }
+  slides.forEach((s, j) => {
+    const b = document.createElement("button");
+    const title = (s.querySelector("h1,h2") || {}).textContent || "";
+    b.innerHTML = `<span>${j + 1}</span>${title}`;
+    b.onclick = () => { show(j); overview.classList.remove("open"); };
+    overview.appendChild(b);
+  });
+  const toggleFS = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  document.getElementById("prev").onclick = () => show(cur - 1);
+  document.getElementById("next").onclick = () => show(cur + 1);
+  document.getElementById("btn-n").onclick = () => notes.classList.toggle("open");
+  document.getElementById("btn-o").onclick = () => overview.classList.toggle("open");
+  document.getElementById("btn-f").onclick = toggleFS;
+  document.addEventListener("keydown", e => {
+    if (e.target.tagName === "INPUT") { if (e.key === "Escape") e.target.blur(); return; }
+    if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); show(cur + 1); }
+    else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); show(cur - 1); }
+    else if (e.key === "Home") show(0);
+    else if (e.key === "End") show(slides.length - 1);
+    else if (e.key === "n" || e.key === "N") notes.classList.toggle("open");
+    else if (e.key === "o" || e.key === "O") overview.classList.toggle("open");
+    else if (e.key === "f" || e.key === "F") toggleFS();
+    else if (e.key === "Escape") overview.classList.remove("open");
+  });
+  window.addEventListener("resize", fit);
+
+  // --- range() visualizer ---
+  const rs = document.getElementById("rv-start"), re = document.getElementById("rv-stop"), rp = document.getElementById("rv-step");
+  function renderRange(){
+    const a = parseInt(rs.value, 10) || 0, b = parseInt(re.value, 10) || 0;
+    let st = parseInt(rp.value, 10); if (!st) st = 1;
+    document.getElementById("rv-call").innerHTML =
+      `range(<span class="tk-n">${a}</span>, <span class="tk-n">${b}</span>, <span class="tk-n">${st}</span>)`;
+    const out = document.getElementById("rv-out"); out.innerHTML = "";
+    const vals = [];
+    for (let v = a; st > 0 ? v < b : v > b; v += st) { vals.push(v); if (vals.length > 40) break; }
+    vals.slice(0, 40).forEach((v, k) => {
+      const s = document.createElement("span"); s.textContent = v; s.style.animationDelay = (k * 30) + "ms"; out.appendChild(s);
+    });
+    if (vals.length > 40) { const s = document.createElement("span"); s.textContent = "…"; out.appendChild(s); }
+    const stop = document.createElement("span"); stop.className = "stop"; stop.textContent = b; stop.title = "stop не се включва"; out.appendChild(stop);
+    if (!vals.length) { const s = document.createElement("span"); s.className = "stop"; s.textContent = "празно"; out.prepend(s); }
+  }
+  [rs, re, rp].forEach(el => el.addEventListener("input", renderRange));
+  renderRange();
+
+  fit(); show(cur);
+})();
+</script>
+</body>
+</html>
