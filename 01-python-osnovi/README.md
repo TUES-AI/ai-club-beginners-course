@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| 🖥 Презентация | **[Отвори](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/)** · [`slides/index.html`](slides/index.html) — 40 слайда с бележки за преподавателя |
+| 🖥 Презентация | **[Отвори](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/)** · [`slides/index.html`](slides/index.html) — 30 слайда с бележки за преподавателя |
 | ✍️ Задачи за учениците | [`zadachi.ipynb`](zadachi.ipynb) · [Отвори в Colab](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) |
 | 🧑‍🏫 Решаване на живо | [`resheniya/reshavane-na-zhivo.ipynb`](resheniya/reshavane-na-zhivo.ipynb) — за преподавателя: как мислим, в какъв ред пишем, решение, чести грешки |
 
@@ -32,9 +32,10 @@
 | 21–24 | Цикъл `for`, `range`, натрупване | Сумата от 1 до N |
 | 25–27 | Цикъл `while`, обхождане на цифрите | |
 | 28 | Шаблони: брояч, сума, максимум, флаг | |
-| 29–40 | Задачи от училище | |
+| 29 | Задачите: преглед и линк към Colab | |
+| 30 | Край, следващия път | |
 
-Теорията е 28 слайда (преди бяха 34), а последните 12 са за задачите.
+Теорията е 28 слайда. Условията на задачите са само в тетрадката — на слайд 29 е прегледът с линка към Colab.
 
 ## Задачите
 
