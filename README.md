@@ -1,6 +1,6 @@
 # AI клуб · ТУЕС · Начинаещи
 
-Материали за групата на **8. клас** в AI клуба на ТУЕС: презентации, тетрадки за показване по време на урока, задачи и решения.
+Материали за групата на **8. клас** в AI клуба на ТУЕС: презентации, задачи и решения.
 
 🌐 Сайт: **https://tues-ai.github.io/ai-club-beginners-course/**
 
@@ -8,9 +8,9 @@
 
 ## Уроци
 
-| # | Тема | Презентация | Демо | Задачи | Решения |
-|---|---|---|---|---|---|
-| 1 | [Python основи](01-python-osnovi/) — данни, условия, цикли, списъци | [slides](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/demo.ipynb) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) | [resheniya](01-python-osnovi/resheniya/resheniya.ipynb) |
+| # | Тема | Презентация | Задачи | За преподавателя |
+|---|---|---|---|---|
+| 1 | [Python основи](01-python-osnovi/) — променливи, условия, цикли, задачи от училище | [slides](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) | [решаване на живо](01-python-osnovi/resheniya/reshavane-na-zhivo.ipynb) |
 
 ## Как се работи с тетрадките
 
@@ -23,8 +23,7 @@
 ```
 NN-tema/
 ├── README.md          план на урока
-├── slides/index.html  презентация (стрелки, F — цял екран, N — бележки, O — всички слайдове)
-├── demo.ipynb         кодът, който се показва по време на теорията
+├── slides/index.html  презентация: концепция → код → твой ред (→ показва отговора)
 ├── zadachi.ipynb      задачи за учениците
-└── resheniya/         примерни решения
+└── resheniya/         решения за преподавателя (за следване на живо)
 ```

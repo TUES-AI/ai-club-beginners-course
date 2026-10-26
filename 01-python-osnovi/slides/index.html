@@ -13,75 +13,94 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:4px solid var(-
 a{color:var(--blue);text-underline-offset:5px}
 #viewport{position:absolute;inset:0 0 62px;display:flex;justify-content:center;align-items:center}
 #deck{position:relative;width:1600px;height:900px;flex:none;transform-origin:center;background:#fff;overflow:hidden}
-.slide{position:absolute;inset:0;padding:72px 84px 68px;background:var(--paper);overflow:hidden;animation:enter .32s ease both}
+.slide{position:absolute;inset:0;padding:66px 84px 64px;background:var(--paper);overflow:hidden;animation:enter .3s ease both}
 .slide[hidden]{display:none!important}
 @keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:650;letter-spacing:-.045em}
-h1{font-size:118px;line-height:1.02}h2{font-size:62px;line-height:1.08;max-width:1400px;margin-bottom:48px}h3{font-size:36px;line-height:1.16;margin-bottom:14px}
+h1{font-size:118px;line-height:1.02}h2{font-size:58px;line-height:1.08;max-width:1430px;margin-bottom:40px}h3{font-size:34px;line-height:1.16;margin-bottom:14px}
 p{font-size:30px;line-height:1.4}strong,b{font-weight:650}
 .blue{color:var(--blue)}.green{color:var(--green)}.orange{color:var(--orange)}.purple{color:var(--purple)}.red{color:var(--red)}
-.kicker{font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.split.wide-left{grid-template-columns:1.25fr 1fr}
+/* slide type chip */
+.chip{display:inline-flex;align-items:center;gap:12px;font-size:20px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.chip i{font-style:normal;padding:6px 14px;border-radius:999px;color:#fff;letter-spacing:.06em}
+.chip span{color:#6b6e69}
+.chip.c i{background:var(--blue)}.chip.k i{background:var(--purple)}.chip.t i{background:var(--orange)}.chip.z i{background:var(--green)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.split.wl{grid-template-columns:1.25fr 1fr}.split.wr{grid-template-columns:1fr 1.2fr}
 .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
-.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
 .item{border-top:2px solid var(--ink);padding-top:20px}
-.item b{display:block;font-size:34px;margin-bottom:14px;letter-spacing:-.03em}
-.item p{font-size:26px}
-.big{font-size:72px;line-height:1.08;letter-spacing:-.045em;font-weight:600}
+.item b{display:block;font-size:32px;margin-bottom:12px;letter-spacing:-.03em}.item p{font-size:25px}
+.points p{margin-bottom:22px}
 .small{font-size:23px;line-height:1.4}.tiny{font-size:19px}
-.takeaway{position:absolute;left:84px;right:84px;bottom:64px;font-size:32px;border-top:1px solid var(--line);padding-top:22px}
+.takeaway{position:absolute;left:84px;right:84px;bottom:58px;font-size:30px;border-top:1px solid var(--line);padding-top:20px}
 code,pre,.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
-p code,li code,td code,.takeaway code,b code{background:var(--soft);padding:2px 9px;border-radius:7px;font-size:.9em}
-pre{margin:0;background:var(--soft);border-radius:14px;padding:28px 34px;font-size:27px;line-height:1.5;white-space:pre;overflow:hidden}
-pre.out{background:#17191c;color:#e9ebe6;font-size:24px;padding:20px 30px}
-pre.out .err{color:#ff8a80}
-.lbl{font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b6e69;margin:0 0 10px 4px}
+p code,li code,td code,.takeaway code,b code,.answer code,.warn code,h2 code{background:var(--soft);padding:2px 9px;border-radius:7px;font-size:.9em}
+h2 code{font-size:.85em}
+pre{margin:0;background:var(--soft);border-radius:14px;padding:26px 32px;font-size:28px;line-height:1.5;white-space:pre;overflow:hidden}
+pre.sm{font-size:24px}pre.xs{font-size:21px;padding:22px 28px}
+pre.out{background:#17191c;color:#e9ebe6;font-size:24px;padding:18px 28px}
+pre.out .err{color:#ff8a80}pre.out .in{color:#8fd19e}
+.lbl{font-size:17px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b6e69;margin:0 0 10px 4px}
+.gap{height:22px}.gap2{height:40px}
 .tk-k{color:var(--purple);font-weight:600}.tk-s{color:var(--green)}.tk-n{color:var(--orange)}.tk-c{color:#8a8d87;font-style:italic}.tk-b{color:var(--blue)}
-table{border-collapse:collapse;font-size:28px;width:100%}
-td,th{text-align:left;padding:16px 18px;border-bottom:1px solid var(--line)}th{font-size:20px;text-transform:uppercase;letter-spacing:.06em;color:#6b6e69;font-weight:600}
-td code{font-size:30px}
+table{border-collapse:collapse;font-size:27px;width:100%}
+td,th{text-align:left;padding:13px 18px;border-bottom:1px solid var(--line)}th{font-size:19px;text-transform:uppercase;letter-spacing:.06em;color:#6b6e69;font-weight:600}
+td code{font-size:28px}
+/* fragments: revealed one per click */
+.frag{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+.frag.on{opacity:1;transform:none}
+.answer{background:#eaf5ee;border-left:6px solid var(--green);border-radius:0 14px 14px 0;padding:20px 28px;font-size:28px;line-height:1.45}
+.answer b:first-child{color:var(--green)}
+.hint{background:#eef4ff;border-left:6px solid var(--blue);border-radius:0 14px 14px 0;padding:18px 26px;font-size:26px;line-height:1.45}
+.warn{background:#fdf1ea;border-left:6px solid var(--orange);padding:18px 26px;border-radius:0 12px 12px 0;font-size:26px;line-height:1.45}
+.q{font-size:36px;font-weight:600;letter-spacing:-.02em;margin-bottom:26px}
+.click{font-size:19px;color:#8a8d87;margin-top:16px}
 /* cover */
 .cover{display:grid;grid-template-columns:1fr 660px;gap:40px;align-items:center;height:100%}
 .cover h1{margin:12px 0 40px}.cover p{font-size:34px;line-height:1.5}
-.cover-code{font-size:30px;line-height:1.7;padding:40px 44px}
-/* boxes (variables) */
-.boxes{display:flex;gap:36px;flex-wrap:wrap;margin-top:10px}
-.box{width:250px}.box .tag{display:inline-block;background:var(--blue);color:#fff;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px;padding:6px 16px;border-radius:8px 8px 0 0}
-.box .val{border:2px solid var(--ink);border-radius:0 12px 12px 12px;height:130px;display:flex;align-items:center;justify-content:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:34px}
-.box .typ{font-size:20px;color:#6b6e69;margin-top:10px}
-/* type cards */
-.tcard{background:var(--soft);border-radius:16px;padding:30px}
-.tcard .t{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:44px;font-weight:600}
-.tcard .d{font-size:24px;margin:8px 0 22px}.tcard .e{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:26px}
-/* time bars */
-.bars{display:flex;gap:14px;align-items:flex-end;margin:30px 0 16px}
-.bar{height:110px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:600}
-.bar.h{width:360px;background:var(--blue)}.bar.r{width:90px;background:var(--orange)}
-.bar-legend{display:flex;gap:50px;font-size:28px}
-/* list cells */
-.cells{display:flex;gap:12px;margin:12px 0 0}
-.cell{width:230px}.cell .v{border:2px solid var(--ink);border-radius:12px;height:110px;display:flex;align-items:center;justify-content:center;font-size:32px}
-.cell .i{text-align:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px;margin-top:10px;color:var(--blue)}
-.cell .i span{color:var(--orange)}
-.cell.new .v{border-style:dashed;color:var(--green)}
+.kicker{font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:20px}
+.flow div{border-radius:16px;padding:28px;color:#fff}.flow b{display:block;font-size:30px;margin-bottom:12px}.flow p{font-size:23px}
+/* boxes */
+.boxes{display:flex;gap:34px;flex-wrap:wrap}
+.box .tag{display:inline-block;background:var(--blue);color:#fff;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px;padding:6px 16px;border-radius:8px 8px 0 0}
+.box .val{border:2px solid var(--ink);border-radius:0 12px 12px 12px;width:240px;height:120px;display:flex;align-items:center;justify-content:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:34px}
+.tcard{background:var(--soft);border-radius:16px;padding:26px}
+.tcard .t{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:42px;font-weight:600}
+.tcard .d{font-size:23px;margin:6px 0 18px}.tcard .e{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px}
+/* digits visual */
+.digits{display:flex;gap:10px;align-items:center;margin:6px 0 26px}
+.digits span{width:96px;height:110px;border:2px solid var(--ink);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:56px;font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.digits span.last{background:var(--orange);border-color:var(--orange);color:#fff}
+.digits em{font-style:normal;font-size:24px;margin-left:24px;line-height:1.5}
+/* trace table */
+table.trace{font-size:28px;width:auto;min-width:560px}
+table.trace td,table.trace th{padding:12px 26px}
+table.trace td{font-family:"SF Mono",ui-monospace,Menlo,monospace}
 /* range visualizer */
-.rv-controls{display:flex;gap:22px;align-items:center;font-size:28px;margin:6px 0 30px}
+.rv-controls{display:flex;gap:22px;align-items:center;font-size:28px;margin:6px 0 26px}
 .rv-controls label{display:flex;align-items:center;gap:10px}
 .rv-controls input{width:110px;font-size:30px;padding:8px 12px;border:2px solid var(--line);border-radius:10px;font-family:"SF Mono",ui-monospace,Menlo,monospace}
-.rv-call{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:44px;margin-bottom:26px}
+.rv-call{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:44px;margin-bottom:24px}
 .rv-out{display:flex;flex-wrap:wrap;gap:12px;min-height:90px}
 .rv-out span{min-width:76px;height:76px;border-radius:12px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;font-family:"SF Mono",ui-monospace,Menlo,monospace;padding:0 10px;animation:enter .25s ease both}
 .rv-out .stop{background:none;border:2px dashed var(--red);color:var(--red)}
-.rv-note{font-size:24px;margin-top:22px;color:#55585a}
-/* level cards */
-.lvl{border:1px solid var(--line);border-radius:16px;padding:30px}
-.lvl .stars{font-size:38px;margin-bottom:12px}.lvl b{font-size:32px;display:block;margin-bottom:10px}.lvl p{font-size:24px}
+/* task slides */
+.lvl{font-size:30px;margin-left:6px}
+.io{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font-size:28px;align-items:baseline}
+.io .k{font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b6e69}
+.io .v{font-family:"SF Mono",ui-monospace,Menlo,monospace;background:var(--soft);border-radius:8px;padding:6px 14px;justify-self:start}
+.cond{font-size:34px;line-height:1.4;margin-bottom:34px;max-width:1300px}
+.tasklist{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.tasklist div{border:1px solid var(--line);border-radius:16px;padding:26px}
+.tasklist b{display:block;font-size:30px;margin-bottom:12px}.tasklist ol{margin:0;padding-left:30px;font-size:23px;line-height:1.55}
 .action{display:inline-flex;align-items:center;gap:14px;border:1px solid #c7c9c5;padding:15px 26px;border-radius:10px;text-decoration:none;font-size:24px;font-weight:550}
 .action.primary{background:var(--blue);border-color:var(--blue);color:#fff}
-.warn{background:#fdf1ea;border-left:6px solid var(--orange);padding:20px 26px;border-radius:0 12px 12px 0;font-size:26px}
-.hl{background:#e5efff;border-radius:6px;box-shadow:0 0 0 4px #e5efff}
-.indent-guide{background:linear-gradient(90deg,#ffe9b8 0,#ffe9b8 4ch,transparent 4ch)}
+.section{display:flex;flex-direction:column;justify-content:center;height:100%}
+.section .num{font-size:150px;font-weight:650;color:var(--blue);letter-spacing:-.06em;line-height:1}
+.section h2{font-size:84px;margin:10px 0 24px}
 /* notes + nav */
 aside.notes{display:none}
 #bar{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:18px;background:#eeefeb;color:#55585a}
@@ -90,481 +109,749 @@ aside.notes{display:none}
 #notes{position:absolute;right:20px;bottom:76px;width:520px;max-height:60vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;font-size:18px;line-height:1.5;box-shadow:0 10px 40px rgba(0,0,0,.12);display:none}
 #notes.open{display:block}#notes h4{margin:0 0 10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
 #notes ul{margin:0;padding-left:20px}#notes li{margin:6px 0}
-#overview{position:absolute;inset:0 0 62px;background:#eeefeb;overflow:auto;padding:30px;display:none;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;align-content:start}
+#overview{position:absolute;inset:0 0 62px;background:#eeefeb;overflow:auto;padding:30px;display:none;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;align-content:start}
 #overview.open{display:grid}
-#overview button{background:#fff;border-radius:10px;padding:16px;text-align:left;font-size:16px;min-height:90px;border:2px solid transparent}
-#overview button.cur{border-color:var(--blue)}#overview button span{display:block;color:var(--blue);font-weight:600;margin-bottom:6px}
-@media print{#bar,#notes,#overview{display:none!important}}
+#overview button{background:#fff;border-radius:10px;padding:14px 16px;text-align:left;font-size:15px;min-height:84px;border:2px solid transparent}
+#overview button.cur{border-color:var(--blue)}#overview button span{display:block;font-weight:600;margin-bottom:6px;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+@media print{#bar,#notes,#overview{display:none!important}.frag{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
 <div id="viewport"><div id="deck">
 
-<!-- 1 -->
+<!-- ============ ВЪВЕДЕНИЕ ============ -->
 <section class="slide">
   <div class="cover">
     <div>
       <div class="kicker">AI клуб · ТУЕС · Начинаещи</div>
-      <div class="big blue" style="font-size:40px;letter-spacing:-.02em">Урок 1</div>
       <h1>Python основи</h1>
-      <p>Данни · Решения · Повторение<br>и малко списъци</p>
+      <p>Урок 1 · Променливи, условия, цикли —<br>и задачи от училище</p>
     </div>
-    <pre class="cover-code py">name = "ТУЕС"
+    <pre class="py" style="font-size:30px;line-height:1.7;padding:40px 44px">name = "ТУЕС"
 for i in range(3):
     print(f"Здравей, {name}!")</pre>
   </div>
-  <aside class="notes">
-    <ul><li>Представи урока: днес минаваме през основите на Python наведнъж — те вече знаят малко програмиране, така че темпото е по-бързо.</li>
-    <li>Попитай: кой е писал на Python? На друг език? Колко от вас са чували за Colab?</li></ul>
-  </aside>
+  <aside class="notes"><ul>
+    <li>Днес: основите на Python от нулата, после решаваме задачи, които учениците правят по другите предмети.</li>
+    <li>Попитай кой е програмирал досега и на какъв език.</li>
+  </ul></aside>
 </section>
 
-<!-- 2 -->
 <section class="slide">
-  <h2>Как ще мине днес</h2>
-  <div class="cols3">
-    <div class="item"><b><span class="blue">~35 мин</span><br>Показваме</b><p>Теория и код на живо. Вие гледате, питате и предлагате какво да пробваме.</p></div>
-    <div class="item"><b><span class="green">Останалото</span><br>Вие решавате</b><p>14 задачи от лесни към трудни. Работите в собствена тетрадка.</p></div>
-    <div class="item"><b><span class="orange">Colab</span><br>Без инсталация</b><p>Python в браузъра. Трябва ви само Google акаунт.</p></div>
+  <h2>Как ще работим</h2>
+  <div class="flow">
+    <div style="background:var(--blue)"><b>1 · Концепция</b><p>Обяснявам идеята. Питайте!</p></div>
+    <div style="background:var(--purple)"><b>2 · Код</b><p>Четем заедно истински Python код.</p></div>
+    <div style="background:var(--orange)"><b>3 · Твой ред</b><p>Въпрос или грешка за откриване. Отговорът идва след клик.</p></div>
+    <div style="background:var(--green)"><b>4 · Задачи</b><p>Накрая пишете код сами — задачи от другите предмети.</p></div>
   </div>
-  <p class="takeaway">Пускаш клетка с <code>Shift + Enter</code>. Пробвай често — не пиши всичко наведнъж.</p>
-  <aside class="notes">
-    <ul><li>Отвори demo.ipynb в Colab и покажи: клетка с код, клетка с текст, Shift+Enter.</li>
-    <li>Кажи им още сега да отворят zadachi.ipynb, за да няма чакане после (линкът е на последния слайд и в README).</li></ul>
-  </aside>
+  <p class="takeaway">На слайдовете „Твой ред“ <b>първо помислете</b> — после показвам отговора.</p>
+  <aside class="notes"><ul>
+    <li>На „Твой ред“ дай 20–30 сек. Нека кажат отговора на глас или вдигнат ръка, после → за отговора.</li>
+    <li>Клавиши: → следващо (първо показва отговора), N бележки, O всички слайдове, F цял екран.</li>
+  </ul></aside>
 </section>
 
-<!-- 3 -->
+<!-- ============ 01 PRINT ============ -->
 <section class="slide">
-  <div class="kicker">01 · Първа програма</div>
+  <div class="chip c"><i>Концепция</i><span>01 · Първа програма</span></div>
   <h2>Програмата е списък с инструкции</h2>
-  <div class="split wide-left">
-    <div>
-      <pre class="py">print("Здравей, ТУЕС!")
-print("Python е готин")  # коментар
-print("Имам", 3, "котки")</pre>
-      <div style="height:22px"></div>
-      <pre class="out">Здравей, ТУЕС!
-Python е готин
-Имам 3 котки</pre>
-    </div>
-    <div>
-      <p><b>Отгоре надолу.</b> Компютърът изпълнява редовете един по един.</p>
-      <div style="height:26px"></div>
-      <p><code>print()</code> показва нещо на екрана.</p>
-      <div style="height:26px"></div>
-      <p>След <code>#</code> е <b>коментар</b> — бележка за хората, Python я пропуска.</p>
-    </div>
+  <div class="cols3">
+    <div class="item"><b>Отгоре надолу</b><p>Компютърът изпълнява редовете един по един, по ред.</p></div>
+    <div class="item"><b><code>print()</code></b><p>Показва нещо на екрана. Текстът е в кавички <code>" "</code>.</p></div>
+    <div class="item"><b><code>#</code> коментар</b><p>Бележка за хората. Python я пропуска.</p></div>
   </div>
-  <aside class="notes">
-    <ul><li>Demo, секция 1. Смени текста, пусни отново.</li>
-    <li>Покажи, че запетаята в print слага интервал между нещата.</li></ul>
-  </aside>
+  <p class="takeaway">Пишем в <b>Google Colab</b> — Python в браузъра. Пускаш клетка с <code>Shift + Enter</code>.</p>
+  <aside class="notes"><ul><li>Покажи Colab за 1 минута: нова тетрадка, клетка, Shift+Enter.</li></ul></aside>
 </section>
 
-<!-- 4 -->
 <section class="slide">
-  <div class="kicker">02 · Променливи</div>
+  <div class="chip k"><i>Код</i><span>01 · print</span></div>
+  <h2>Първите редове</h2>
+  <div class="split wl">
+    <pre class="py">print("Здравей, ТУЕС!")
+print(7)
+print(2 + 3)          # пресмята
+print("Имам", 3, "котки")</pre>
+    <div><div class="lbl">Изход</div><pre class="out">Здравей, ТУЕС!
+7
+5
+Имам 3 котки</pre></div>
+  </div>
+  <p class="takeaway">Запетаята в <code>print</code> слага <b>интервал</b> между нещата.</p>
+  <aside class="notes"><ul><li>Числата не са в кавички. Сметката се пресмята, преди да се отпечата.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>01 · print</span></div>
+  <p class="q">Какво ще отпечата програмата?</p>
+  <div class="split wl">
+    <pre class="py">print("Сбор:", 4 + 6)
+print("4 + 6")
+print(10 - 2 * 3)</pre>
+    <div class="frag answer"><b>Отговор</b><br><code>Сбор: 10</code><br><code>4 + 6</code> — в кавички е текст, не се смята!<br><code>4</code> — първо умножение, после изваждане.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Капанът е вторият ред — кавичките правят текст.</li></ul></aside>
+</section>
+
+<!-- ============ 02 ПРОМЕНЛИВИ ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>02 · Променливи</span></div>
   <h2>Променливата е етикет върху кутия</h2>
-  <pre class="py" style="margin-bottom:40px">name = "Мария"      age = 14      height = 1.62      likes_python = True</pre>
   <div class="boxes">
     <div class="box"><div class="tag">name</div><div class="val">"Мария"</div></div>
     <div class="box"><div class="tag">age</div><div class="val">14</div></div>
     <div class="box"><div class="tag">height</div><div class="val">1.62</div></div>
-    <div class="box"><div class="tag">likes_python</div><div class="val">True</div></div>
   </div>
-  <p class="takeaway"><code>=</code> не означава „равно“, а <b>„запомни“</b>: сложи стойността отдясно в кутията отляво.</p>
-  <aside class="notes">
-    <ul><li>Имената: букви, цифри, _; не започват с цифра; без интервали. age ≠ Age.</li>
-    <li>Добри имена: age, total_points. Лоши: x1, a, asdf.</li></ul>
-  </aside>
+  <div class="gap2"></div>
+  <div class="points">
+    <p><code>=</code> не значи „равно“, а <b>„запомни“</b>: сложи стойността отдясно в кутията отляво.</p>
+    <p class="small">Имена: букви, цифри и <code>_</code>, не започват с цифра, без интервали. <code>age</code> и <code>Age</code> са различни.</p>
+  </div>
+  <aside class="notes"><ul><li>Нова стойност в същата кутия = старата изчезва.</li></ul></aside>
 </section>
 
-<!-- 5 -->
 <section class="slide">
-  <div class="kicker">02 · Типове</div>
+  <div class="chip k"><i>Код</i><span>02 · Променливи</span></div>
+  <h2>Създаване, промяна, вмъкване в текст</h2>
+  <div class="split wl">
+    <pre class="py sm">name = "Мария"
+age = 14
+print(name, age)
+
+age = age + 1       # вземи старата, добави 1
+print(f"{name} е на {age}")</pre>
+    <div><div class="lbl">Изход</div><pre class="out">Мария 14
+Мария е на 15</pre>
+      <div class="gap2"></div>
+      <p class="small"><b>f-string:</b> <code>f</code> пред кавичките и променливите във <code>{ }</code>.</p></div>
+  </div>
+  <aside class="notes"><ul><li>age = age + 1: първо се смята дясната страна (14 + 1), после се записва в age.</li><li>Кратко: age += 1.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>02 · Променливи</span></div>
+  <p class="q">Какво ще отпечата?</p>
+  <div class="split wl">
+    <pre class="py">a = 5
+b = a
+a = 10
+print(a, b)</pre>
+    <div class="frag answer"><b>Отговор:</b> <code>10 5</code><br><br><code>b = a</code> копира стойността <b>в този момент</b> (5). После <code>a</code> се променя, но <code>b</code> си остава 5.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>02 · Задача от училище</span></div>
+  <p class="q">Искаме <code>a</code> и <code>b</code> да си разменят стойностите. Защо това не работи?</p>
+  <div class="split wl">
+    <pre class="py">a = 3
+b = 7
+a = b
+b = a
+print(a, b)</pre>
+    <div class="frag answer"><b>Отпечатва:</b> <code>7 7</code><br><br>След <code>a = b</code> старата стойност на <code>a</code> (3) е <b>изгубена</b> — нищо не я пази.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Аналогия: две чаши — с мляко и с вода. Как да ги размениш? Трета празна чаша!</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>02 · Размяна на две променливи</span></div>
+  <h2>Размяна — по два начина</h2>
+  <div class="split">
+    <div><div class="lbl">1 · С трета „чаша“</div>
+      <pre class="py">a = 3
+b = 7
+temp = a    # пазим a
+a = b
+b = temp
+print(a, b)   # 7 3</pre></div>
+    <div><div class="lbl">2 · Начинът на Python</div>
+      <pre class="py">a = 3
+b = 7
+a, b = b, a
+print(a, b)   # 7 3</pre>
+      <div class="gap"></div>
+      <p class="small">Python първо пресмята дясната страна <code>(7, 3)</code>, после записва двете стойности наведнъж.</p></div>
+  </div>
+  <aside class="notes"><ul><li>Първият начин работи на всеки език (C, C++ — по другите предмети). Вторият е специално за Python.</li><li>a, b = b, a ще ни трябва за Фибоначи накрая.</li></ul></aside>
+</section>
+
+<!-- ============ 03 ТИПОВЕ И ВХОД ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>03 · Типове и вход</span></div>
   <h2>Всяка стойност има тип</h2>
   <div class="cols4">
     <div class="tcard"><div class="t blue">int</div><div class="d">цяло число</div><div class="e">14 · -3 · 2026</div></div>
-    <div class="tcard"><div class="t orange">float</div><div class="d">дробно число</div><div class="e">1.62 · 3.5 · -0.1</div></div>
+    <div class="tcard"><div class="t orange">float</div><div class="d">дробно число</div><div class="e">1.62 · -0.5</div></div>
     <div class="tcard"><div class="t green">str</div><div class="d">текст</div><div class="e">"Мария" · "14"</div></div>
-    <div class="tcard"><div class="t purple">bool</div><div class="d">истина / лъжа</div><div class="e">True · False</div></div>
+    <div class="tcard"><div class="t purple">bool</div><div class="d">вярно / невярно</div><div class="e">True · False</div></div>
   </div>
-  <div style="height:44px"></div>
-  <div class="split">
-    <pre class="py">print(type(age))
-print(type("14"))</pre>
-    <pre class="out">&lt;class 'int'&gt;
-&lt;class 'str'&gt;</pre>
-  </div>
-  <aside class="notes">
-    <ul><li>Подчертай: 14 и "14" са различни неща! Кавичките правят текст. Това ще ни трябва след малко при input().</li></ul>
-  </aside>
+  <div class="gap2"></div>
+  <p><code>input()</code> чака потребителят да напише нещо и <b>винаги връща текст</b>.</p>
+  <div class="gap"></div>
+  <p><code>int(...)</code> превръща текст в цяло число, <code>float(...)</code> — в дробно.</p>
+  <aside class="notes"><ul><li>14 и "14" са различни неща! Кавичките правят текст.</li></ul></aside>
 </section>
 
-<!-- 6 -->
 <section class="slide">
-  <div class="kicker">02 · Промяна и f-strings</div>
-  <h2>Презаписване и вмъкване в текст</h2>
-  <div class="split">
-    <div>
-      <div class="lbl">Презаписване</div>
-      <pre class="py">age = 14
-age = age + 1
-age += 1     # същото
-print(age)   # 16</pre>
-    </div>
-    <div>
-      <div class="lbl">f-string</div>
-      <pre class="py">print(f"Аз съм {name}")
-print(f"След 5 г.: {age + 5}")</pre>
-      <div style="height:18px"></div>
-      <pre class="out">Аз съм Мария
-След 5 г.: 21</pre>
-    </div>
-  </div>
-  <p class="takeaway"><code>f</code> пред кавичките + променливи във <code>{}</code>. В скобите може и сметка.</p>
-  <aside class="notes">
-    <ul><li>age = age + 1 изглежда странно математически — точно затова = е „запомни“: първо се смята дясната страна, после се записва.</li></ul>
-  </aside>
+  <div class="chip k"><i>Код</i><span>03 · Вход</span></div>
+  <h2>Питаме потребителя</h2>
+  <pre class="py">name = input("Име: ")
+age = int(input("Възраст: "))
+print(f"Здравей, {name}! Догодина ще си на {age + 1}.")</pre>
+  <div class="gap"></div>
+  <div class="lbl">Изход (зеленото пише потребителят)</div>
+  <pre class="out">Име: <span class="in">Иван</span>
+Възраст: <span class="in">14</span>
+Здравей, Иван! Догодина ще си на 15.</pre>
+  <p class="takeaway">Име → текст, остава <b>str</b>. Възраст → ще смятаме с нея, затова <code>int(...)</code>.</p>
 </section>
 
-<!-- 7 -->
 <section class="slide">
-  <div class="kicker">03 · Аритметика</div>
+  <div class="chip t"><i>Твой ред</i><span>03 · Намери грешката</span></div>
+  <p class="q">Програмата гърми. Защо? Как да я поправим?</p>
+  <div class="split wl">
+    <div>
+      <pre class="py">age = input("Възраст: ")
+print(age + 1)</pre>
+      <div class="gap"></div>
+      <pre class="out"><span class="err">TypeError: can only concatenate str
+(not "int") to str</span></pre>
+    </div>
+    <div class="frag answer"><b>Отговор:</b> <code>age</code> е <b>текст</b> <code>"14"</code>, а не число — текст + число не може.<br><br>Поправка:<br><code>age = int(input("Възраст: "))</code></div>
+  </div>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Научи ги да четат последния ред на грешката — там пише какво е станало.</li></ul></aside>
+</section>
+
+<!-- ============ 04 АРИТМЕТИКА ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>04 · Аритметика</span></div>
   <h2>Компютърът е калкулатор</h2>
   <table>
     <tr><th>Оператор</th><th>Значение</th><th>Пример</th><th>Резултат</th></tr>
     <tr><td><code>+ - *</code></td><td>събиране, изваждане, умножение</td><td><code>7 * 3</code></td><td><code>21</code></td></tr>
-    <tr><td><code>/</code></td><td>деление — винаги дава <b>float</b></td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
-    <tr><td><code>//</code></td><td>целочислено деление</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
-    <tr><td><code>%</code></td><td>остатък от делението</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+    <tr><td><code>/</code></td><td>деление (винаги дробно)</td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+    <tr><td><code>//</code></td><td><b>целочислено</b> деление</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+    <tr><td><code>%</code></td><td><b>остатък</b> от делението</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
     <tr><td><code>**</code></td><td>степен</td><td><code>2 ** 10</code></td><td><code>1024</code></td></tr>
   </table>
-  <p class="takeaway">Редът е като в математиката: <code>2 + 3 * 4</code> е <code>14</code>, а <code>(2 + 3) * 4</code> е <code>20</code>.</p>
-  <aside class="notes">
-    <ul><li>Питай ги преди да покажеш резултата: колко е 7 // 2? А 7 % 2?</li>
-    <li>round(10 / 3, 2) → 3.33 — ще им трябва в задача 4.</li></ul>
-  </aside>
+  <p class="takeaway"><code>//</code> и <code>%</code> са най-важните днес — с тях ще работим с <b>цифрите</b> на числата.</p>
+  <aside class="notes"><ul><li>7 // 2: колко пъти 2 се събира в 7 изцяло. 7 % 2: какво остава.</li><li>Ако са учили деление с остатък — точно това е.</li></ul></aside>
 </section>
 
-<!-- 8 -->
 <section class="slide">
-  <div class="kicker">03 · // и %</div>
-  <h2>За какво ни трябват <code style="font-size:.9em">//</code> и <code style="font-size:.9em">%</code>?</h2>
-  <p>135 минути = колко часа и минути?</p>
-  <div class="bars">
-    <div class="bar h">60 мин</div><div class="bar h">60 мин</div><div class="bar r">15</div>
+  <div class="chip k"><i>Код</i><span>04 · // и % с цифри</span></div>
+  <h2>Последната цифра и „отрязването“ ѝ</h2>
+  <div class="digits"><span>2</span><span>0</span><span>2</span><span class="last">6</span>
+    <em><b class="orange">2026 % 10 = 6</b> → последната цифра<br><b class="blue">2026 // 10 = 202</b> → числото без нея</em></div>
+  <div class="split wl">
+    <pre class="py">n = 2026
+print(n % 10)    # последна цифра
+print(n // 10)   # без последната
+print(n % 2)     # 0 значи четно</pre>
+    <div><div class="lbl">Изход</div><pre class="out">6
+202
+0</pre></div>
   </div>
-  <div class="bar-legend"><span><b class="blue">135 // 60 = 2</b> цели часа</span><span><b class="orange">135 % 60 = 15</b> остават минути</span></div>
-  <div style="height:40px"></div>
-  <div class="split">
-    <pre class="py" style="font-size:23px">print(f"{135 // 60} ч и {135 % 60} мин")</pre>
-    <p class="small">Още едно: <code>n % 2 == 0</code> → числото е <b>четно</b>.</p>
-  </div>
-  <aside class="notes">
-    <ul><li>% е изненадващо полезен: четно/нечетно, дели ли се на 3, последна цифра (n % 10).</li></ul>
-  </aside>
+  <aside class="notes"><ul><li>Защо 10? Защото пишем числата в десетична система. Делението на 10 „отрязва“ последната цифра.</li><li>Това е ключът за половината задачи накрая.</li></ul></aside>
 </section>
 
-<!-- 9 -->
 <section class="slide">
-  <div class="kicker">04 · Вход</div>
-  <h2><code style="font-size:.9em">input()</code> винаги връща текст</h2>
-  <div class="split">
-    <div>
-      <pre class="py">year = input("Коя година си роден? ")
-print(2026 - year)</pre>
-      <div style="height:18px"></div>
-      <pre class="out"><span class="err">TypeError: unsupported operand type(s)
-for -: 'int' and 'str'</span></pre>
-    </div>
-    <div>
-      <pre class="py">year = <span class="hl">int(</span>input("Коя година? ")<span class="hl">)</span>
-print(2026 - year)</pre>
-      <div style="height:18px"></div>
-      <pre class="out">Коя година? 2011
-15</pre>
-    </div>
-  </div>
-  <p class="takeaway"><code>int()</code> превръща текст в цяло число, <code>float()</code> — в дробно. А <code>"5" + "5"</code> е <code>"55"</code>!</p>
-  <aside class="notes">
-    <ul><li>Демо: пусни грешната версия нарочно. Прочетете заедно последния ред на грешката.</li>
-    <li>Покажи "5" + "5" и "ха" * 3 — винаги предизвиква смях.</li></ul>
-  </aside>
+  <div class="chip t"><i>Твой ред</i><span>04 · Аритметика</span></div>
+  <p class="q">Колко е?</p>
+  <table style="width:900px">
+    <tr><th>Израз</th><th>Отговор</th></tr>
+    <tr><td><code>17 // 5</code></td><td><span class="frag"><code>3</code></span></td></tr>
+    <tr><td><code>17 % 5</code></td><td><span class="frag"><code>2</code></span></td></tr>
+    <tr><td><code>305 % 10</code></td><td><span class="frag"><code>5</code> — последната цифра</span></td></tr>
+    <tr><td><code>305 // 10</code></td><td><span class="frag"><code>30</code> — числото без 5</span></td></tr>
+    <tr><td><code>12 % 3 == 0</code></td><td><span class="frag"><code>True</code> — 12 се дели на 3</span></td></tr>
+  </table>
+  <p class="click">→ показва отговорите един по един</p>
+  <aside class="notes"><ul><li>Последният ред подготвя следващата тема: == сравнява и дава True/False.</li></ul></aside>
 </section>
 
-<!-- 10 -->
+<!-- ============ 05 УСЛОВИЯ ============ -->
 <section class="slide">
-  <div class="kicker">Грешки</div>
-  <h2>Червеният текст е подсказка, не наказание</h2>
-  <div class="cols3">
-    <div class="item"><b class="red">TypeError</b><p>Смесваш типове: текст и число.</p><div style="height:14px"></div><p class="small"><code>"5" + 5</code></p></div>
-    <div class="item"><b class="red">IndentationError</b><p>Липсва или е грешен отстъп.</p><div style="height:14px"></div><p class="small">ред след <code>if</code> без отстъп</p></div>
-    <div class="item"><b class="red">NameError</b><p>Такава променлива няма — често е правописна грешка.</p><div style="height:14px"></div><p class="small"><code>print(nmae)</code></p></div>
-  </div>
-  <p class="takeaway">Чети <b>последния ред</b> на грешката — там пише какво не е наред и на кой ред.</p>
-  <aside class="notes">
-    <ul><li>Нормализирай грешките: и професионалистите виждат червен текст по цял ден.</li>
-    <li>SyntaxError също е честа: забравени кавички или скоба.</li></ul>
-  </aside>
-</section>
-
-<!-- 11 -->
-<section class="slide">
-  <div class="kicker">05 · Сравнения</div>
-  <h2>Въпрос с отговор „да“ или „не“</h2>
-  <div class="split">
-    <div>
-      <pre class="py">print(5 > 3)
-print(5 == 3)
-print(5 != 3)
-print("ябълка" == "Ябълка")</pre>
-      <div style="height:18px"></div>
-      <pre class="out">True
-False
-True
-False</pre>
-    </div>
-    <div>
-      <p><code>==</code> равно &nbsp; <code>!=</code> различно</p>
-      <div style="height:16px"></div>
-      <p><code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code></p>
-      <div style="height:40px"></div>
-      <div class="warn"><b><code>=</code></b> записва стойност.<br><b><code>==</code></b> сравнява две стойности.</div>
-    </div>
-  </div>
-  <aside class="notes">
-    <ul><li>Резултатът от сравнение е bool — същият тип от слайда с типовете.</li>
-    <li>Главните букви имат значение — важно за задачата с камък-ножица-хартия.</li></ul>
-  </aside>
-</section>
-
-<!-- 12 -->
-<section class="slide">
-  <div class="kicker">06 · Условия</div>
+  <div class="chip c"><i>Концепция</i><span>05 · Условия</span></div>
   <h2>Програмата избира какво да направи</h2>
-  <div class="split wide-left">
-    <pre class="py">temperature = 28
-
-if temperature > 25:
-<span class="indent-guide">    print("Горещо е")</span>
-<span class="indent-guide">    print("Вземи вода")</span>
-elif temperature > 15:
-<span class="indent-guide">    print("Приятно е")</span>
-else:
-<span class="indent-guide">    print("Студено е")</span>
-
-print("Винаги")</pre>
-    <div>
-      <p><b><code>if</code></b> — ако е вярно…</p><div style="height:18px"></div>
-      <p><b><code>elif</code></b> — иначе, ако…</p><div style="height:18px"></div>
-      <p><b><code>else</code></b> — във всички останали случаи</p>
-      <div style="height:40px"></div>
-      <div class="warn"><b>Двоеточие</b> в края на реда и <b>отстъп</b> от 4 интервала за кода „вътре“.</div>
+  <div class="split">
+    <div class="points">
+      <p><b>Сравнения</b> дават <code>True</code> или <code>False</code>:</p>
+      <p><code>==</code> равно &nbsp; <code>!=</code> различно<br><code>&lt;</code> &nbsp;<code>&gt;</code> &nbsp;<code>&lt;=</code> &nbsp;<code>&gt;=</code></p>
+      <div class="warn"><code>=</code> записва стойност.<br><code>==</code> сравнява.</div>
+    </div>
+    <div class="points">
+      <p><code>if</code> — ако е вярно…</p>
+      <p><code>elif</code> — иначе, ако…</p>
+      <p><code>else</code> — във всички останали случаи</p>
+      <div class="warn"><b>Двоеточие</b> <code>:</code> в края на реда и <b>отстъп</b> (4 интервала) за кода „вътре“.</div>
     </div>
   </div>
-  <aside class="notes">
-    <ul><li>Проверява се отгоре надолу и се изпълнява само ПЪРВИЯТ верен клон. Смени temperature на 20, после на 5.</li>
-    <li>Нарочна грешка: махни отстъпа → IndentationError.</li></ul>
-  </aside>
+  <aside class="notes"><ul><li>Проверява се отгоре надолу. Изпълнява се само ПЪРВИЯТ верен клон.</li></ul></aside>
 </section>
 
-<!-- 13 -->
 <section class="slide">
-  <div class="kicker">06 · and · or · not</div>
+  <div class="chip k"><i>Код</i><span>05 · Условия</span></div>
+  <h2>Четно или нечетно?</h2>
+  <div class="split wl">
+    <pre class="py">n = int(input("Число: "))
+
+if n % 2 == 0:
+    print("Четно")
+else:
+    print("Нечетно")
+
+print("Край")      # без отстъп → винаги</pre>
+    <div><div class="lbl">Изход</div><pre class="out">Число: <span class="in">7</span>
+Нечетно
+Край</pre></div>
+  </div>
+  <aside class="notes"><ul><li>Подчертай отстъпа: print("Край") не е вътре в else, затова се изпълнява винаги.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>05 · Задача от училище</span></div>
+  <h2>Линейно уравнение <code>ax + b = 0</code></h2>
+  <div class="split wl">
+    <pre class="py sm">a = float(input("a = "))
+b = float(input("b = "))
+
+if a != 0:
+    print("x =", -b / a)
+elif b == 0:
+    print("Всяко x е решение")
+else:
+    print("Няма решение")</pre>
+    <div class="points">
+      <p class="small"><b>a ≠ 0</b> → едно решение <code>x = -b / a</code></p>
+      <p class="small"><b>a = 0, b = 0</b> → <code>0 = 0</code>, всяко x</p>
+      <p class="small"><b>a = 0, b ≠ 0</b> → напр. <code>5 = 0</code>, няма</p>
+      <div class="gap"></div>
+      <pre class="out">a = <span class="in">2</span>
+b = <span class="in">-6</span>
+x = 3.0</pre>
+    </div>
+  </div>
+  <aside class="notes"><ul><li>Задача 18 от списъка им по математика/информатика. Нека те кажат трите случая, преди да покажеш кода.</li><li>elif b == 0 се проверява само ако a == 0 — затова не пишем a == 0 and b == 0.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>05 · and · or · not</span></div>
   <h2>Комбиниране на условия</h2>
-  <div class="cols3" style="margin-bottom:40px">
+  <div class="cols3">
     <div class="item"><b class="blue">and</b><p>И двете трябва да са верни.</p></div>
     <div class="item"><b class="green">or</b><p>Поне едното е вярно.</p></div>
     <div class="item"><b class="orange">not</b><p>Обръща: True ↔ False.</p></div>
   </div>
-  <pre class="py">if age >= 12 and has_ticket:
-    print("Заповядай в киното")
+  <div class="gap2"></div>
+  <pre class="py">if n &gt; 0 and n % 3 == 0:
+    print("Положително и се дели на 3")
 
 if day == "събота" or day == "неделя":
     print("Почивен ден!")</pre>
-  <aside class="notes">
-    <ul><li>Честа грешка: if day == "събота" or "неделя" — винаги е вярно! Всяка страна трябва да е пълно сравнение.</li>
-    <li>Задача 7 (високосна година) е точно за and/or със скоби.</li></ul>
-  </aside>
+  <aside class="notes"><ul><li>Честа грешка: day == "събота" or "неделя" — всяка страна трябва да е пълно сравнение.</li></ul></aside>
 </section>
 
-<!-- 14 -->
-<section class="slide" id="range-slide">
-  <div class="kicker">07 · Цикъл for</div>
-  <h2>Повтори за всяко число от <code style="font-size:.9em">range</code></h2>
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>05 · Условия</span></div>
+  <p class="q">Какво ще отпечата при <code>x = 15</code>?</p>
+  <div class="split wl">
+    <pre class="py">if x &gt; 10:
+    print("A")
+elif x &gt; 5:
+    print("B")
+else:
+    print("C")</pre>
+    <div class="frag answer"><b>Отговор:</b> само <code>A</code><br><br>15 &gt; 5 също е вярно, но щом първият клон се изпълни, останалите се <b>пропускат</b>.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>05 · Намери грешките</span></div>
+  <p class="q">В този код има <b>две</b> грешки. Кои са?</p>
+  <div class="split wl">
+    <pre class="py">n = int(input())
+if n % 2 = 0
+    print("Четно")</pre>
+    <div class="frag answer"><b>Отговор:</b><br>1. <code>=</code> трябва да е <code>==</code> (сравняваме)<br>2. липсва <code>:</code> в края на реда с <code>if</code><br><br><code>if n % 2 == 0:</code></div>
+  </div>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Python показва SyntaxError и стрелка към мястото на грешката.</li></ul></aside>
+</section>
+
+<!-- ============ 06 FOR ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>06 · Цикъл for</span></div>
+  <h2>Повтори за всяко число</h2>
+  <div class="split wl">
+    <div class="points">
+      <p><b>Цикъл</b> = повтаряне на код, без да го пишем много пъти.</p>
+      <p><code>range(start, stop, step)</code> дава числата от <b>start</b> до <b>stop</b>, през <b>step</b>.</p>
+      <div class="warn"><b>stop не се включва!</b><br><code>range(1, 5)</code> → 1, 2, 3, 4</div>
+    </div>
+    <div>
+      <pre class="py">for i in range(1, 5):
+    print("Повторение", i)</pre>
+      <div class="gap"></div>
+      <pre class="out">Повторение 1
+Повторение 2
+Повторение 3
+Повторение 4</pre>
+    </div>
+  </div>
+  <aside class="notes"><ul><li>range(5) = range(0, 5): 0..4. Ако искаме от 1 до N: range(1, N + 1).</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>06 · Изпробвай range</span></div>
+  <h2>Какво дава <code>range</code>?</h2>
   <div class="rv-controls">
-    <label>start <input type="number" id="rv-start" value="0"></label>
-    <label>stop <input type="number" id="rv-stop" value="5"></label>
+    <label>start <input type="number" id="rv-start" value="1"></label>
+    <label>stop <input type="number" id="rv-stop" value="6"></label>
     <label>step <input type="number" id="rv-step" value="1"></label>
   </div>
   <div class="rv-call" id="rv-call"></div>
   <div class="rv-out" id="rv-out"></div>
-  <p class="rv-note"><b class="red">stop</b> не се включва. Пробвай <code>1, 11, 1</code> · <code>0, 20, 5</code> · <code>10, 0, -1</code></p>
-  <pre class="py" style="position:absolute;right:84px;top:72px;font-size:24px">for i in range(5):
-    print("Повторение", i)</pre>
-  <aside class="notes">
-    <ul><li>Интерактивно: питай класа какво ще излезе, после промени числата. Стрелките на клавиатурата не сменят слайда, докато си в поле — натисни Esc или кликни извън.</li>
-    <li>for работи и с текст: for letter in "ТУЕС".</li></ul>
-  </aside>
+  <p class="takeaway">Пробвай: <code>0, 10, 2</code> · <code>0, 20, 5</code> · <code>10, 0, -1</code> · <code>5, 5, 1</code></p>
+  <aside class="notes"><ul><li>Интерактивно: питай класа какво ще излезе, после промени числата. Esc излиза от полето, за да работят стрелките.</li></ul></aside>
 </section>
 
-<!-- 15 -->
 <section class="slide">
-  <div class="kicker">08 · Цикъл while</div>
+  <div class="chip k"><i>Код</i><span>06 · Задача от училище</span></div>
+  <h2>Сумата на числата от 1 до N</h2>
+  <div class="split">
+    <div>
+      <pre class="py">n = int(input("N: "))
+total = 0
+for i in range(1, n + 1):
+    total = total + i
+print(total)</pre>
+      <div class="gap"></div>
+      <p class="small"><b>Натрупване:</b> започни от 0 преди цикъла, добавяй вътре, отпечатай след него.</p>
+    </div>
+    <div><div class="lbl">Стъпка по стъпка при N = 4</div>
+      <table class="trace">
+        <tr><th>i</th><th>total</th></tr>
+        <tr class="frag"><td>—</td><td>0</td></tr>
+        <tr class="frag"><td>1</td><td>0 + 1 = 1</td></tr>
+        <tr class="frag"><td>2</td><td>1 + 2 = 3</td></tr>
+        <tr class="frag"><td>3</td><td>3 + 3 = 6</td></tr>
+        <tr class="frag"><td>4</td><td>6 + 4 = <b>10</b></td></tr>
+      </table></div>
+  </div>
+  <aside class="notes"><ul><li>Всеки клик показва една стъпка — проследете заедно.</li><li>Защо n + 1? Защото stop не се включва.</li><li>Бонус: Гаус → n * (n + 1) // 2.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>06 · Задача от училище</span></div>
+  <h2>Среден успех на класа</h2>
+  <div class="split wl">
+    <pre class="py sm">n = int(input("Брой ученици: "))
+total = 0
+for i in range(n):
+    grade = float(input("Оценка: "))
+    total = total + grade
+print(f"Среден успех: {total / n:.2f}")</pre>
+    <div><div class="lbl">Изход</div><pre class="out">Брой ученици: <span class="in">3</span>
+Оценка: <span class="in">6</span>
+Оценка: <span class="in">5</span>
+Оценка: <span class="in">4.5</span>
+Среден успех: 5.17</pre></div>
+  </div>
+  <p class="takeaway">Същото като сумата — но всяко число <b>въвеждаме</b> в цикъла. <code>:.2f</code> = 2 знака след запетаята.</p>
+  <aside class="notes"><ul><li>Това покрива и задачата „сумата на N произволни числа“ — просто без делението.</li><li>for i in range(n): тук i не ни трябва, просто повтаряме n пъти.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>06 · Цикъл for</span></div>
+  <p class="q">Какво ще отпечата?</p>
+  <div class="split wl">
+    <pre class="py">for i in range(2, 10, 3):
+    print(i)</pre>
+    <div class="frag answer"><b>Отговор:</b><br><code>2</code><br><code>5</code><br><code>8</code><br><br>Започва от 2, стъпка 3. Следващото би било 11 — но спира преди 10.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>06 · Намери грешката</span></div>
+  <p class="q">Искаме сбора 1 + 2 + 3 + 4 + 5 = 15, но програмата отпечатва 5. Защо?</p>
+  <div class="split wl">
+    <pre class="py">for i in range(1, 6):
+    total = 0
+    total = total + i
+print(total)</pre>
+    <div class="frag answer"><b>Отговор:</b> <code>total = 0</code> е <b>вътре</b> в цикъла — нулира се при всяко повторение.<br><br>Трябва да е <b>преди</b> цикъла.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Най-честата грешка с натрупването. Ще я видите в задачите.</li></ul></aside>
+</section>
+
+<!-- ============ 07 WHILE ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>07 · Цикъл while</span></div>
   <h2>Повтаряй, <span class="blue">докато</span> е вярно</h2>
   <div class="split">
-    <div>
-      <pre class="py">countdown = 5
-while countdown > 0:
-    print(countdown)
-    countdown -= 1
-print("Старт!")</pre>
-      <div style="height:22px"></div>
-      <pre class="py">while True:
-    word = input("Дума: ")
-    if word == "стоп":
-        <span class="hl">break</span></pre>
+    <div class="points">
+      <p><b><code>for</code></b> — знаем колко пъти.</p>
+      <p><b><code>while</code></b> — не знаем; повтаряме, докато условието е вярно.</p>
+      <div class="warn">Ако условието никога не стане <code>False</code> → <b>безкраен цикъл</b>. В Colab се спира с ■.</div>
     </div>
     <div>
-      <p><b><code>for</code></b> — знаем колко пъти.</p><div style="height:14px"></div>
-      <p><b><code>while</code></b> — не знаем; спираме при условие.</p>
-      <div style="height:22px"></div>
-      <p><b><code>break</code></b> излиза веднага от цикъла.</p>
-      <div style="height:40px"></div>
-      <div class="warn">Ако условието никога не стане False → <b>безкраен цикъл</b>. В Colab: бутонът ■.</div>
+      <pre class="py">countdown = 3
+while countdown &gt; 0:
+    print(countdown)
+    countdown = countdown - 1
+print("Старт!")</pre>
+      <div class="gap"></div>
+      <pre class="out">3
+2
+1
+Старт!</pre>
     </div>
   </div>
-  <aside class="notes">
-    <ul><li>Демо: изтрий countdown -= 1 и покажи безкрайния цикъл, после го спри. Запомнят го завинаги.</li></ul>
-  </aside>
+  <aside class="notes"><ul><li>Колко цифри има числото? Не знаем предварително → while.</li></ul></aside>
 </section>
 
-<!-- 16 -->
 <section class="slide">
-  <div class="kicker">09 · Натрупване</div>
-  <h2>Започни от нула и добавяй</h2>
+  <div class="chip k"><i>Код</i><span>07 · Обхождане на цифрите</span></div>
+  <h2>Минаваме през всички цифри на число</h2>
   <div class="split">
     <div>
-      <div class="lbl">Сума</div>
-      <pre class="py">total = 0
-for n in range(1, 101):
-    total += n
-print(total)   # 5050</pre>
+      <pre class="py">n = 305
+while n &gt; 0:
+    digit = n % 10
+    print(digit)
+    n = n // 10</pre>
+      <div class="gap"></div>
+      <p class="small">Взимаме последната цифра, после я „отрязваме“. Повтаряме, докато числото стане 0.</p>
     </div>
-    <div>
-      <div class="lbl">Брояч</div>
-      <pre class="py">count = 0
-for n in range(1, 101):
-    if n % 7 == 0:
-        count += 1
-print(count)   # 14</pre>
-    </div>
+    <div><div class="lbl">Стъпка по стъпка</div>
+      <table class="trace">
+        <tr><th>n</th><th>digit</th><th>ново n</th></tr>
+        <tr class="frag"><td>305</td><td class="orange">5</td><td>30</td></tr>
+        <tr class="frag"><td>30</td><td class="orange">0</td><td>3</td></tr>
+        <tr class="frag"><td>3</td><td class="orange">3</td><td>0</td></tr>
+        <tr class="frag"><td colspan="3" class="red">n = 0 → край</td></tr>
+      </table></div>
   </div>
-  <p class="takeaway">Този шаблон решава половината задачи днес: <b>променлива преди цикъла → промяна вътре → резултат след него</b>.</p>
-  <aside class="notes">
-    <ul><li>История: Гаус като ученик е сметнал 1+…+100 за секунди: 50 двойки по 101 = 5050.</li>
-    <li>Честа грешка: total = 0 вътре в цикъла → нулира се всеки път.</li></ul>
-  </aside>
+  <p class="takeaway">Това е <b>шаблонът за цифри</b> — ще го ползвате в повечето задачи накрая.</p>
+  <aside class="notes"><ul><li>Цифрите излизат отзад напред: 5, 0, 3.</li><li>Задачите „брой цифри“, „сума на цифрите“, „наобратно“ са само малки промени в тялото на цикъла.</li></ul></aside>
 </section>
 
-<!-- 17 -->
 <section class="slide">
-  <div class="kicker">10 · Списъци</div>
-  <h2>Много стойности в една променлива</h2>
-  <pre class="py" style="margin-bottom:30px">fruits = ["ябълка", "круша", "банан"]
-fruits.append("киви")</pre>
-  <div class="cells">
-    <div class="cell"><div class="v">🍎 ябълка</div><div class="i">0 <span>· -4</span></div></div>
-    <div class="cell"><div class="v">🍐 круша</div><div class="i">1 <span>· -3</span></div></div>
-    <div class="cell"><div class="v">🍌 банан</div><div class="i">2 <span>· -2</span></div></div>
-    <div class="cell new"><div class="v">🥝 киви</div><div class="i">3 <span>· -1</span></div></div>
+  <div class="chip t"><i>Твой ред</i><span>07 · Цикъл while</span></div>
+  <p class="q">Какво ще отпечата?</p>
+  <div class="split wl">
+    <pre class="py">n = 234
+p = 1
+while n &gt; 0:
+    p = p * (n % 10)
+    n = n // 10
+print(p)</pre>
+    <div class="frag answer"><b>Отговор:</b> <code>24</code><br><br>Това е <b>произведението на цифрите</b>: 4 · 3 · 2 = 24.<br><br>Защо <code>p = 1</code>, а не 0? Защото 0 по каквото и да е е 0.</div>
   </div>
-  <div style="height:36px"></div>
+  <p class="click">→ показва отговора</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>07 · Намери грешката</span></div>
+  <p class="q">Тази програма никога не спира. Защо?</p>
+  <div class="split wl">
+    <pre class="py">n = 123
+while n &gt; 0:
+    print(n % 10)</pre>
+    <div class="frag answer"><b>Отговор:</b> <code>n</code> никога не се променя — винаги е 123 &gt; 0.<br><br>Липсва <code>n = n // 10</code> в цикъла → <b>безкраен цикъл</b>.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Може да го пуснеш в Colab и да покажеш как се спира.</li></ul></aside>
+</section>
+
+<!-- ============ 08 ШАБЛОНИ ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>08 · Шаблони</span></div>
+  <h2>Четири шаблона, които решават всичко днес</h2>
   <div class="cols4">
-    <p class="small"><code>fruits[0]</code><br>първият</p>
-    <p class="small"><code>fruits[-1]</code><br>последният</p>
-    <p class="small"><code>len(fruits)</code><br>колко са → 4</p>
-    <p class="small"><code>for f in fruits:</code><br>обхожда всички</p>
+    <div><div class="lbl">Брояч</div><pre class="xs">count = 0
+# в цикъла:
+if ...:
+    count += 1</pre></div>
+    <div><div class="lbl">Сума</div><pre class="xs">total = 0
+# в цикъла:
+total += x</pre></div>
+    <div><div class="lbl">Максимум</div><pre class="xs">best = първото
+# в цикъла:
+if x &gt; best:
+    best = x</pre></div>
+    <div><div class="lbl">Флаг</div><pre class="xs">found = False
+# в цикъла:
+if ...:
+    found = True</pre></div>
   </div>
-  <aside class="notes">
-    <ul><li>Индексите започват от 0! fruits[4] → IndexError — покажи го.</li>
-    <li>Бонус: sum(), max(), min() за списъци с числа. В задача 13 ги забраняваме нарочно.</li></ul>
-  </aside>
+  <div class="gap2"></div>
+  <p class="small"><code>count += 1</code> е съкратено от <code>count = count + 1</code>. Флагът казва „намерихме ли поне веднъж?“.</p>
+  <p class="takeaway">Всяка задача: <b>избери шаблон</b> → <b>избери цикъл</b> (for или цифри с while) → напиши.</p>
+  <aside class="notes"><ul><li>Флагът е нов за тях: true/false „знаменце“, което вдигаме, ако нещо се случи. Ще трябва за „просто число“ и „съседни нули“.</li></ul></aside>
 </section>
 
-<!-- 18 -->
 <section class="slide">
-  <div class="kicker">11 · Всичко заедно</div>
-  <h2>Мини програма: оценките на класа</h2>
-  <div class="split wide-left" style="align-items:start">
-    <pre class="py" style="font-size:22px;padding:24px 30px">grades = []
-while True:
-    grade = int(input("Оценка (0 за край): "))
-    if grade == 0:
-        break
-    if grade &lt; 2 or grade &gt; 6:
-        print("От 2 до 6!")
-        continue
-    grades.append(grade)
-
-average = sum(grades) / len(grades)
-print(f"Средна оценка: {average:.2f}")
-if average &gt;= 5.5:
-    print("Отличен успех!")</pre>
-    <div>
-      <p class="small"><b>Какво има тук?</b></p><div style="height:12px"></div>
-      <p class="small">✓ вход и <code>int()</code><br>✓ <code>while</code> и <code>break</code><br>✓ <code>if</code>, <code>or</code><br>✓ списък и <code>append</code><br>✓ <code>sum</code>, <code>len</code><br>✓ f-string</p>
-      <div style="height:20px"></div>
-      <p class="tiny"><code>continue</code> — пропусни останалото и започни следващото завъртане.<br><code>:.2f</code> — покажи 2 знака след запетаята.</p>
-    </div>
+  <div class="chip t"><i>Твой ред</i><span>08 · Флаг</span></div>
+  <p class="q">Какво ще отпечата? Какво проверява тази програма?</p>
+  <div class="split wl">
+    <pre class="py">n = 7
+found = False
+for d in range(2, n):
+    if n % d == 0:
+        found = True
+print(found)</pre>
+    <div class="frag answer"><b>Отговор:</b> <code>False</code><br><br>Търси делител на 7 между 2 и 6 — няма такъв. Значи 7 е <b>просто число</b>!<br><br>При <code>n = 9</code> → <code>True</code> (9 % 3 == 0).</div>
   </div>
-  <aside class="notes">
-    <ul><li>Последна клетка от demo.ipynb. Пусни я и въведи няколко оценки, включително 7 (невалидна).</li>
-    <li>Питай: какво ще стане, ако веднага въведа 0? (деление на нула — версията в тетрадката го проверява с if len(grades) > 0)</li></ul>
-  </aside>
+  <p class="click">→ показва отговора</p>
+  <aside class="notes"><ul><li>Това е почти решението на задача 7 — спомени си го, когато стигнат до нея.</li></ul></aside>
 </section>
 
-<!-- 19 -->
+<!-- ============ 09 ЗАДАЧИ ============ -->
 <section class="slide">
-  <div class="kicker">Ваш ред</div>
-  <h2>14 задачи — решавайте подред</h2>
-  <div class="cols3">
-    <div class="lvl"><div class="stars">⭐</div><b>Загрявка</b><p>Визитка, калкулатор, минути в часове, бакшиш, четно/нечетно, таблица за умножение.</p></div>
-    <div class="lvl"><div class="stars">⭐⭐</div><b>Помисли</b><p>Оценка от точки, високосна година, камък-ножица-хартия, FizzBuzz, познай числото.</p></div>
-    <div class="lvl"><div class="stars">⭐⭐⭐</div><b>За бързите</b><p>Статистика на класа без <code>max()</code>, прости числа.</p></div>
+  <div class="section">
+    <div class="num">09</div>
+    <h2>Задачи от училище</h2>
+    <p>Задачи, които правите по другите предмети — сега на Python.<br>Подредени от лесни към трудни.</p>
   </div>
-  <div style="height:50px"></div>
+  <aside class="notes"><ul><li>Оттук нататък — само код. Решаваме заедно или те сами, а ти следваш тетрадката „решаване на живо“.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задачи</i><span>Преглед</span></div>
+  <h2>10 задачи в 3 нива</h2>
+  <div class="tasklist">
+    <div><b>⭐ Загрявка</b><ol><li>Най-голямото от N числа</li><li>Брой на цифрите</li><li>Сума на цифрите</li></ol></div>
+    <div><b>⭐⭐ Помисли</b><ol start="4"><li>Числата на Фибоначи</li><li>Делители и техният брой</li><li>Числото наобратно</li><li>Просто ли е числото?</li></ol></div>
+    <div><b>⭐⭐⭐ Предизвикателство</b><ol start="8"><li>Най-голямата цифра и колко пъти се среща</li><li>Две съседни нули</li><li>Повтарящи се цифри</li></ol></div>
+  </div>
+  <div class="gap2"></div>
   <div style="display:flex;gap:20px;align-items:center">
     <a class="action primary" target="_blank" rel="noopener" href="https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb">Отвори задачите в Colab ↗</a>
     <span class="small">File → Save a copy in Drive, за да пазиш решенията си</span>
   </div>
-  <aside class="notes">
-    <ul><li>Важно: в Colab трябва да направят „Save a copy in Drive“, иначе промените им не се пазят.</li>
-    <li>Обикаляй класа. Който свърши задачите с ⭐, минава на ⭐⭐ — не чакат другите.</li>
-    <li>Решенията: resheniya/resheniya.ipynb в репото.</li></ul>
-  </aside>
+  <aside class="notes"><ul><li>Нека отворят Colab сега. Без „Save a copy in Drive“ промените им се губят.</li></ul></aside>
 </section>
 
-<!-- 20 -->
 <section class="slide">
-  <div class="kicker">Следващия път</div>
+  <div class="chip z"><i>Задача 1</i><span class="lvl">⭐</span></div>
+  <h2>Най-голямото от N числа</h2>
+  <p class="cond">Въведи <b>N</b>, после N цели числа. Отпечатай най-голямото от тях.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">5 → 3, 9, -2, 7, 4</span><span class="k">Изход</span><span class="v">9</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> шаблонът „максимум“. Първото число е най-голямото <i>засега</i>. Всяко следващо сравни с него.</div>
+  <aside class="notes"><ul><li>Капан: best = 0 в началото не работи, ако всички числа са отрицателни. Затова започваме от първото въведено.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 2</i><span class="lvl">⭐</span></div>
+  <h2>Брой на цифрите</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Отпечатай колко цифри има.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">2026</span><span class="k">Изход</span><span class="v">4</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> шаблонът за цифри с <code>while</code> + брояч. Колко пъти можеш да отрежеш последната цифра, преди числото да стане 0?</div>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 3</i><span class="lvl">⭐</span></div>
+  <h2>Сума на цифрите</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Отпечатай сбора на цифрите му.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">2026</span><span class="k">Изход</span><span class="v">10</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> като задача 2, но вместо да броиш — <b>събирай</b> <code>n % 10</code>.</div>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 4</i><span class="lvl">⭐⭐</span></div>
+  <h2>Числата на Фибоначи</h2>
+  <p class="cond">Първите две числа са <b>0</b> и <b>1</b>, а всяко следващо е сборът на предходните две. Въведи <b>N</b> и отпечатай първите N числа.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">8</span><span class="k">Изход</span><span class="v">0 1 1 2 3 5 8 13</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> пази само последните две числа в <code>a</code> и <code>b</code>. Спомни си размяната: <code>a, b = b, a + b</code></div>
+  <aside class="notes"><ul><li>Внимание: редицата е 0, 1, 1, 2, 3, 5, 8 — числото 1 се среща два пъти.</li><li>print(a, end=" ") печата на един ред.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 5</i><span class="lvl">⭐⭐</span></div>
+  <h2>Делители и техният брой</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Отпечатай всичките му делители и колко са.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">12</span><span class="k">Изход</span><span class="v">1 2 3 4 6 12</span><span class="k"></span><span class="v">Брой: 6</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> пробвай всяко <code>d</code> от 1 до N. Ако <code>N % d == 0</code>, d е делител — отпечатай го и увеличи брояча.</div>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 6</i><span class="lvl">⭐⭐</span></div>
+  <h2>Числото наобратно</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Получи <b>числото</b> M, записано с цифрите на N наобратно.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">1234</span><span class="k">Изход</span><span class="v">4321</span><span class="k">Вход</span><span class="v">120</span><span class="k">Изход</span><span class="v">21</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> започни с <code>m = 0</code>. За всяка цифра: <code>m = m * 10 + цифрата</code>. Проследи на хартия с 123.</div>
+  <aside class="notes"><ul><li>Искаме число, не текст — затова не просто печатаме цифрите една след друга.</li><li>m: 0 → 3 → 32 → 321.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 7</i><span class="lvl">⭐⭐</span></div>
+  <h2>Просто ли е числото?</h2>
+  <p class="cond">Въведи естествено число <b>N ≥ 2</b>. Отпечатай дали е просто — дели се само на 1 и на себе си.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">17</span><span class="k">Изход</span><span class="v">Просто</span><span class="k">Вход</span><span class="v">21</span><span class="k">Изход</span><span class="v">Не е просто</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> шаблонът „флаг“ — като на слайда „Твой ред“ с n = 7. Ако намериш делител между 2 и N − 1, числото не е просто.</div>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 8</i><span class="lvl">⭐⭐⭐</span></div>
+  <h2>Най-голямата цифра и колко пъти се среща</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Намери най-голямата му цифра и колко пъти се среща.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">4342</span><span class="k">Изход</span><span class="v">4 2</span></div>
+  <p class="small" style="margin-top:14px">(цифрата 4 е най-голямата и се среща 2 пъти)</p>
+  <div class="gap"></div>
+  <div class="frag hint"><b>Подсказка:</b> един цикъл по цифрите. По-голяма цифра от досегашната → запомни я и брояча става <b>1</b>. Същата цифра → брояч <b>+ 1</b>.</div>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 9</i><span class="lvl">⭐⭐⭐</span></div>
+  <h2>Две съседни нули</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Отпечатай дали в записа му има две нули една до друга.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">1004</span><span class="k">Изход</span><span class="v">Да</span><span class="k">Вход</span><span class="v">1030</span><span class="k">Изход</span><span class="v">Не</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> помни <b>предишната</b> цифра в променлива. Ако текущата и предишната са 0 → вдигни флага.</div>
+  <aside class="notes"><ul><li>Какво да е „предишната“ в началото? Нещо, което не е 0, напр. -1.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Задача 10</i><span class="lvl">⭐⭐⭐</span></div>
+  <h2>Повтарящи се цифри</h2>
+  <p class="cond">Въведи естествено число <b>N</b>. Отпечатай дали в него има цифра, която се среща повече от веднъж.</p>
+  <div class="io"><span class="k">Вход</span><span class="v">1234</span><span class="k">Изход</span><span class="v">Не</span><span class="k">Вход</span><span class="v">1232</span><span class="k">Изход</span><span class="v">Да</span></div>
+  <div class="gap2"></div>
+  <div class="frag hint"><b>Подсказка:</b> цикъл в цикъл. За всяка цифра от 0 до 9 преброй колко пъти се среща в N. Ако някоя е 2 или повече пъти → Да.</div>
+  <aside class="notes"><ul><li>Важно: за всяка цифра обхождаме копие на N (temp = n), иначе след първото обхождане n става 0.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Край</i><span>Следващия път</span></div>
   <h2>Функции — и учим компютъра да различава 🍎 от 🍐</h2>
   <div class="split">
-    <pre class="py" style="font-size:21px">def guess_fruit(color, shape):
+    <pre class="py xs">def guess_fruit(color, shape):
     if shape == "кръгла" and color == "червен":
         return "ябълка"
     ...</pre>
-    <div>
-      <p>Ще пишем правила на ръка…</p><div style="height:18px"></div>
-      <p>…и ще видим защо <b class="blue">машинното обучение</b> е по-добрият начин.</p>
-    </div>
+    <div class="points"><p>Ще пишем правила на ръка…</p><p>…и ще видим защо <b class="blue">машинното обучение</b> е по-добрият начин.</p></div>
   </div>
-  <p class="takeaway">Въпроси? Пишете в Discord.</p>
-  <aside class="notes">
-    <ul><li>Свържи с въвеждащата лекция: там говорихме как моделът се учи от примери с ябълки и круши.</li></ul>
-  </aside>
+  <div class="gap2"></div>
+  <a class="action primary" target="_blank" rel="noopener" href="https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb">Задачите в Colab ↗</a>
+  <p class="takeaway">Които не са свършили — довършете вкъщи. Въпроси в Discord.</p>
 </section>
 
 </div></div>
@@ -572,9 +859,9 @@ if average &gt;= 5.5:
 <div id="overview" aria-label="Всички слайдове"></div>
 <div id="notes" aria-live="polite"></div>
 <nav id="bar">
-  <button id="prev" aria-label="Предишен">←</button>
+  <button id="prev" aria-label="Назад">←</button>
   <span id="count"></span>
-  <button id="next" aria-label="Следващ">→</button>
+  <button id="next" aria-label="Напред">→</button>
   <button id="btn-o" title="O">Слайдове</button>
   <button id="btn-n" title="N">Бележки</button>
   <button id="btn-f" title="F">⛶</button>
@@ -582,69 +869,76 @@ if average &gt;= 5.5:
 
 <script>
 (function(){
-  // --- Python syntax highlighting for <pre class="py"> (keeps existing <span> markup) ---
+  // --- Python syntax highlighting for <pre class="py"> and <pre class="xs"> (keeps existing markup) ---
   const KW = /\b(if|elif|else|for|while|in|and|or|not|break|continue|def|return|import|from|True|False|None)\b/;
   const BI = /\b(print|input|int|float|str|len|range|type|sum|max|min|round|list)\b(?=\()/;
   const RX = new RegExp([/(#[^\n]*)/.source, /(f?"[^"\n]*")/.source, /(\b\d+(?:\.\d+)?\b)/.source, "(" + KW.source + ")", "(" + BI.source + ")"].join("|"), "g");
+  const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   function hlText(t){
-    return t.replace(RX, (m, c, s, n, k, k2, b) => {
-      if (c) return `<span class="tk-c">${c}</span>`;
-      if (s) return `<span class="tk-s">${s}</span>`;
-      if (n) return `<span class="tk-n">${n}</span>`;
-      if (k) return `<span class="tk-k">${k}</span>`;
-      return `<span class="tk-b">${m}</span>`;
-    });
+    return esc(t).replace(RX, (m, c, s, n, k, k2, b) =>
+      c ? `<span class="tk-c">${c}</span>` : s ? `<span class="tk-s">${s}</span>` :
+      n ? `<span class="tk-n">${n}</span>` : k ? `<span class="tk-k">${k}</span>` : `<span class="tk-b">${m}</span>`);
   }
   function hlNode(node){
     [...node.childNodes].forEach(ch => {
-      if (ch.nodeType === 3) {
-        const span = document.createElement("span");
-        span.innerHTML = hlText(ch.textContent.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"));
-        ch.replaceWith(...span.childNodes);
-      } else if (ch.nodeType === 1) hlNode(ch);
+      if (ch.nodeType === 3) { const s = document.createElement("span"); s.innerHTML = hlText(ch.textContent); ch.replaceWith(...s.childNodes); }
+      else if (ch.nodeType === 1) hlNode(ch);
     });
   }
-  document.querySelectorAll("pre.py").forEach(hlNode);
+  document.querySelectorAll("pre.py, pre.xs").forEach(hlNode);
 
-  // --- deck navigation ---
+  // --- deck navigation with click-to-reveal fragments ---
   const slides = [...document.querySelectorAll(".slide")];
   const deck = document.getElementById("deck"), notes = document.getElementById("notes"),
         overview = document.getElementById("overview"), count = document.getElementById("count");
   let cur = 0;
-  const fromHash = parseInt(location.hash.slice(1), 10);
-  if (fromHash >= 1 && fromHash <= slides.length) cur = fromHash - 1;
+  const h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) cur = h - 1;
+  const frags = i => [...slides[i].querySelectorAll(".frag")];
 
   function fit(){
     const vp = document.getElementById("viewport");
-    const s = Math.min(vp.clientWidth / 1600, vp.clientHeight / 900);
-    deck.style.transform = `scale(${s})`;
+    deck.style.transform = `scale(${Math.min(vp.clientWidth / 1600, vp.clientHeight / 900)})`;
   }
-  function show(i){
+  function show(i, revealAll){
     cur = Math.max(0, Math.min(slides.length - 1, i));
     slides.forEach((s, j) => s.hidden = j !== cur);
+    frags(cur).forEach(f => f.classList.toggle("on", !!revealAll));
     count.textContent = `${cur + 1} / ${slides.length}`;
     history.replaceState(null, "", "#" + (cur + 1));
     const n = slides[cur].querySelector("aside.notes");
     notes.innerHTML = `<h4>Бележки · слайд ${cur + 1}</h4>` + (n ? n.innerHTML : "<p>—</p>");
     [...overview.children].forEach((b, j) => b.classList.toggle("cur", j === cur));
   }
+  function next(){
+    const hidden = frags(cur).filter(f => !f.classList.contains("on"));
+    if (hidden.length) hidden[0].classList.add("on"); else if (cur < slides.length - 1) show(cur + 1);
+  }
+  function prev(){
+    const shown = frags(cur).filter(f => f.classList.contains("on"));
+    if (shown.length) shown[shown.length - 1].classList.remove("on"); else if (cur > 0) show(cur - 1, true);
+  }
   slides.forEach((s, j) => {
     const b = document.createElement("button");
-    const title = (s.querySelector("h1,h2") || {}).textContent || "";
-    b.innerHTML = `<span>${j + 1}</span>${title}`;
+    const chip = s.querySelector(".chip i"), title = (s.querySelector("h1,h2,.q") || {}).textContent || "";
+    b.innerHTML = `<span class="${chip ? "" : "blue"}" style="color:${chip ? getComputedStyle(chip).backgroundColor : ""}">${j + 1} · ${chip ? chip.textContent : ""}</span>${title}`;
     b.onclick = () => { show(j); overview.classList.remove("open"); };
     overview.appendChild(b);
   });
   const toggleFS = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
-  document.getElementById("prev").onclick = () => show(cur - 1);
-  document.getElementById("next").onclick = () => show(cur + 1);
+  document.getElementById("prev").onclick = prev;
+  document.getElementById("next").onclick = next;
   document.getElementById("btn-n").onclick = () => notes.classList.toggle("open");
   document.getElementById("btn-o").onclick = () => overview.classList.toggle("open");
   document.getElementById("btn-f").onclick = toggleFS;
+  document.getElementById("viewport").addEventListener("click", e => {
+    if (e.target.closest("a,button,input,label")) return;
+    next();
+  });
   document.addEventListener("keydown", e => {
     if (e.target.tagName === "INPUT") { if (e.key === "Escape") e.target.blur(); return; }
-    if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); show(cur + 1); }
-    else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); show(cur - 1); }
+    if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); next(); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); prev(); }
     else if (e.key === "Home") show(0);
     else if (e.key === "End") show(slides.length - 1);
     else if (e.key === "n" || e.key === "N") notes.classList.toggle("open");
@@ -659,17 +953,14 @@ if average &gt;= 5.5:
   function renderRange(){
     const a = parseInt(rs.value, 10) || 0, b = parseInt(re.value, 10) || 0;
     let st = parseInt(rp.value, 10); if (!st) st = 1;
-    document.getElementById("rv-call").innerHTML =
-      `range(<span class="tk-n">${a}</span>, <span class="tk-n">${b}</span>, <span class="tk-n">${st}</span>)`;
+    document.getElementById("rv-call").innerHTML = `range(<span class="tk-n">${a}</span>, <span class="tk-n">${b}</span>, <span class="tk-n">${st}</span>)`;
     const out = document.getElementById("rv-out"); out.innerHTML = "";
     const vals = [];
     for (let v = a; st > 0 ? v < b : v > b; v += st) { vals.push(v); if (vals.length > 40) break; }
-    vals.slice(0, 40).forEach((v, k) => {
-      const s = document.createElement("span"); s.textContent = v; s.style.animationDelay = (k * 30) + "ms"; out.appendChild(s);
-    });
+    vals.slice(0, 40).forEach((v, k) => { const s = document.createElement("span"); s.textContent = v; s.style.animationDelay = (k * 30) + "ms"; out.appendChild(s); });
     if (vals.length > 40) { const s = document.createElement("span"); s.textContent = "…"; out.appendChild(s); }
+    if (!vals.length) { const s = document.createElement("span"); s.className = "stop"; s.textContent = "празно"; out.appendChild(s); }
     const stop = document.createElement("span"); stop.className = "stop"; stop.textContent = b; stop.title = "stop не се включва"; out.appendChild(stop);
-    if (!vals.length) { const s = document.createElement("span"); s.className = "stop"; s.textContent = "празно"; out.prepend(s); }
   }
   [rs, re, rp].forEach(el => el.addEventListener("input", renderRange));
   renderRange();
