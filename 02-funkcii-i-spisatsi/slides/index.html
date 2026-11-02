@@ -317,7 +317,9 @@ for +: 'NoneType' and 'int'</span></pre>
   <div class="chip k"><i>Код</i><span>01 · Функции</span></div>
   <h2>Функция в цикъл</h2>
   <div class="split wl">
-    <pre class="py sm">def is_prime(n):
+    <pre class="py xs">def is_prime(n):
+    if n &lt; 2:
+        return False        # 0, 1 и отрицателните
     for d in range(2, n):
         if n % d == 0:
             return False    # излиза веднага
@@ -333,6 +335,8 @@ for n in range(2, 30):
       <p class="small"><code>return</code> спира функцията веднага. Щом намерим делител, знаем, че числото не е просто.</p>
       <div class="gap"></div>
       <p class="small">Така не ни трябва флагът от миналия урок.</p>
+      <div class="gap"></div>
+      <p class="small">Без проверката <code>n &lt; 2</code> цикълът за 0 и 1 е празен и функцията би върнала <code>True</code>.</p>
     </div>
   </div>
   <aside class="notes"><ul><li>Сравни с задача 7 от урок 1 — там имахме has_divisor и break. Тук return прави и двете.</li><li>Функция, която връща True/False, обикновено се казва is_... или has_...</li></ul></aside>
