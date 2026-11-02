@@ -11,6 +11,7 @@
 | # | Тема | Презентация | Задачи | За преподавателя |
 |---|---|---|---|---|
 | 1 | [Python основи](01-python-osnovi/) — променливи, условия, цикли, задачи от училище | [slides](https://tues-ai.github.io/ai-club-beginners-course/01-python-osnovi/slides/) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/01-python-osnovi/zadachi.ipynb) | [решаване на живо](01-python-osnovi/resheniya/reshavane-na-zhivo.ipynb) |
+| 2 | [Функции и списъци](02-funkcii-i-spisatsi/) — функции, списъци, текст, първи модел ябълка/круша | [slides](https://tues-ai.github.io/ai-club-beginners-course/02-funkcii-i-spisatsi/slides/) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/02-funkcii-i-spisatsi/zadachi.ipynb) | [решаване на живо](02-funkcii-i-spisatsi/resheniya/reshavane-na-zhivo.ipynb) |
 
 ## Как се работи с тетрадките
 
