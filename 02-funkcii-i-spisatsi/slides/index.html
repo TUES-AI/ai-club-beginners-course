@@ -157,7 +157,7 @@ aside.notes{display:none}
     <div>
       <div class="kicker">AI клуб · ТУЕС · Начинаещи</div>
       <h1>Функции и списъци</h1>
-      <p>Урок 2 · Пишем код веднъж, ползваме го много пъти —<br>и правим първия си „модел“</p>
+      <p>Урок 2</p>
     </div>
     <pre class="py" style="font-size:28px;line-height:1.7;padding:40px 44px">def is_apple(weight):
     return weight &lt; 170
@@ -174,17 +174,17 @@ for w in fruits:
 <section class="slide">
   <h2>Днес</h2>
   <div class="flow">
-    <div style="background:var(--blue)"><b>01 · Функции</b><p>Пакетираме код под име и го ползваме отново.</p></div>
-    <div style="background:var(--purple)"><b>02 · Списъци</b><p>Много стойности в една променлива.</p></div>
-    <div style="background:var(--orange)"><b>03 · Текст</b><p>Низът е поредица от символи.</p></div>
-    <div style="background:var(--green)"><b>04 · Към AI</b><p>Компютърът сам намира правило от данни.</p></div>
+    <div style="background:var(--blue)"><b>01 · Функции</b><p>Как да напишем своя функция.</p></div>
+    <div style="background:var(--purple)"><b>02 · Списъци</b><p>Как да пазим много стойности заедно.</p></div>
+    <div style="background:var(--orange)"><b>03 · Текст</b><p>Как да работим с текст.</p></div>
+    <div style="background:var(--green)"><b>04 · Към AI</b><p>Програма, която различава ябълка от круша.</p></div>
   </div>
-  <p class="takeaway">Пак: концепция → понякога код → <b>Твой ред</b> (отговорът е на следващия клик). После — задачи.</p>
+  <p class="takeaway">След теорията решаваме задачи.</p>
 </section>
 
 <section class="slide">
   <div class="chip t"><i>Твой ред</i><span>00 · Преговор</span></div>
-  <p class="q">Помните ли? Какво дава всяко от тези?</p>
+  <p class="q">Преговор: какво дава всеки ред?</p>
   <table>
     <tr><th style="width:42%">Код</th><th>Отговор</th></tr>
     <tr><td><code>2026 % 10</code></td><td><span class="frag"><code>6</code> — последната цифра</span></td></tr>
@@ -199,7 +199,7 @@ for w in fruits:
 <!-- ============ 01 ФУНКЦИИ ============ -->
 <section class="slide">
   <div class="chip c"><i>Концепция</i><span>01 · Функции</span></div>
-  <h2>Функцията е машинка</h2>
+  <h2>Какво е функция</h2>
   <div class="machine">
     <div class="m-in">вход<br><code>2026</code></div>
     <div class="m-arrow">→</div>
@@ -209,9 +209,9 @@ for w in fruits:
   </div>
   <div class="gap2"></div>
   <div class="cols3">
-    <div class="item"><b>Вече ги ползвате</b><p><code>print()</code>, <code>input()</code>, <code>int()</code>, <code>range()</code> — все функции, написани от някой друг.</p></div>
-    <div class="item"><b>Защо свои?</b><p>Пишем решение <strong>веднъж</strong>, даваме му име и го ползваме колкото пъти искаме.</p></div>
-    <div class="item"><b>Като в математиката</b><p><code>f(x) = 2x + 1</code> → <code>f(3) = 7</code>. Даваш вход, получаваш резултат.</p></div>
+    <div class="item"><b>Вече познавате някои</b><p><code>print()</code>, <code>input()</code>, <code>int()</code> и <code>range()</code> са функции, които идват с Python.</p></div>
+    <div class="item"><b>Защо да пишем свои</b><p>Ако един код ни трябва на няколко места, го пишем веднъж и го извикваме по име.</p></div>
+    <div class="item"><b>Като в математиката</b><p><code>f(x) = 2x + 1</code>, значи <code>f(3) = 7</code>. Функцията получава стойност и връща резултат.</p></div>
   </div>
   <aside class="notes"><ul><li>Аналогия: рецепта. Пишеш я веднъж, готвиш по нея много пъти с различни продукти (параметри).</li></ul></aside>
 </section>
@@ -231,14 +231,14 @@ for w in fruits:
 print(sum_digits(2026))   # 10</pre>
     </div>
     <div class="points">
-      <p><b><code>def</code></b> — „дефинирам“ нова функция</p>
-      <p><b class="blue">име</b> — какво прави, напр. <code>sum_digits</code></p>
-      <p><b class="purple">параметри</b> в скобите — входът</p>
-      <p><b class="green"><code>return</code></b> — връща резултата и <b>излиза</b> от функцията</p>
-      <p class="small">Двоеточие и отстъп — като при <code>if</code> и <code>for</code>.</p>
+      <p><b><code>def</code></b> започва нова функция</p>
+      <p><b class="blue">име</b>, по което ще я извикваме</p>
+      <p><b class="purple">параметри</b> в скобите: входните стойности</p>
+      <p><b class="green"><code>return</code></b> връща резултата и излиза от функцията</p>
+      <p class="small">Двоеточие и отстъп, както при <code>if</code> и <code>for</code>.</p>
     </div>
   </div>
-  <p class="takeaway"><code>def</code> само <b>описва</b> функцията. Тя се изпълнява, когато я <b>извикаме</b>: <code>sum_digits(2026)</code>.</p>
+  <p class="takeaway">Самото <code>def</code> не изпълнява нищо. Кодът вътре се изпълнява, когато извикаме функцията: <code>sum_digits(2026)</code>.</p>
   <aside class="notes"><ul>
     <li>Това е задача 3 от миналия път — просто я „опаковахме“.</li>
     <li>Покажи, че ако напишеш само def и пуснеш клетката, нищо не се отпечатва.</li>
@@ -246,31 +246,31 @@ print(sum_digits(2026))   # 10</pre>
 </section>
 
 <section class="slide">
-  <div class="chip c"><i>Концепция</i><span>01 · print или return?</span></div>
-  <h2><code>print</code> показва — <code>return</code> връща</h2>
+  <div class="chip c"><i>Концепция</i><span>01 · Функции</span></div>
+  <h2><code>print</code> или <code>return</code></h2>
   <div class="split">
     <div>
-      <div class="lbl">print — за човека</div>
+      <div class="lbl">С print</div>
       <pre class="py sm">def square(x):
     print(x * x)
 
 r = square(4)    # показва 16
 print(r)         # None</pre>
       <div class="gap"></div>
-      <p class="small">Резултатът само се <b>вижда</b> на екрана. Програмата не може да го ползва.</p>
+      <p class="small">Числото се показва на екрана, но функцията не го връща, затова <code>r</code> е <code>None</code>.</p>
     </div>
     <div>
-      <div class="lbl">return — за програмата</div>
+      <div class="lbl">С return</div>
       <pre class="py sm">def square(x):
     return x * x
 
 r = square(4)
 print(r + 1)     # 17</pre>
       <div class="gap"></div>
-      <p class="small">Резултатът се <b>връща</b> — можем да го запишем, да смятаме с него, да го подадем нататък.</p>
+      <p class="small">Функцията връща числото и можем да смятаме с него.</p>
     </div>
   </div>
-  <p class="takeaway">Функция без <code>return</code> връща <code>None</code> — „нищо“. В задачите почти винаги искаме <code>return</code>.</p>
+  <p class="takeaway">Ако функцията няма <code>return</code>, тя връща <code>None</code>. В задачите почти винаги ни трябва <code>return</code>.</p>
   <aside class="notes"><ul><li>Най-честото объркване при функциите. Аналогия: print = казваш отговора на глас; return = записваш го на лист и го подаваш на съседа.</li></ul></aside>
 </section>
 
@@ -286,7 +286,7 @@ print(f(1, 3))
 print(f(f(1, 1), 0))</pre>
     <div>
       <div class="frag answer"><code>7</code> — 3·2 + 1</div><div class="gap"></div>
-      <div class="frag answer"><code>5</code> — 1·2 + 3 (редът на параметрите има значение!)</div><div class="gap"></div>
+      <div class="frag answer"><code>5</code> — 1·2 + 3 (редът на аргументите е важен)</div><div class="gap"></div>
       <div class="frag answer"><code>6</code> — първо <code>f(1, 1) = 3</code>, после <code>f(3, 0) = 6</code></div>
     </div>
   </div>
@@ -295,7 +295,7 @@ print(f(f(1, 1), 0))</pre>
 
 <section class="slide">
   <div class="chip t"><i>Твой ред</i><span>01 · Намери грешката</span></div>
-  <p class="q">Искаме да отпечатаме 17, но програмата гърми. Защо?</p>
+  <p class="q">Искаме да отпечатаме 17, но получаваме грешка. Защо?</p>
   <div class="split wl">
     <div>
       <pre class="py">def square(x):
@@ -308,14 +308,14 @@ print(result)</pre>
 <span class="err">TypeError: unsupported operand type(s)
 for +: 'NoneType' and 'int'</span></pre>
     </div>
-    <div class="frag answer"><b>Отговор:</b> функцията <b>печата</b>, но не <b>връща</b> нищо → <code>square(4)</code> е <code>None</code>, а <code>None + 1</code> не може.<br><br>Поправка: <code>return x * x</code></div>
+    <div class="frag answer"><b>Отговор:</b> функцията печата резултата, но не го връща. Затова <code>square(4)</code> е <code>None</code>, а <code>None + 1</code> не може да се сметне.<br><br>Поправка: <code>return x * x</code></div>
   </div>
   <p class="click">→ показва отговора</p>
 </section>
 
 <section class="slide">
-  <div class="chip k"><i>Код</i><span>01 · Функция в цикъл</span></div>
-  <h2>Веднъж написана — ползваме я навсякъде</h2>
+  <div class="chip k"><i>Код</i><span>01 · Функции</span></div>
+  <h2>Функция в цикъл</h2>
   <div class="split wl">
     <pre class="py sm">def is_prime(n):
     for d in range(2, n):
@@ -330,9 +330,9 @@ for n in range(2, 30):
       <div class="lbl">Изход</div>
       <pre class="out">2 3 5 7 11 13 17 19 23 29</pre>
       <div class="gap2"></div>
-      <p class="small"><code>return</code> вътре в цикъла <b>спира</b> функцията — щом намерим делител, отговорът е ясен.</p>
+      <p class="small"><code>return</code> спира функцията веднага. Щом намерим делител, знаем, че числото не е просто.</p>
       <div class="gap"></div>
-      <p class="small">Флагът от миналия път вече не ни трябва!</p>
+      <p class="small">Така не ни трябва флагът от миналия урок.</p>
     </div>
   </div>
   <aside class="notes"><ul><li>Сравни с задача 7 от урок 1 — там имахме has_divisor и break. Тук return прави и двете.</li><li>Функция, която връща True/False, обикновено се казва is_... или has_...</li></ul></aside>
@@ -341,7 +341,7 @@ for n in range(2, 30):
 <!-- ============ 02 СПИСЪЦИ ============ -->
 <section class="slide">
   <div class="chip c"><i>Концепция</i><span>02 · Списъци</span></div>
-  <h2>Много стойности в една променлива</h2>
+  <h2>Списъци</h2>
   <pre class="py" style="margin-bottom:28px">grades = [6, 4, 5, 3]</pre>
   <div class="cells">
     <div class="cell"><div class="v">6</div><div class="i">0 <span>· -4</span></div></div>
@@ -351,8 +351,8 @@ for n in range(2, 30):
   </div>
   <div class="gap2"></div>
   <div class="cols3">
-    <div class="item"><b>Индекс от 0</b><p><code>grades[0]</code> е 6 — първият.</p></div>
-    <div class="item"><b>Отзад: −1</b><p><code>grades[-1]</code> е 3 — последният.</p></div>
+    <div class="item"><b>Индексът започва от 0</b><p><code>grades[0]</code> е 6, първият елемент.</p></div>
+    <div class="item"><b>Отрицателни индекси</b><p><code>grades[-1]</code> е 3, последният елемент.</p></div>
     <div class="item"><b>Дължина</b><p><code>len(grades)</code> е 4. Индексите са от 0 до 3.</p></div>
   </div>
   <aside class="notes"><ul><li>В миналия урок за N оценки нямахме къде да ги пазим — можехме само да ги съберем. Сега ги пазим всичките.</li></ul></aside>
@@ -360,7 +360,7 @@ for n in range(2, 30):
 
 <section class="slide">
   <div class="chip c"><i>Концепция</i><span>02 · Списъци</span></div>
-  <h2>Какво можем да правим със списък</h2>
+  <h2>Основни операции със списък</h2>
   <table>
     <tr><th>Код</th><th>Какво прави</th><th>Резултат</th></tr>
     <tr><td><code>nums = []</code></td><td>празен списък</td><td><code>[]</code></td></tr>
@@ -370,13 +370,13 @@ for n in range(2, 30):
     <tr><td><code>sum(nums)</code> · <code>max(nums)</code> · <code>min(nums)</code></td><td>сбор, най-голям, най-малък</td><td></td></tr>
     <tr><td><code>x in nums</code></td><td>има ли го в списъка?</td><td><code>True</code> / <code>False</code></td></tr>
   </table>
-  <p class="takeaway">Задача 1 от миналия път (най-голямото от N числа) вече е <code>max(nums)</code>.</p>
+  <p class="takeaway">Задача 1 от миналия урок (най-голямото от N числа) се решава с <code>max(nums)</code>.</p>
   <aside class="notes"><ul><li>for x in nums дава стойностите. Ако ни трябва и индексът: for i in range(len(nums)).</li></ul></aside>
 </section>
 
 <section class="slide">
   <div class="chip k"><i>Код</i><span>02 · Списъци</span></div>
-  <h2>Въвеждаме оценките в списък</h2>
+  <h2>Оценки в списък</h2>
   <div class="split wl">
     <pre class="py sm">n = int(input("Брой ученици: "))
 grades = []
@@ -422,7 +422,7 @@ print(nums[0] + nums[2])</pre>
 
 <section class="slide">
   <div class="chip t"><i>Твой ред</i><span>02 · Намери грешката</span></div>
-  <p class="q">Защо гърми?</p>
+  <p class="q">Защо получаваме грешка?</p>
   <div class="split wl">
     <div>
       <pre class="py">nums = [3, 5, 7]
@@ -434,13 +434,13 @@ for i in range(len(nums) + 1):
 7
 <span class="err">IndexError: list index out of range</span></pre>
     </div>
-    <div class="frag answer"><b>Отговор:</b> индексите са 0, 1, 2. С <code>+ 1</code> стигаме до <code>nums[3]</code> — такъв няма.<br><br>Правилно: <code>range(len(nums))</code><br>или просто <code>for x in nums:</code></div>
+    <div class="frag answer"><b>Отговор:</b> индексите са 0, 1 и 2. Заради <code>+ 1</code> стигаме до <code>nums[3]</code>, а такъв елемент няма.<br><br>Правилно: <code>range(len(nums))</code><br>или просто <code>for x in nums:</code></div>
   </div>
   <p class="click">→ показва отговора</p>
 </section>
 
 <section class="slide">
-  <div class="chip k"><i>Код</i><span>02 · Функция + списък</span></div>
+  <div class="chip k"><i>Код</i><span>02 · Списъци</span></div>
   <h2>Функция, която връща списък</h2>
   <div class="split wl">
     <pre class="py sm">def divisors(n):
@@ -456,14 +456,14 @@ print("Брой:", len(d))</pre>
     <div><div class="lbl">Изход</div><pre class="out">[1, 2, 3, 4, 6, 12]
 Брой: 6</pre>
       <div class="gap2"></div>
-      <p class="small">Задача 5 от миналия път — но сега делителите са <b>запазени</b>. Можем да ги сортираме, да ги филтрираме, да ги подадем на друга функция.</p></div>
+      <p class="small">Това е задача 5 от миналия урок, но сега делителите остават в списък и можем да ги използваме по-нататък.</p></div>
   </div>
 </section>
 
 <!-- ============ 03 ТЕКСТ ============ -->
 <section class="slide">
   <div class="chip c"><i>Концепция</i><span>03 · Текст</span></div>
-  <h2>Текстът е поредица от символи</h2>
+  <h2>Текст</h2>
   <pre class="py" style="margin-bottom:28px">s = "ТУЕС"</pre>
   <div class="cells">
     <div class="cell"><div class="v">Т</div><div class="i">0</div></div>
@@ -482,22 +482,22 @@ print("Брой:", len(d))</pre>
 </section>
 
 <section class="slide">
-  <div class="chip k"><i>Код</i><span>03 · Цифрите — по два начина</span></div>
-  <h2>Сумата на цифрите: математика или текст</h2>
+  <div class="chip k"><i>Код</i><span>03 · Текст</span></div>
+  <h2>Сума на цифрите по два начина</h2>
   <div class="split">
-    <div><div class="lbl">Като миналия път — с % и //</div>
+    <div><div class="lbl">С % и //</div>
       <pre class="py sm">total = 0
 while n &gt; 0:
     total += n % 10
     n = n // 10</pre></div>
-    <div><div class="lbl">С текст — всяка цифра е символ</div>
+    <div><div class="lbl">С текст</div>
       <pre class="py sm">total = 0
 for c in str(n):
     total += int(c)</pre></div>
   </div>
   <div class="gap2"></div>
-  <p>И двата начина са верни. С текст е по-кратко и по-лесно за четене, а с <code>%</code> учиш как работи числото — така се иска по информатика.</p>
-  <p class="takeaway">Бонус: <code>str(n)[::-1]</code> обръща текста → <code>"1234"</code> става <code>"4321"</code>.</p>
+  <p>И двата начина са верни. Вторият е по-кратък, но в училище обикновено искат първия.</p>
+  <p class="takeaway"><code>str(n)[::-1]</code> обръща текста: <code>"1234"</code> става <code>"4321"</code>.</p>
 </section>
 
 <section class="slide">
@@ -511,8 +511,8 @@ print(int(s) + 1)
 print(len(s))</pre>
     <div>
       <div class="frag answer"><code>2</code> — първият символ</div><div class="gap"></div>
-      <div class="frag answer"><code>20261</code> — текст + текст се слепва</div><div class="gap"></div>
-      <div class="frag answer"><code>2027</code> — след <code>int</code> е число</div><div class="gap"></div>
+      <div class="frag answer"><code>20261</code> — двата текста се слепват</div><div class="gap"></div>
+      <div class="frag answer"><code>2027</code> — след <code>int</code> вече е число</div><div class="gap"></div>
       <div class="frag answer"><code>4</code> — четири символа</div>
     </div>
   </div>
@@ -522,12 +522,12 @@ print(len(s))</pre>
 <!-- ============ 04 КЪМ AI ============ -->
 <section class="slide">
   <div class="chip c"><i>Концепция</i><span>04 · Към AI</span></div>
-  <h2>Ябълка или круша? Познай по теглото</h2>
+  <h2>Ябълка или круша по теглото</h2>
   <div class="nline" id="nline"></div>
   <div class="gap"></div>
   <div class="split">
-    <p class="small">Имаме 12 плода с тегло и знаем кой какъв е. <b class="red">🍎</b> ябълки, <b class="green">🍐</b> круши.</p>
-    <p class="small"><b>Правило:</b> ако теглото е под някакъв <b class="blue">праг</b> → ябълка, иначе → круша. Но кой праг?</p>
+    <p class="small">Имаме 12 плода. За всеки знаем теглото и дали е ябълка 🍎 или круша 🍐.</p>
+    <p class="small"><b>Правило:</b> ако теглото е под даден <b class="blue">праг</b>, казваме ябълка, иначе круша. Въпросът е какъв праг да изберем.</p>
   </div>
   <div class="gap"></div>
   <div class="rv-controls"><label>праг <input type="number" id="th-input" value="160" step="5"></label><span id="th-acc" class="small"></span></div>
@@ -538,7 +538,7 @@ print(len(s))</pre>
 </section>
 
 <section class="slide">
-  <div class="chip k"><i>Код</i><span>04 · Модел и точност</span></div>
+  <div class="chip k"><i>Код</i><span>04 · Към AI</span></div>
   <h2>Правилото като функция</h2>
   <div class="split wl">
     <pre class="py xs">weights = [120, 135, 142, 150, 158, 163,
@@ -560,9 +560,9 @@ def correct(threshold):
             count += 1
     return count</pre>
     <div class="points">
-      <p class="small"><b><code>guess</code></b> — нашият <b class="blue">модел</b>: правило с един параметър — прага.</p>
-      <p class="small"><b><code>correct</code></b> — проверка: колко от 12-те плода познава.</p>
-      <p class="small">Два списъка с еднакъв ред: <code>weights[i]</code> и <code>labels[i]</code> са един и същ плод.</p>
+      <p class="small"><b><code>guess</code></b> е нашият <b class="blue">модел</b>: правило с един параметър, прага.</p>
+      <p class="small"><b><code>correct</code></b> брои колко от 12-те плода познава моделът.</p>
+      <p class="small"><code>weights[i]</code> и <code>labels[i]</code> описват един и същ плод.</p>
     </div>
   </div>
 </section>
@@ -573,16 +573,16 @@ def correct(threshold):
   <table style="width:1000px">
     <tr><th>Извикване</th><th>Отговор</th></tr>
     <tr><td><code>correct(160)</code></td><td><span class="frag"><code>8</code> от 12</span></td></tr>
-    <tr><td><code>correct(100)</code></td><td><span class="frag"><code>5</code> — всичко е „круша“, позна само крушите</span></td></tr>
-    <tr><td><code>correct(300)</code></td><td><span class="frag"><code>7</code> — всичко е „ябълка“, позна само ябълките</span></td></tr>
+    <tr><td><code>correct(100)</code></td><td><span class="frag"><code>5</code> — всички са „круша“, познава само крушите</span></td></tr>
+    <tr><td><code>correct(300)</code></td><td><span class="frag"><code>7</code> — всички са „ябълка“, познава само ябълките</span></td></tr>
   </table>
   <p class="click">→ показва отговорите един по един</p>
   <aside class="notes"><ul><li>Броят се от числовата линия на предния слайд: под прага → ябълка.</li><li>100 и 300 са „глупави“ модели — винаги казват едно и също. Добрият модел трябва да ги бие.</li></ul></aside>
 </section>
 
 <section class="slide">
-  <div class="chip k"><i>Код</i><span>04 · Обучение</span></div>
-  <h2>Компютърът сам търси най-добрия праг</h2>
+  <div class="chip k"><i>Код</i><span>04 · Към AI</span></div>
+  <h2>Търсене на най-добрия праг</h2>
   <div class="split wl">
     <pre class="py sm">best_t = 0
 best_score = 0
@@ -597,14 +597,14 @@ print("Познава:", best_score, "от 12")</pre>
     <div><div class="lbl">Изход</div><pre class="out">Най-добър праг: 170
 Познава: 10 от 12</pre>
       <div class="gap2"></div>
-      <p class="small">Пробваме много прагове и пазим най-добрия — шаблонът <b>максимум</b> от миналия урок!</p></div>
+      <p class="small">Пробваме прагове от 100 до 245 и пазим най-добрия. Това е шаблонът „максимум“ от миналия урок.</p></div>
   </div>
-  <p class="takeaway">Ние не написахме правилото. Компютърът го <b>научи от данните</b>.</p>
+  <p class="takeaway">Прагът не го избрахме ние. Програмата го намери от данните.</p>
 </section>
 
 <section class="slide">
   <div class="chip c"><i>Концепция</i><span>04 · Към AI</span></div>
-  <h2>Току-що направихме машинно обучение</h2>
+  <h2>Това е машинно обучение</h2>
   <div class="flow">
     <div style="background:var(--blue)"><b>Данни</b><p>12 плода: тегло + верен отговор</p></div>
     <div style="background:var(--purple)"><b>Модел</b><p>правило с параметър: <code style="background:rgba(255,255,255,.2)">weight &lt; праг</code></p></div>
@@ -612,15 +612,15 @@ print("Познава:", best_score, "от 12")</pre>
     <div style="background:var(--green)"><b>Проверка</b><p>пробваме на нови плодове</p></div>
   </div>
   <div class="gap2"></div>
-  <p>Истинските модели (като тези за снимки и текст) имат <b>милиони параметри</b> вместо един праг — но идеята е същата.</p>
-  <p class="takeaway">Защо не 12 от 12? Само теглото не стига. Следващ път: повече признаци — тегло <b>и</b> цвят.</p>
+  <p>Моделите за снимки и текст имат милиони параметри вместо един праг, но идеята е същата: търсим параметри, с които моделът греши най-малко.</p>
+  <p class="takeaway">Моделът греши за 2 плода, защото само теглото не стига. Следващия път добавяме и цвета.</p>
   <aside class="notes"><ul><li>Свържи с въвеждащата лекция: „учене от примери“ с ябълки и круши.</li><li>Проверката на нови плодове е важна — модел, който е научил наизуст данните, може да греши на нови.</li></ul></aside>
 </section>
 
 <!-- ============ ЗАДАЧИ ============ -->
 <section class="slide">
   <div class="chip z"><i>Задачи</i><span>Преглед</span></div>
-  <h2>11 задачи в 3 нива</h2>
+  <h2>Задачи</h2>
   <div class="tasklist">
     <div><b>⭐ Загрявка</b><ol><li>Функция за сума на цифрите</li><li>Колко пъти се среща цифра</li><li>Оценките в списък</li></ol></div>
     <div><b>⭐⭐ Помисли</b><ol start="4"><li>a на степен n</li><li>Простите числа до N</li><li>Прости делители</li><li>Най-голямото, делящо се на 3</li><li>Фибоначи в списък</li><li>Неравенство ax + b &gt; 0</li></ol></div>
@@ -636,7 +636,7 @@ print("Познава:", best_score, "от 12")</pre>
 
 <section class="slide">
   <div class="chip z"><i>Край</i><span>Следващия път</span></div>
-  <h2>Повече признаци: тегло <span class="blue">и</span> цвят</h2>
+  <h2>Тегло и цвят</h2>
   <div class="split">
     <pre class="py xs">fruits = [[150, "червен"], [182, "зелен"], ...]
 
@@ -644,11 +644,11 @@ def guess(fruit):
     weight = fruit[0]
     color = fruit[1]
     ...</pre>
-    <div class="points"><p>Списъци от списъци, повече правила…</p><p>…и защо ръчните правила бързо стават твърде много.</p></div>
+    <div class="points"><p>Ще пазим всеки плод като списък от признаци и ще видим защо правилата, писани на ръка, бързо стават сложни.</p></div>
   </div>
   <div class="gap2"></div>
   <a class="action primary" target="_blank" rel="noopener" href="https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/02-funkcii-i-spisatsi/zadachi.ipynb">Задачите в Colab ↗</a>
-  <p class="takeaway">Пратете линк към тетрадката си: Share → Anyone with the link → Copy link.</p>
+  <p class="takeaway">Изпратете линк към тетрадката си: Share → Anyone with the link → Copy link.</p>
 </section>
 
 
