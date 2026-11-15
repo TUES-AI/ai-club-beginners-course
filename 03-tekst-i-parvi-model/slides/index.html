@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 3 · Текст и първи модел · AI клуб ТУЕС</title>
+<style>
+:root{--ink:#17191c;--paper:#fff;--blue:#0866f5;--line:#dddeda;--soft:#f4f5f2;--green:#297d55;--orange:#b85b24;--purple:#7256ac;--red:#c2332b}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#eeefeb;color:var(--ink);-webkit-font-smoothing:antialiased}
+button,a,input{font:inherit}button{cursor:pointer;border:0;background:none;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:4px solid var(--blue);outline-offset:5px}
+a{color:var(--blue);text-underline-offset:5px}
+#viewport{position:absolute;inset:0 0 62px;display:flex;justify-content:center;align-items:center}
+#deck{position:relative;width:1600px;height:900px;flex:none;transform-origin:center;background:#fff;overflow:hidden}
+.slide{position:absolute;inset:0;padding:66px 84px 64px;background:var(--paper);overflow:hidden;animation:enter .3s ease both}
+.slide[hidden]{display:none!important}
+@keyframes enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:650;letter-spacing:-.045em}
+h1{font-size:118px;line-height:1.02}h2{font-size:58px;line-height:1.08;max-width:1430px;margin-bottom:40px}h3{font-size:34px;line-height:1.16;margin-bottom:14px}
+p{font-size:30px;line-height:1.4}strong,b{font-weight:650}
+.blue{color:var(--blue)}.green{color:var(--green)}.orange{color:var(--orange)}.purple{color:var(--purple)}.red{color:var(--red)}
+/* slide type chip */
+.chip{display:inline-flex;align-items:center;gap:12px;font-size:20px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.chip i{font-style:normal;padding:6px 14px;border-radius:999px;color:#fff;letter-spacing:.06em}
+.chip span{color:#6b6e69}
+.chip.c i{background:var(--blue)}.chip.k i{background:var(--purple)}.chip.t i{background:var(--orange)}.chip.z i{background:var(--green)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.split.wl{grid-template-columns:1.25fr 1fr}.split.wr{grid-template-columns:1fr 1.2fr}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.item{border-top:2px solid var(--ink);padding-top:20px}
+.item b{display:block;font-size:32px;margin-bottom:12px;letter-spacing:-.03em}.item p{font-size:25px}
+.points p{margin-bottom:22px}
+.small{font-size:23px;line-height:1.4}.tiny{font-size:19px}
+.takeaway{position:absolute;left:84px;right:84px;bottom:58px;font-size:30px;border-top:1px solid var(--line);padding-top:20px}
+code,pre,.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+p code,li code,td code,.takeaway code,b code,.answer code,.warn code,h2 code{background:var(--soft);padding:2px 9px;border-radius:7px;font-size:.9em}
+h2 code{font-size:.85em}
+pre{margin:0;background:var(--soft);border-radius:14px;padding:26px 32px;font-size:28px;line-height:1.5;white-space:pre;overflow:hidden}
+pre.sm{font-size:24px}pre.xs{font-size:21px;padding:22px 28px}
+pre.out{background:#17191c;color:#e9ebe6;font-size:24px;padding:18px 28px}
+pre.out .err{color:#ff8a80}pre.out .in{color:#8fd19e}
+.lbl{font-size:17px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b6e69;margin:0 0 10px 4px}
+.gap{height:22px}.gap2{height:40px}
+.tk-k{color:var(--purple);font-weight:600}.tk-s{color:var(--green)}.tk-n{color:var(--orange)}.tk-c{color:#8a8d87;font-style:italic}.tk-b{color:var(--blue)}
+table{border-collapse:collapse;font-size:27px;width:100%}
+td,th{text-align:left;padding:13px 18px;border-bottom:1px solid var(--line)}th{font-size:19px;text-transform:uppercase;letter-spacing:.06em;color:#6b6e69;font-weight:600}
+td code{font-size:28px}
+/* fragments: revealed one per click */
+.frag{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+.frag.on{opacity:1;transform:none}
+.answer{background:#eaf5ee;border-left:6px solid var(--green);border-radius:0 14px 14px 0;padding:20px 28px;font-size:28px;line-height:1.45}
+.answer b:first-child{color:var(--green)}
+.hint{background:#eef4ff;border-left:6px solid var(--blue);border-radius:0 14px 14px 0;padding:18px 26px;font-size:26px;line-height:1.45}
+.warn{background:#fdf1ea;border-left:6px solid var(--orange);padding:18px 26px;border-radius:0 12px 12px 0;font-size:26px;line-height:1.45}
+.q{font-size:36px;font-weight:600;letter-spacing:-.02em;margin-bottom:26px}
+.click{font-size:19px;color:#8a8d87;margin-top:16px}
+/* cover */
+.cover{display:grid;grid-template-columns:1fr 660px;gap:40px;align-items:center;height:100%}
+.cover h1{margin:12px 0 40px}.cover p{font-size:34px;line-height:1.5}
+.kicker{font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:20px}
+.flow div{border-radius:16px;padding:28px;color:#fff}.flow b{display:block;font-size:30px;margin-bottom:12px}.flow p{font-size:23px}
+/* boxes */
+.boxes{display:flex;gap:34px;flex-wrap:wrap}
+.box .tag{display:inline-block;background:var(--blue);color:#fff;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px;padding:6px 16px;border-radius:8px 8px 0 0}
+.box .val{border:2px solid var(--ink);border-radius:0 12px 12px 12px;width:240px;height:120px;display:flex;align-items:center;justify-content:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:34px}
+.tcard{background:var(--soft);border-radius:16px;padding:26px}
+.tcard .t{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:42px;font-weight:600}
+.tcard .d{font-size:23px;margin:6px 0 18px}.tcard .e{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:24px}
+/* digits visual */
+.digits{display:flex;gap:10px;align-items:center;margin:6px 0 26px}
+.digits span{width:96px;height:110px;border:2px solid var(--ink);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:56px;font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.digits span.last{background:var(--orange);border-color:var(--orange);color:#fff}
+.digits em{font-style:normal;font-size:24px;margin-left:24px;line-height:1.5}
+/* trace table */
+table.trace{font-size:28px;width:auto;min-width:560px}
+table.trace td,table.trace th{padding:12px 26px}
+table.trace td{font-family:"SF Mono",ui-monospace,Menlo,monospace}
+/* range visualizer */
+.rv-controls{display:flex;gap:22px;align-items:center;font-size:28px;margin:6px 0 26px}
+.rv-controls label{display:flex;align-items:center;gap:10px}
+.rv-controls input{width:110px;font-size:30px;padding:8px 12px;border:2px solid var(--line);border-radius:10px;font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.rv-call{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:44px;margin-bottom:24px}
+.rv-out{display:flex;flex-wrap:wrap;gap:12px;min-height:90px}
+.rv-out span{min-width:76px;height:76px;border-radius:12px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;font-family:"SF Mono",ui-monospace,Menlo,monospace;padding:0 10px;animation:enter .25s ease both}
+.rv-out .stop{background:none;border:2px dashed var(--red);color:var(--red)}
+/* task slides */
+.lvl{font-size:30px;margin-left:6px}
+.io{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;font-size:28px;align-items:baseline}
+.io .k{font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b6e69}
+.io .v{font-family:"SF Mono",ui-monospace,Menlo,monospace;background:var(--soft);border-radius:8px;padding:6px 14px;justify-self:start}
+.cond{font-size:34px;line-height:1.4;margin-bottom:34px;max-width:1300px}
+.tasklist{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.tasklist div{border:1px solid var(--line);border-radius:16px;padding:26px}
+.tasklist b{display:block;font-size:30px;margin-bottom:12px}.tasklist ol{margin:0;padding-left:30px;font-size:23px;line-height:1.55}
+.action{display:inline-flex;align-items:center;gap:14px;border:1px solid #c7c9c5;padding:15px 26px;border-radius:10px;text-decoration:none;font-size:24px;font-weight:550}
+.action.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.section{display:flex;flex-direction:column;justify-content:center;height:100%}
+.section .num{font-size:150px;font-weight:650;color:var(--blue);letter-spacing:-.06em;line-height:1}
+.section h2{font-size:84px;margin:10px 0 24px}
+
+/* language intro */
+.xlate{display:grid;grid-template-columns:1fr auto 1fr;gap:30px;align-items:center}
+.xarrow{font-size:40px;color:var(--blue);text-align:center;font-weight:600}.xarrow span{display:block;font-size:20px;letter-spacing:.06em;text-transform:uppercase}
+.mono-bits{background:#17191c;color:#8fd19e;font-size:26px;letter-spacing:.06em}
+.lane{display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.lane-name b{display:block;font-size:34px}.lane-name span{font-size:21px;color:#6b6e69}
+.steps{display:flex;align-items:center;gap:14px}.steps i{font-style:normal;font-size:30px;color:#8a8d87}
+.st{background:var(--soft);border-radius:12px;padding:16px 20px;font-size:24px;font-weight:600;text-align:center;min-width:170px;line-height:1.3}
+.st small{font-weight:400;font-size:18px;color:#55585a}
+.st.hl-p{background:#efe7fa;color:var(--purple)}.st.hl-g{background:#e4f2ea;color:var(--green)}.st.wide{flex:1}
+
+/* lesson 2 */
+.machine{display:flex;align-items:center;gap:26px;margin-top:10px}
+.m-in,.m-out{background:var(--soft);border-radius:14px;padding:22px 30px;font-size:24px;text-align:center;line-height:1.6}
+.m-in code,.m-out code{font-size:36px;background:none}
+.m-box{background:var(--blue);color:#fff;border-radius:18px;padding:34px 48px;text-align:center}
+.m-box b{display:block;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:36px}.m-box span{font-size:22px;opacity:.85}
+.m-arrow{font-size:46px;color:#8a8d87}
+.ann{border-radius:6px;padding:0 4px}.ann.a1{background:#e5efff}.ann.a2{background:#efe7fa}.ann.a3{background:#e4f2ea}
+.cells{display:flex;gap:12px}
+.cell{width:150px}.cell .v{border:2px solid var(--ink);border-radius:12px;height:100px;display:flex;align-items:center;justify-content:center;font-size:40px;font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.cell .i{text-align:center;font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:22px;margin-top:8px;color:var(--blue)}.cell .i span{color:var(--orange)}
+.nline{position:relative;height:250px;margin:10px 20px 0}
+.nline .axis{position:absolute;left:0;right:0;top:125px;border-top:2px solid var(--ink)}
+.nline .tick{position:absolute;top:135px;font-size:18px;color:#6b6e69;transform:translateX(-50%);font-family:"SF Mono",ui-monospace,Menlo,monospace}
+.nline .dot{position:absolute;font-size:40px;transform:translateX(-50%);line-height:1}
+.nline .dot.top{top:58px}.nline .dot.bot{top:160px}
+.nline .dot.bad{filter:drop-shadow(0 0 0 #c2332b);outline:3px solid var(--red);border-radius:50%;outline-offset:2px}
+.nline .th{position:absolute;top:0;bottom:0;border-left:4px dashed var(--blue);transition:left .25s}
+.nline .th span{position:absolute;top:-6px;left:8px;font-size:20px;color:var(--blue);font-weight:600;white-space:nowrap}
+.nline .side{position:absolute;top:96px;font-size:18px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+/* lesson 3 */
+.blank{background:#fdf1ea;border-bottom:3px solid var(--orange);border-radius:4px}
+table.compact{font-size:25px}table.compact td{padding:11px 14px}table.compact td code{font-size:25px}
+table.steps-t{font-size:25px;min-width:0;width:100%}
+table.steps-t td{font-family:inherit;padding:13px 14px;line-height:1.35}
+table.steps-t td:first-child{color:var(--blue);font-weight:650;width:40px}
+table.steps-t td code{font-size:.9em;background:var(--soft);padding:2px 8px;border-radius:6px}
+table.nowrap1 td:first-child{white-space:nowrap;width:1%;padding-right:40px}
+/* notes + nav */
+aside.notes{display:none}
+#bar{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:18px;background:#eeefeb;color:#55585a}
+#bar button{padding:8px 14px;border-radius:8px}#bar button:hover{background:#e2e3df}
+#count{font-variant-numeric:tabular-nums;min-width:70px;text-align:center}
+#notes{position:absolute;right:20px;bottom:76px;width:520px;max-height:60vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;font-size:18px;line-height:1.5;box-shadow:0 10px 40px rgba(0,0,0,.12);display:none}
+#notes.open{display:block}#notes h4{margin:0 0 10px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+#notes ul{margin:0;padding-left:20px}#notes li{margin:6px 0}
+#overview{position:absolute;inset:0 0 62px;background:#eeefeb;overflow:auto;padding:30px;display:none;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;align-content:start}
+#overview.open{display:grid}
+#overview button{background:#fff;border-radius:10px;padding:14px 16px;text-align:left;font-size:15px;min-height:84px;border:2px solid transparent}
+#overview button.cur{border-color:var(--blue)}#overview button span{display:block;font-weight:600;margin-bottom:6px;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+@media print{#bar,#notes,#overview{display:none!important}.frag{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<div id="viewport"><div id="deck">
+
+<!-- ============ ВЪВЕДЕНИЕ ============ -->
+<section class="slide">
+  <div class="cover">
+    <div>
+      <div class="kicker">AI клуб · ТУЕС · Начинаещи</div>
+      <h1>Текст и първи модел</h1>
+      <p>Урок 3</p>
+    </div>
+    <pre class="py" style="font-size:28px;line-height:1.7;padding:40px 44px">def guess(weight, threshold):
+    if weight &lt; threshold:
+        return "ябълка"
+    return "круша"
+
+print(guess(150, 170))</pre>
+  </div>
+  <aside class="notes"><ul>
+    <li>Миналия път стигнахме до списъците. Днес започваме с преговор на функциите, защото бяха трудни, после довършваме списъците и продължаваме с новото.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <h2>Днес</h2>
+  <div class="flow">
+    <div style="background:var(--blue)"><b>01 · Функции</b><p>Преговор с въпроси.</p></div>
+    <div style="background:var(--purple)"><b>02 · Списъци</b><p>Преговор и функции със списъци.</p></div>
+    <div style="background:var(--orange)"><b>03 · Текст</b><p>Как да работим с текст.</p></div>
+    <div style="background:var(--green)"><b>04 · Първи модел</b><p>Програма, която различава ябълка от круша.</p></div>
+  </div>
+  <p class="takeaway">След теорията решаваме задачи.</p>
+  <aside class="notes"><ul>
+    <li>Ако времето не стига, спри след част 03 (слайд 14). Задачи 1 до 9 не изискват частта с модела.</li>
+  </ul></aside>
+</section>
+
+<!-- ============ 01 ФУНКЦИИ (ПРЕГОВОР) ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>01 · Функции</span></div>
+  <h2>Какво става, когато извикаме функция</h2>
+  <div class="split">
+    <div>
+      <pre class="py">def double(x):
+    return x * 2
+
+y = double(4) + 1
+print(y)</pre>
+      <div class="gap"></div>
+      <p class="small"><code>x</code> е параметър: име за стойността, която функцията получава. <code>return</code> връща резултата на мястото, откъдето сме я извикали.</p>
+    </div>
+    <div><div class="lbl">Стъпка по стъпка</div>
+      <table class="trace steps-t">
+        <tr class="frag"><td>1</td><td>Python запомня <code>double</code>, но още не изпълнява нищо.</td></tr>
+        <tr class="frag"><td>2</td><td>Стига до <code>double(4)</code> и влиза във функцията с <code>x = 4</code>.</td></tr>
+        <tr class="frag"><td>3</td><td><code>return</code> връща <code>8</code>.</td></tr>
+        <tr class="frag"><td>4</td><td><code>double(4)</code> се замества с 8, значи <code>y = 8 + 1</code>.</td></tr>
+        <tr class="frag"><td>5</td><td>Отпечатва <code>9</code>.</td></tr>
+      </table></div>
+  </div>
+  <aside class="notes"><ul>
+    <li>Всеки клик показва една стъпка. Нека класът каже какво следва, преди да я покажеш.</li>
+    <li>Ключовата идея: извикването double(4) се превръща в стойност. Затова можем да пишем double(4) + 1.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>01 · Функции</span></div>
+  <p class="q">Какво ще отпечата?</p>
+  <div class="split wl">
+    <pre class="py">def add(a, b):
+    return a + b
+
+x = add(2, 3)
+print(x)
+print(add(x, 10))
+print(add(add(1, 1), 1))</pre>
+    <div>
+      <div class="frag answer"><code>5</code></div><div class="gap"></div>
+      <div class="frag answer"><code>15</code> — <code>x</code> е 5, значи 5 + 10</div><div class="gap"></div>
+      <div class="frag answer"><code>3</code> — първо <code>add(1, 1)</code> дава 2, после <code>add(2, 1)</code></div>
+    </div>
+  </div>
+  <p class="click">→ показва отговорите един по един</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>01 · print или return</span></div>
+  <p class="q">Двете функции изглеждат почти еднакво. Какво ще отпечата програмата?</p>
+  <div class="split wl">
+    <pre class="py">def a(x):
+    print(x + 1)
+
+def b(x):
+    return x + 1
+
+r1 = a(5)
+r2 = b(5)
+print(r1, r2)</pre>
+    <div>
+      <div class="frag answer"><code>6</code> — отпечатва го функцията <code>a</code></div><div class="gap"></div>
+      <div class="frag answer"><code>None 6</code><br><br><code>a</code> само показва числото и не връща нищо, затова <code>r1</code> е <code>None</code>. <code>b</code> връща числото и то се записва в <code>r2</code>.</div>
+    </div>
+  </div>
+  <p class="click">→ показва отговорите един по един</p>
+  <aside class="notes"><ul>
+    <li>Това беше най-трудното миналия път. Ако още има объркване, пусни кода в Colab и добави print(r2 + 1) и print(r1 + 1), за да видят грешката с None.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>01 · Допълни функцията</span></div>
+  <p class="q">Какво трябва да пише на празните места?</p>
+  <div class="split wl">
+    <pre class="py">def is_even(n):
+    return <span class="blank">        </span>
+
+def bigger(a, b):
+    if a &gt; b:
+        return <span class="blank">   </span>
+    return <span class="blank">   </span>
+
+print(is_even(10))    # True
+print(bigger(3, 8))   # 8</pre>
+    <div>
+      <div class="frag answer"><code>return n % 2 == 0</code><br><br>Сравнението вече е <code>True</code> или <code>False</code>, няма нужда от <code>if</code>.</div><div class="gap"></div>
+      <div class="frag answer"><code>return a</code>, а на последния ред <code>return b</code><br><br>Ако първият <code>return</code> се изпълни, функцията спира там.</div>
+    </div>
+  </div>
+  <p class="click">→ показва отговорите един по един</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>01 · Намери грешката</span></div>
+  <p class="q">Искаме 1 + 2 + 3 + 4 = 10, но програмата отпечатва 1. Защо?</p>
+  <div class="split wl">
+    <pre class="py">def total(n):
+    s = 0
+    for i in range(1, n + 1):
+        s += i
+        return s
+
+print(total(4))</pre>
+    <div class="frag answer"><b>Отговор:</b> <code>return</code> е вътре в цикъла. Функцията спира още на първото повторение, когато <code>s</code> е 1.<br><br>Поправка: <code>return s</code> с един отстъп по-малко, за да е след цикъла.</div>
+  </div>
+  <p class="click">→ показва отговора</p>
+</section>
+
+<!-- ============ 02 СПИСЪЦИ ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>02 · Списъци</span></div>
+  <h2>Списъци: преговор</h2>
+  <div class="split wr" style="align-items:center">
+    <div>
+      <pre class="py sm" style="margin-bottom:22px">grades = [6, 4, 5, 3]</pre>
+      <div class="cells">
+        <div class="cell"><div class="v">6</div><div class="i">0 <span>· -4</span></div></div>
+        <div class="cell"><div class="v">4</div><div class="i">1 <span>· -3</span></div></div>
+        <div class="cell"><div class="v">5</div><div class="i">2 <span>· -2</span></div></div>
+        <div class="cell"><div class="v">3</div><div class="i">3 <span>· -1</span></div></div>
+      </div>
+    </div>
+    <table class="compact">
+      <tr><td><code>grades[0]</code></td><td>първият елемент, 6</td></tr>
+      <tr><td><code>grades[-1]</code></td><td>последният елемент, 3</td></tr>
+      <tr><td><code>len(grades)</code></td><td>броят на елементите, 4</td></tr>
+      <tr><td><code>grades.append(6)</code></td><td>добавя 6 в края</td></tr>
+      <tr><td><code>for g in grades:</code></td><td>минава през всички</td></tr>
+      <tr><td><code>sum</code> · <code>max</code> · <code>min</code></td><td>сбор, най-голям, най-малък</td></tr>
+    </table>
+  </div>
+  <aside class="notes"><ul><li>Дотук стигнахме миналия път. Питай ги за всеки ред от таблицата, преди да го прочетеш.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>02 · Списъци</span></div>
+  <p class="q">Какво ще отпечата?</p>
+  <div class="split wl">
+    <pre class="py">nums = [4, 8, 15, 16, 23, 42]
+print(nums[1])
+print(nums[-1])
+print(len(nums))
+nums[0] = 100
+print(nums[0] + nums[2])</pre>
+    <div>
+      <div class="frag answer"><code>8</code> — индекс 1 е вторият елемент</div><div class="gap"></div>
+      <div class="frag answer"><code>42</code> — последният</div><div class="gap"></div>
+      <div class="frag answer"><code>6</code></div><div class="gap"></div>
+      <div class="frag answer"><code>115</code> — 100 + 15</div>
+    </div>
+  </div>
+  <p class="click">→ показва отговорите един по един</p>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>02 · Намери грешката</span></div>
+  <p class="q">Защо получаваме грешка?</p>
+  <div class="split wl">
+    <div>
+      <pre class="py">nums = [3, 5, 7]
+for i in range(len(nums) + 1):
+    print(nums[i])</pre>
+      <div class="gap"></div>
+      <pre class="out">3
+5
+7
+<span class="err">IndexError: list index out of range</span></pre>
+    </div>
+    <div class="frag answer"><b>Отговор:</b> индексите са 0, 1 и 2. Заради <code>+ 1</code> стигаме до <code>nums[3]</code>, а такъв елемент няма.<br><br>Правилно: <code>range(len(nums))</code><br>или просто <code>for x in nums:</code></div>
+  </div>
+  <p class="click">→ показва отговора</p>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>02 · Списъци</span></div>
+  <h2>Функция, която връща списък</h2>
+  <div class="split wl">
+    <pre class="py sm">def evens(nums):
+    result = []
+    for x in nums:
+        if x % 2 == 0:
+            result.append(x)
+    return result
+
+print(evens([3, 8, 5, 12, 7]))</pre>
+    <div><div class="lbl">Изход</div><pre class="out">[8, 12]</pre>
+      <div class="gap2"></div>
+      <p class="small">Функцията получава списък и връща нов списък само с четните числа.</p>
+      <div class="gap"></div>
+      <p class="small">Редът е винаги един и същ: празен списък, <code>append</code> в цикъла, <code>return</code> след цикъла.</p></div>
+  </div>
+  <aside class="notes"><ul><li>Този шаблон се повтаря в почти всички задачи днес: прости числа до N, Фибоначи, оценки над средното.</li></ul></aside>
+</section>
+
+<!-- ============ 03 ТЕКСТ ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>03 · Текст</span></div>
+  <h2>Текст</h2>
+  <div class="split" style="align-items:start">
+    <div>
+      <pre class="py sm" style="margin-bottom:22px">s = "ТУЕС"</pre>
+      <div class="cells">
+        <div class="cell"><div class="v">Т</div><div class="i">0</div></div>
+        <div class="cell"><div class="v">У</div><div class="i">1</div></div>
+        <div class="cell"><div class="v">Е</div><div class="i">2</div></div>
+        <div class="cell"><div class="v">С</div><div class="i">3</div></div>
+      </div>
+      <div class="gap"></div>
+      <p class="small">Текстът прилича на списък от символи: има индекси, <code>len(s)</code> и може да се обходи с <code>for</code>.</p>
+    </div>
+    <div>
+      <table class="compact">
+        <tr><td><code>s[0]</code></td><td><code>"Т"</code></td></tr>
+        <tr><td><code>len(s)</code></td><td><code>4</code></td></tr>
+        <tr><td><code>str(2026)</code></td><td><code>"2026"</code>, число става текст</td></tr>
+        <tr><td><code>int("7")</code></td><td><code>7</code>, текст става число</td></tr>
+        <tr><td><code>s[::-1]</code></td><td><code>"СЕУТ"</code>, наобратно</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes"><ul><li>Разлика от списъка: текстът не може да се променя на място. s[0] = "X" дава грешка.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>03 · Текст</span></div>
+  <h2>Сума на цифрите по два начина</h2>
+  <div class="split">
+    <div><div class="lbl">С % и //</div>
+      <pre class="py sm">def sum_digits(n):
+    total = 0
+    while n &gt; 0:
+        total += n % 10
+        n = n // 10
+    return total</pre></div>
+    <div><div class="lbl">С текст</div>
+      <pre class="py sm">def sum_digits(n):
+    total = 0
+    for c in str(n):
+        total += int(c)
+    return total</pre></div>
+  </div>
+  <div class="gap2"></div>
+  <p>И двата начина са верни. Вторият е по-кратък, но в училище обикновено искат първия.</p>
+  <aside class="notes"><ul><li>Във втория начин c е символ, например "2". Затова го превръщаме в число с int(c), преди да го съберем.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>03 · Текст</span></div>
+  <p class="q">Какво ще отпечата?</p>
+  <div class="split wl">
+    <pre class="py">s = "2026"
+print(s[0])
+print(s + "1")
+print(int(s) + 1)
+print(len(s))</pre>
+    <div>
+      <div class="frag answer"><code>2</code> — първият символ</div><div class="gap"></div>
+      <div class="frag answer"><code>20261</code> — двата текста се слепват</div><div class="gap"></div>
+      <div class="frag answer"><code>2027</code> — след <code>int</code> вече е число</div><div class="gap"></div>
+      <div class="frag answer"><code>4</code> — четири символа</div>
+    </div>
+  </div>
+  <p class="click">→ показва отговорите един по един</p>
+</section>
+
+<!-- ============ 04 ПЪРВИ МОДЕЛ ============ -->
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>04 · Първи модел</span></div>
+  <h2>Ябълка или круша по теглото</h2>
+  <div class="nline" data-w="120,135,142,150,158,163,168,171,176,182,190,205" data-l="a,a,a,a,p,a,a,p,p,a,p,p" data-input="th-input" data-acc="th-acc"></div>
+  <div class="gap"></div>
+  <div class="split">
+    <p class="small">Имаме 12 плода. За всеки знаем теглото и дали е ябълка 🍎 или круша 🍐.</p>
+    <p class="small"><b>Правило:</b> ако теглото е под даден <b class="blue">праг</b>, казваме ябълка, иначе круша. Въпросът е какъв праг да изберем.</p>
+  </div>
+  <div class="gap"></div>
+  <div class="rv-controls"><label>праг <input type="number" id="th-input" value="160" step="5"></label><span id="th-acc" class="small"></span></div>
+  <aside class="notes"><ul>
+    <li>Смени прага и виж колко плода познава правилото. Питай класа кой праг е най-добър.</li>
+    <li>Нито един праг не дава 12 от 12, защото теглата на ябълките и крушите се застъпват.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>04 · Първи модел</span></div>
+  <h2>Правилото като функция</h2>
+  <div class="split wl">
+    <pre class="py xs">weights = [120, 135, 142, 150, 158, 163,
+           168, 171, 176, 182, 190, 205]
+labels  = ["ябълка", "ябълка", "ябълка", "ябълка",
+           "круша", "ябълка", "ябълка", "круша",
+           "круша", "ябълка", "круша", "круша"]
+
+def guess(weight, threshold):
+    if weight &lt; threshold:
+        return "ябълка"
+    return "круша"
+
+def correct(threshold, ws, ls):
+    count = 0
+    for i in range(len(ws)):
+        if guess(ws[i], threshold) == ls[i]:
+            count += 1
+    return count</pre>
+    <div class="points">
+      <p class="small"><b><code>guess</code></b> е нашият <b class="blue">модел</b>: правило с един параметър, прага.</p>
+      <p class="small"><b><code>correct</code></b> получава праг, списък с тегла и списък с верни отговори. Връща колко плода познава моделът.</p>
+      <p class="small"><code>ws[i]</code> и <code>ls[i]</code> описват един и същ плод.</p>
+    </div>
+  </div>
+  <aside class="notes"><ul><li>Тук се събира всичко досега: функции, списъци, индекси, брояч. Мини бавно през correct.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>04 · Първи модел</span></div>
+  <p class="q">Колко плода ще познае моделът?</p>
+  <table class="nowrap1">
+    <tr><th>Извикване</th><th>Отговор</th></tr>
+    <tr><td><code>correct(160, weights, labels)</code></td><td><span class="frag"><code>8</code> от 12</span></td></tr>
+    <tr><td><code>correct(100, weights, labels)</code></td><td><span class="frag"><code>5</code> — всички са „круша“, познава само крушите</span></td></tr>
+    <tr><td><code>correct(300, weights, labels)</code></td><td><span class="frag"><code>7</code> — всички са „ябълка“, познава само ябълките</span></td></tr>
+  </table>
+  <p class="click">→ показва отговорите един по един</p>
+  <aside class="notes"><ul><li>Първият отговор се брои от числовата линия два слайда назад. При прагове 100 и 300 моделът казва винаги едно и също.</li></ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip k"><i>Код</i><span>04 · Първи модел</span></div>
+  <h2>Търсене на най-добрия праг</h2>
+  <div class="split wl">
+    <pre class="py sm">best_t = 0
+best_score = 0
+for t in range(100, 250, 5):
+    score = correct(t, weights, labels)
+    if score &gt; best_score:
+        best_score = score
+        best_t = t
+
+print("Най-добър праг:", best_t)
+print("Познава:", best_score, "от 12")</pre>
+    <div><div class="lbl">Изход</div><pre class="out">Най-добър праг: 170
+Познава: 10 от 12</pre>
+      <div class="gap2"></div>
+      <p class="small">Пробваме прагове от 100 до 245 и пазим най-добрия. Това е шаблонът „максимум“ от първия урок.</p></div>
+  </div>
+  <p class="takeaway">Прагът не го избрахме ние. Програмата го намери от данните. Това се нарича <b>обучение</b>.</p>
+</section>
+
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>04 · Първи модел</span></div>
+  <h2>Проверка с нови плодове</h2>
+  <div class="nline" data-w="128,147,161,166,174,188" data-l="a,a,p,a,p,p" data-input="th-test" data-acc="th-test-acc"></div>
+  <div class="gap"></div>
+  <div class="split">
+    <p class="small">Моделът намери прага от 12 плода. Искаме да знаем дали работи и за плодове, които не е виждал, затова го проверяваме с 6 нови.</p>
+    <p class="small">Плодовете, от които моделът учи, са <b class="blue">данни за обучение</b>. Новите са <b class="green">тестови данни</b>.</p>
+  </div>
+  <div class="gap"></div>
+  <div class="rv-controls"><label>праг <input type="number" id="th-test" value="170" step="5"></label><span id="th-test-acc" class="small"></span></div>
+  <aside class="notes"><ul>
+    <li>Това е новото за днес. С праг 170 моделът познава 5 от 6 нови плода.</li>
+    <li>В кода: correct(170, test_weights, test_labels). Същата функция, други списъци. Затова списъците са параметри.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip t"><i>Твой ред</i><span>04 · Първи модел</span></div>
+  <p class="q">Друг модел не търси праг, а помни наизуст 12-те плода с техните отговори.</p>
+  <table>
+    <tr><th style="width:52%">Въпрос</th><th>Отговор</th></tr>
+    <tr><td>Колко от 12-те плода ще познае?</td><td><span class="frag">12 от 12, защото ги помни</span></td></tr>
+    <tr><td>Идва нова круша от 161 г. Какво ще каже?</td><td><span class="frag">Не знае. Такова тегло не е виждал.</span></td></tr>
+    <tr><td>Кой модел е по-полезен: този или нашият с праг 170?</td><td><span class="frag">Нашият. Греши понякога, но работи и за нови плодове.</span></td></tr>
+    <tr><td>Тогава по кой резултат съдим за един модел?</td><td><span class="frag">По резултата върху тестовите данни</span></td></tr>
+  </table>
+  <p class="click">→ показва отговорите един по един</p>
+  <aside class="notes"><ul>
+    <li>Това е идеята зад тестовите данни: моделът трябва да работи за нови примери, а не да помни старите.</li>
+    <li>Нашият модел с праг 170 също греши за крушата от 161 г. Само с тегло не може да се познае. Следващия път добавяме цвят.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip c"><i>Концепция</i><span>04 · Първи модел</span></div>
+  <h2>Това е машинно обучение</h2>
+  <div class="flow">
+    <div style="background:var(--blue)"><b>Данни</b><p>12 плода с тегло и верен отговор</p></div>
+    <div style="background:var(--purple)"><b>Модел</b><p>правило с параметър: прага</p></div>
+    <div style="background:var(--orange)"><b>Обучение</b><p>търсим прага, с който моделът познава най-много</p></div>
+    <div style="background:var(--green)"><b>Проверка</b><p>пробваме модела с нови плодове</p></div>
+  </div>
+  <div class="gap2"></div>
+  <p>Моделите за снимки и текст имат милиони параметри вместо един праг, но стъпките са същите.</p>
+  <aside class="notes"><ul><li>Свържи с въвеждащата лекция: там говорихме за учене от примери с ябълки и круши. Днес го направихме с код.</li></ul></aside>
+</section>
+
+<!-- ============ ЗАДАЧИ ============ -->
+<section class="slide">
+  <div class="chip z"><i>Задачи</i><span>Преглед</span></div>
+  <h2>Задачи</h2>
+  <div class="tasklist">
+    <div><b>⭐ Загрявка</b><ol><li>Първи функции</li><li>Сума на цифрите</li><li>Колко пъти се среща цифра</li><li>Среден успех</li></ol></div>
+    <div><b>⭐⭐ Помисли</b><ol start="5"><li>Простите числа до N</li><li>Най-голямото, делящо се на 3</li><li>Фибоначи в списък</li><li>Числото наобратно</li></ol></div>
+    <div><b>⭐⭐⭐ Предизвикателство</b><ol start="9"><li>Числото от четните цифри</li><li>Обучи модела и го провери</li></ol></div>
+  </div>
+  <div class="gap2"></div>
+  <div style="display:flex;gap:20px;align-items:center">
+    <a class="action primary" target="_blank" rel="noopener" href="https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/03-tekst-i-parvi-model/zadachi.ipynb">Отвори задачите в Colab ↗</a>
+    <span class="small">File → Save a copy in Drive, за да пазиш решенията си</span>
+  </div>
+  <aside class="notes"><ul>
+    <li>Във всяка задача функцията е започната и отдолу има проверки с очаквания отговор.</li>
+    <li>Задачи 1 до 4 са за всички. Който ги свърши, продължава нататък.</li>
+  </ul></aside>
+</section>
+
+<section class="slide">
+  <div class="chip z"><i>Край</i><span>Следващия път</span></div>
+  <h2>Тегло и цвят</h2>
+  <div class="split">
+    <pre class="py xs">fruits = [[150, "червен"], [182, "зелен"], ...]
+
+def guess(fruit):
+    weight = fruit[0]
+    color = fruit[1]
+    ...</pre>
+    <div class="points"><p>Ще пазим всеки плод като списък от признаци и ще видим дали с два признака моделът греши по-малко.</p></div>
+  </div>
+  <div class="gap2"></div>
+  <a class="action primary" target="_blank" rel="noopener" href="https://colab.research.google.com/github/TUES-AI/ai-club-beginners-course/blob/main/03-tekst-i-parvi-model/zadachi.ipynb">Задачите в Colab ↗</a>
+  <p class="takeaway">Изпратете линк към тетрадката си: Share → Anyone with the link → Copy link.</p>
+</section>
+
+
+
+</div></div>
+
+<div id="overview" aria-label="Всички слайдове"></div>
+<div id="notes" aria-live="polite"></div>
+<nav id="bar">
+  <button id="prev" aria-label="Назад">←</button>
+  <span id="count"></span>
+  <button id="next" aria-label="Напред">→</button>
+  <button id="btn-o" title="O">Слайдове</button>
+  <button id="btn-n" title="N">Бележки</button>
+  <button id="btn-f" title="F">⛶</button>
+</nav>
+
+<script>
+(function(){
+  // --- Python syntax highlighting for <pre class="py"> and <pre class="xs"> (keeps existing markup) ---
+  const KW = /\b(if|elif|else|for|while|in|and|or|not|break|continue|def|return|import|from|True|False|None)\b/;
+  const BI = /\b(print|input|int|float|str|len|range|type|sum|max|min|round|list)\b(?=\()/;
+  const RX = new RegExp([/(#[^\n]*)/.source, /(f?"[^"\n]*")/.source, /(\b\d+(?:\.\d+)?\b)/.source, "(" + KW.source + ")", "(" + BI.source + ")"].join("|"), "g");
+  const esc = t => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  function hlText(t){
+    return esc(t).replace(RX, (m, c, s, n, k, k2, b) =>
+      c ? `<span class="tk-c">${c}</span>` : s ? `<span class="tk-s">${s}</span>` :
+      n ? `<span class="tk-n">${n}</span>` : k ? `<span class="tk-k">${k}</span>` : `<span class="tk-b">${m}</span>`);
+  }
+  function hlNode(node){
+    [...node.childNodes].forEach(ch => {
+      if (ch.nodeType === 3) { const s = document.createElement("span"); s.innerHTML = hlText(ch.textContent); ch.replaceWith(...s.childNodes); }
+      else if (ch.nodeType === 1) hlNode(ch);
+    });
+  }
+  document.querySelectorAll("pre.py, pre.xs:not(.cpp)").forEach(hlNode);
+
+  // --- deck navigation with click-to-reveal fragments ---
+  const slides = [...document.querySelectorAll(".slide")];
+  const deck = document.getElementById("deck"), notes = document.getElementById("notes"),
+        overview = document.getElementById("overview"), count = document.getElementById("count");
+  let cur = 0;
+  const h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) cur = h - 1;
+  const frags = i => [...slides[i].querySelectorAll(".frag")];
+
+  function fit(){
+    const vp = document.getElementById("viewport");
+    deck.style.transform = `scale(${Math.min(vp.clientWidth / 1600, vp.clientHeight / 900)})`;
+  }
+  function show(i, revealAll){
+    cur = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, j) => s.hidden = j !== cur);
+    frags(cur).forEach(f => f.classList.toggle("on", !!revealAll));
+    count.textContent = `${cur + 1} / ${slides.length}`;
+    history.replaceState(null, "", "#" + (cur + 1));
+    const n = slides[cur].querySelector("aside.notes");
+    notes.innerHTML = `<h4>Бележки · слайд ${cur + 1}</h4>` + (n ? n.innerHTML : "<p>—</p>");
+    [...overview.children].forEach((b, j) => b.classList.toggle("cur", j === cur));
+  }
+  function next(){
+    const hidden = frags(cur).filter(f => !f.classList.contains("on"));
+    if (hidden.length) hidden[0].classList.add("on"); else if (cur < slides.length - 1) show(cur + 1);
+  }
+  function prev(){
+    const shown = frags(cur).filter(f => f.classList.contains("on"));
+    if (shown.length) shown[shown.length - 1].classList.remove("on"); else if (cur > 0) show(cur - 1, true);
+  }
+  slides.forEach((s, j) => {
+    const b = document.createElement("button");
+    const chip = s.querySelector(".chip i"), title = (s.querySelector("h1,h2,.q") || {}).textContent || "";
+    b.innerHTML = `<span class="${chip ? "" : "blue"}" style="color:${chip ? getComputedStyle(chip).backgroundColor : ""}">${j + 1} · ${chip ? chip.textContent : ""}</span>${title}`;
+    b.onclick = () => { show(j); overview.classList.remove("open"); };
+    overview.appendChild(b);
+  });
+  const toggleFS = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  document.getElementById("prev").onclick = prev;
+  document.getElementById("next").onclick = next;
+  document.getElementById("btn-n").onclick = () => notes.classList.toggle("open");
+  document.getElementById("btn-o").onclick = () => overview.classList.toggle("open");
+  document.getElementById("btn-f").onclick = toggleFS;
+  document.getElementById("viewport").addEventListener("click", e => {
+    if (e.target.closest("a,button,input,label")) return;
+    next();
+  });
+  document.addEventListener("keydown", e => {
+    if (e.target.tagName === "INPUT") { if (e.key === "Escape") e.target.blur(); return; }
+    if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); next(); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === "Home") show(0);
+    else if (e.key === "End") show(slides.length - 1);
+    else if (e.key === "n" || e.key === "N") notes.classList.toggle("open");
+    else if (e.key === "o" || e.key === "O") overview.classList.toggle("open");
+    else if (e.key === "f" || e.key === "F") toggleFS();
+    else if (e.key === "Escape") overview.classList.remove("open");
+  });
+  window.addEventListener("resize", fit);
+
+  // --- range() visualizer ---
+  const rs = document.getElementById("rv-start"), re = document.getElementById("rv-stop"), rp = document.getElementById("rv-step");
+  function renderRange(){
+    const a = parseInt(rs.value, 10) || 0, b = parseInt(re.value, 10) || 0;
+    let st = parseInt(rp.value, 10); if (!st) st = 1;
+    document.getElementById("rv-call").innerHTML = `range(<span class="tk-n">${a}</span>, <span class="tk-n">${b}</span>, <span class="tk-n">${st}</span>)`;
+    const out = document.getElementById("rv-out"); out.innerHTML = "";
+    const vals = [];
+    for (let v = a; st > 0 ? v < b : v > b; v += st) { vals.push(v); if (vals.length > 40) break; }
+    vals.slice(0, 40).forEach((v, k) => { const s = document.createElement("span"); s.textContent = v; s.style.animationDelay = (k * 30) + "ms"; out.appendChild(s); });
+    if (vals.length > 40) { const s = document.createElement("span"); s.textContent = "…"; out.appendChild(s); }
+    if (!vals.length) { const s = document.createElement("span"); s.className = "stop"; s.textContent = "празно"; out.appendChild(s); }
+    const stop = document.createElement("span"); stop.className = "stop"; stop.textContent = b; stop.title = "stop не се включва"; out.appendChild(stop);
+  }
+  if (rs) { [rs, re, rp].forEach(el => el.addEventListener("input", renderRange)); renderRange(); }
+
+  // --- fruit threshold number lines (one per .nline element) ---
+  document.querySelectorAll(".nline").forEach(nl => {
+    const W = nl.dataset.w.split(",").map(Number), L = nl.dataset.l.split(",");
+    const thIn = document.getElementById(nl.dataset.input), acc = document.getElementById(nl.dataset.acc);
+    const lo = 110, hi = 215, pos = w => ((w - lo) / (hi - lo) * 100) + "%";
+    function draw(){
+      const t = parseFloat(thIn.value) || 0; let ok = 0;
+      let h = '<div class="axis"></div>';
+      for (let w = 120; w <= 210; w += 20) h += `<div class="tick" style="left:${pos(w)}">${w} г</div>`;
+      W.forEach((w, i) => {
+        const g = w < t ? "a" : "p", good = g === L[i]; if (good) ok++;
+        h += `<div class="dot ${L[i] === "a" ? "top" : "bot"} ${good ? "" : "bad"}" style="left:${pos(w)}" title="${w} г">${L[i] === "a" ? "🍎" : "🍐"}</div>`;
+      });
+      const tl = Math.max(0, Math.min(100, (t - lo) / (hi - lo) * 100));
+      h += `<div class="th" style="left:${tl}%"><span>праг ${t} г</span></div>`;
+      nl.innerHTML = h;
+      acc.innerHTML = `Познава <b>${ok}</b> от ${W.length} · <span class="red">○</span> = грешка`;
+    }
+    thIn.addEventListener("input", draw); draw();
+  });
+
+  fit(); show(cur);
+})();
+</script>
+</body>
+</html>
