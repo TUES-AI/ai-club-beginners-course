@@ -15,7 +15,7 @@ main{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;m
 @media (max-width:900px){main{grid-template-columns:1fr;padding:12px 16px 32px}header{padding:16px 16px 4px}}
 section{background:var(--paper);border-radius:14px;padding:16px;min-width:0}
 canvas{display:block;width:100%;height:auto;border-radius:10px;background:var(--soft)}
-video{display:none}
+video{position:absolute;width:2px;height:2px;opacity:0;pointer-events:none}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
 .row span{font-size:14px;color:#55585a}
 button{font:inherit;font-size:15px;cursor:pointer;border:1px solid #c7c9c5;background:#fff;color:var(--ink);padding:8px 14px;border-radius:9px}
@@ -38,6 +38,8 @@ textarea{width:100%;height:340px;font-family:"SF Mono",ui-monospace,Menlo,Consol
 #pyerr{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:var(--red);background:#fdeceb;border-radius:8px;padding:8px 12px;margin-top:10px;white-space:pre-wrap}
 #pyerr:empty{display:none}
 #pyok{font-size:14px;color:var(--green);margin-top:10px}
+#note{font-size:16px;line-height:1.45;background:#fdf1ea;border-left:5px solid var(--orange);border-radius:0 10px 10px 0;padding:10px 14px;margin-top:10px}
+#note:empty{display:none}
 .editor{margin-top:0}
 .hint{font-size:14px;color:#55585a;line-height:1.5;margin:0 0 10px}
 .hint code{font-family:"SF Mono",ui-monospace,Menlo,monospace;background:var(--soft);padding:1px 6px;border-radius:5px;font-size:13px}
@@ -76,6 +78,7 @@ textarea{width:100%;height:340px;font-family:"SF Mono",ui-monospace,Menlo,Consol
   <section class="editor">
     <div class="lbl">gesture(ys) връща</div>
     <div id="gesture">—</div>
+    <div id="note" role="status"></div>
     <div class="game">
       <div class="lbl">Python кодът</div>
       <p class="hint">Страницата извиква <code>gesture(ys)</code> за всяка картина и <code>winner(me, computer)</code> при игра. Промени кода и натисни „Зареди кода“.</p>
@@ -153,13 +156,14 @@ const SAMPLES = {
   horns:    {xs:[50,39,31,33,42,39,36,35,33,48,48,49,49,56,58,60,58,65,67,70,72], ys:[92,86,77,68,64,57,42,32,24,56,42,50,57,58,45,53,60,62,51,43,35]},
 };
 const CONN = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[17,18],[18,19],[19,20],[0,17]];
+const CAM_ON = 'Камера: <b class="ok">включена</b>';
 const TIPS = [8,12,16,20], JOINTS = [6,10,14,18], MOVES = ["камък","ножица","хартия"];
 
 const $ = id => document.getElementById(id);
 const canvas = $("canvas"), ctx = canvas.getContext("2d"), video = $("video");
-const state = { hand: null, gesture: "—", py: null, landmarker: null, camera: false, sample: null, score: {me:0, pc:0, draw:0}, playing: false };
-const statusParts = { py: "Python: зарежда се…", model: "Модел за ръце: зарежда се…", cam: "Камера: изключена" };
-function setStatus(k, html){ statusParts[k] = html; $("status").innerHTML = [statusParts.py, statusParts.model, statusParts.cam].join("<br>"); }
+const state = { hand: null, gesture: "—", py: null, landmarker: null, camera: false, sample: null, score: {me:0, pc:0, draw:0}, playing: false, loaded: "", modelError: "" };
+const statusParts = { py: "Python: зарежда се…", model: "Модел за ръце: зарежда се…", cam: "Камера: изключена", hand: "" };
+function setStatus(k, html){ if (statusParts[k] === html) return; statusParts[k] = html; $("status").innerHTML = [statusParts.py, statusParts.model, statusParts.cam, statusParts.hand].filter(Boolean).join("<br>"); }
 setStatus("py", statusParts.py);
 
 // ---------- drawing ----------
@@ -213,7 +217,18 @@ function callPy(name, ...args){
     return out;
   } finally { converted.forEach(c => c && c.destroy && c.destroy()); if (fn.destroy) fn.destroy(); }
 }
+const squash = t => t.replace(/\s+/g, "");
+function updateNote(){
+  let note = "";
+  if (state.camera && !state.landmarker) note = state.modelFailed ? "Камерата работи, но моделът за ръце не се зареди. Провери интернет връзката и презареди страницата." : "Камерата работи, но моделът за ръце още се зарежда. Изчакай няколко секунди.";
+  else if (state.camera && !state.hand) note = "Не виждам ръка. Покажи цялата си длан към камерата, с пръстите нагоре.";
+  else if (state.hand && state.py && squash(state.loaded) === squash(STARTER)) note = "Точките на ръката са намерени. Функцията gesture още не е написана и затова връща „не знам“. Напиши я вдясно или натисни „Покажи решението“.";
+  if ($("note").textContent !== note) $("note").textContent = note;
+  if (state.camera) setStatus("hand", state.modelError ? 'Ръка: <b class="bad">грешка при разпознаването</b> (' + state.modelError + ')' : state.hand ? 'Ръка: <b class="ok">намерена</b>' : "Ръка: не се вижда");
+  else setStatus("hand", "");
+}
 function updateGesture(){
+  updateNote();
   if (!state.hand) { state.gesture = "—"; $("gesture").textContent = "—"; return; }
   if (!state.py) { $("gesture").textContent = "…"; return; }
   try {
@@ -230,6 +245,7 @@ function loadCode(){
   try {
     for (const n of ["is_up", "count_fingers", "gesture", "winner"]) state.py.runPython(`globals().pop("${n}", None)`);
     state.py.runPython(code);
+    state.loaded = code;
     $("pyok").textContent = "Кодът е зареден.";
     updateGesture();
   } catch (e) { $("gesture").textContent = "грешка"; state.gesture = "—"; $("pyerr").textContent = pyError(e); }
@@ -250,7 +266,8 @@ async function initModel(){
     const fileset = await FilesetResolver.forVisionTasks(MP + "/wasm");
     state.landmarker = await HandLandmarker.createFromOptions(fileset, { baseOptions: { modelAssetPath: MODEL }, runningMode: "VIDEO", numHands: 1 });
     setStatus("model", 'Модел за ръце: <b class="ok">зареден</b>');
-  } catch (e) { setStatus("model", 'Модел за ръце: <b class="bad">не се зареди</b>. Примерните ръце работят и без него.'); console.error(e); }
+    if (state.camera) setStatus("cam", CAM_ON);
+  } catch (e) { state.modelFailed = true; setStatus("model", 'Модел за ръце: <b class="bad">не се зареди</b>. Примерните ръце работят и без него.'); console.error(e); }
 }
 let lastTime = -1, lastUpdate = 0;
 function loop(){
@@ -262,7 +279,8 @@ function loop(){
         const res = state.landmarker.detectForVideo(video, performance.now());
         const lm = res.landmarks && res.landmarks[0];
         state.hand = lm ? { xs: lm.map(p => Math.round((1 - p.x) * 100)), ys: lm.map(p => Math.round(p.y * 100)) } : null;
-      } catch (e) { console.error(e); }
+        state.modelError = "";
+      } catch (e) { state.modelError = String(e && e.message || e).slice(0, 120); console.error(e); }
     }
     render();
     const now = performance.now();
@@ -279,7 +297,7 @@ async function startCamera(){
     canvas.width = video.videoWidth || 640; canvas.height = video.videoHeight || 480;
     state.camera = true; state.sample = null; state.hand = null;
     $("cam").textContent = "Спри камерата";
-    setStatus("cam", state.landmarker ? 'Камера: <b class="ok">включена</b>. Покажи ръката си с пръстите нагоре.' : 'Камера: включена, но моделът за ръце не е зареден.');
+    setStatus("cam", CAM_ON);
     loop();
   } catch (e) { setStatus("cam", 'Камера: <b class="bad">няма достъп</b>. Разреши камерата в браузъра или ползвай примерните ръце.'); console.error(e); }
 }
