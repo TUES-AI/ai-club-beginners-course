@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 4 · Функции · AI клуб ТУЕС</title>
+<meta name="description" content="Лекция за 8. клас: какво е функция, графики, линейна и квадратна функция, задачи за час и домашно.">
+<style>
+  :root { --ink:#17191c; --blue:#0866f5; --soft:#f4f5f2; --muted:#6b6e69; --line:#dfe1dc; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:12px; }
+  body { margin:0; background:var(--soft); color:var(--ink);
+         font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  header { max-width:900px; margin:0 auto; padding:28px 16px 8px; }
+  .kicker { font-size:13px; font-weight:700; letter-spacing:.04em; color:var(--blue); }
+  h1 { font-size:34px; line-height:1.15; margin:4px 0 8px; }
+  p { margin:0 0 14px; max-width:60ch; }
+  .btns { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px; }
+  .btns a { padding:9px 14px; border-radius:8px; border:1px solid var(--line); background:#fff;
+            color:var(--ink); text-decoration:none; font-weight:600; font-size:15px; }
+  .btns a.main { background:var(--blue); border-color:var(--blue); color:#fff; }
+  nav { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:14px; padding-bottom:6px; }
+  nav a { color:var(--blue); text-decoration:none; }
+  nav a:hover, .btns a:hover { text-decoration:underline; }
+  main { max-width:900px; margin:0 auto; padding:8px 16px 40px; }
+  main img { display:block; width:100%; height:auto; margin:0 0 14px; background:#fff;
+             border:1px solid var(--line); border-radius:6px; }
+  footer { max-width:900px; margin:0 auto; padding:0 16px 40px; color:var(--muted); font-size:14px; }
+  footer a { color:var(--blue); }
+  @media (max-width:600px) { h1 { font-size:28px; } main,header { padding-left:8px; padding-right:8px; } }
+</style>
+</head>
+<body>
+  <header>
+    <div class="kicker">AI КЛУБ · ТУЕС · НАЧИНАЕЩИ · УРОК 4</div>
+    <h1>Функции</h1>
+    <p>Какво е функция, как се чете графика и кои функции срещаме най-често. Накрая има задачи за часа и домашно.</p>
+    <div class="btns">
+      <a class="main" href="lekciya.pdf">Свали лекцията (PDF)</a>
+      <a href="zadachi.pdf">Само задачите (PDF)</a>
+      <a href="../">Всички уроци</a>
+    </div>
+    <nav aria-label="Съдържание">
+      <a href="#s2">Какво е функция</a>
+      <a href="#s3">От таблица към графика</a>
+      <a href="#s5">Позволени входове</a>
+      <a href="#s6">Линейна функция</a>
+      <a href="#s9">Квадратна функция</a>
+      <a href="#s11">Зоопарк от функции</a>
+      <a href="#s15">Какво ни казва графиката</a>
+      <a href="#s16">Функция от функция</a>
+      <a href="#s17">Функциите и AI</a>
+      <a href="#s18">Отговори на „Провери се“</a>
+      <a href="#s19">Задачи за часа</a>
+      <a href="#s23">Домашно</a>
+    </nav>
+  </header>
+  <main>
+    <img id="s1" src="stranici/p-01.png" width="1034" height="1462" alt="Урок 4: Функции, страница 1 от 24">
+    <img id="s2" src="stranici/p-02.png" width="1034" height="1462" alt="Урок 4: Функции, страница 2 от 24">
+    <img id="s3" src="stranici/p-03.png" width="1034" height="1462" alt="Урок 4: Функции, страница 3 от 24" loading="lazy">
+    <img id="s4" src="stranici/p-04.png" width="1034" height="1462" alt="Урок 4: Функции, страница 4 от 24" loading="lazy">
+    <img id="s5" src="stranici/p-05.png" width="1034" height="1462" alt="Урок 4: Функции, страница 5 от 24" loading="lazy">
+    <img id="s6" src="stranici/p-06.png" width="1034" height="1462" alt="Урок 4: Функции, страница 6 от 24" loading="lazy">
+    <img id="s7" src="stranici/p-07.png" width="1034" height="1462" alt="Урок 4: Функции, страница 7 от 24" loading="lazy">
+    <img id="s8" src="stranici/p-08.png" width="1034" height="1462" alt="Урок 4: Функции, страница 8 от 24" loading="lazy">
+    <img id="s9" src="stranici/p-09.png" width="1034" height="1462" alt="Урок 4: Функции, страница 9 от 24" loading="lazy">
+    <img id="s10" src="stranici/p-10.png" width="1034" height="1462" alt="Урок 4: Функции, страница 10 от 24" loading="lazy">
+    <img id="s11" src="stranici/p-11.png" width="1034" height="1462" alt="Урок 4: Функции, страница 11 от 24" loading="lazy">
+    <img id="s12" src="stranici/p-12.png" width="1034" height="1462" alt="Урок 4: Функции, страница 12 от 24" loading="lazy">
+    <img id="s13" src="stranici/p-13.png" width="1034" height="1462" alt="Урок 4: Функции, страница 13 от 24" loading="lazy">
+    <img id="s14" src="stranici/p-14.png" width="1034" height="1462" alt="Урок 4: Функции, страница 14 от 24" loading="lazy">
+    <img id="s15" src="stranici/p-15.png" width="1034" height="1462" alt="Урок 4: Функции, страница 15 от 24" loading="lazy">
+    <img id="s16" src="stranici/p-16.png" width="1034" height="1462" alt="Урок 4: Функции, страница 16 от 24" loading="lazy">
+    <img id="s17" src="stranici/p-17.png" width="1034" height="1462" alt="Урок 4: Функции, страница 17 от 24" loading="lazy">
+    <img id="s18" src="stranici/p-18.png" width="1034" height="1462" alt="Урок 4: Функции, страница 18 от 24" loading="lazy">
+    <img id="s19" src="stranici/p-19.png" width="1034" height="1462" alt="Урок 4: Функции, страница 19 от 24" loading="lazy">
+    <img id="s20" src="stranici/p-20.png" width="1034" height="1462" alt="Урок 4: Функции, страница 20 от 24" loading="lazy">
+    <img id="s21" src="stranici/p-21.png" width="1034" height="1462" alt="Урок 4: Функции, страница 21 от 24" loading="lazy">
+    <img id="s22" src="stranici/p-22.png" width="1034" height="1462" alt="Урок 4: Функции, страница 22 от 24" loading="lazy">
+    <img id="s23" src="stranici/p-23.png" width="1034" height="1462" alt="Урок 4: Функции, страница 23 от 24" loading="lazy">
+    <img id="s24" src="stranici/p-24.png" width="1034" height="1462" alt="Урок 4: Функции, страница 24 от 24" loading="lazy">
+  </main>
+  <footer>Материал на AI клуба на ТУЕС. Изходният файл е <a href="lekciya.tex">lekciya.tex</a>.</footer>
+</body>
+</html>
